@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="trabalhoaedsII" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/trabalhoaedsII" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/trabalhoaedsII" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="arquivo.log" />
+		<Unit filename="departamento.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="departamento.h" />
+		<Unit filename="funcionario.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funcionario.h" />
+		<Unit filename="gerador_dados.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gerador_dados.h" />
+		<Unit filename="hash_pacientes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="hash_pacientes.h" />
+		<Unit filename="hospital.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="hospital.h" />
+		<Unit filename="iteracoes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="iteracoes.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ordenacao.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="paciente.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="paciente.h" />
+		<Unit filename="subpaciente.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="subpaciente.h" />
+		<Unit filename="tempo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tempo.h" />
+		<Unit filename="teste_ordenacao.log" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

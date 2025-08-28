@@ -1,0 +1,2134 @@
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memória: 100 pacientes
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memória: 100 pacientes
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memória: 100 pacientes
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memória: 100 pacientes
+[RESUMO] TESTE 1000 PACIENTES -> Bubble: 1.93s | Selecao: 0.00s | Vencedores: 0.00s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 10
+Tempo total selecao natural: 10.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1000 PACIENTES -> Bubble: 1.93s | Selecao: 0.01s | Vencedores: 0.00s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 20
+Tempo total selecao natural: 18.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 2000 PACIENTES -> Bubble: 7.74s | Selecao: 0.02s | Vencedores: 0.00s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1500
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 15
+Tempo total selecao natural: 13.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1500 PACIENTES -> Bubble: 4.51s | Selecao: 0.01s | Vencedores: 0.00s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 3000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 30
+Tempo total selecao natural: 29.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 3000 PACIENTES -> Bubble: 17.42s | Selecao: 0.03s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 5000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 50
+Tempo total selecao natural: 46.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 5000 PACIENTES -> Bubble: 48.16s | Selecao: 0.05s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 3000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 30
+Tempo total selecao natural: 21.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 3000 PACIENTES -> Bubble: 17.51s | Selecao: 0.02s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2500
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 25
+Tempo total selecao natural: 21.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 2500 PACIENTES -> Bubble: 12.02s | Selecao: 0.02s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 3000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 30
+Tempo total selecao natural: 27.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 3000 PACIENTES -> Bubble: 17.14s | Selecao: 0.03s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 3500
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 35
+Tempo total selecao natural: 36.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 3500 PACIENTES -> Bubble: 33.38s | Selecao: 0.04s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 20
+Tempo total selecao natural: 32.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 10
+Tempo total selecao natural: 19.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 3500
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 35
+Tempo total selecao natural: 32.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 3500 PACIENTES -> Bubble: 32.93s | Selecao: 0.03s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 20
+Tempo total selecao natural: 30.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 10000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 100
+Tempo total selecao natural: 177.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 10000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 100
+Tempo total selecao natural: 147.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 5000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 50
+Tempo total selecao natural: 49.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 5000 PACIENTES -> Bubble: 65.30s | Selecao: 0.05s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 10
+Tempo total selecao natural: 16.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 8000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 80
+Tempo total selecao natural: 125.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 3500
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 35
+Tempo total selecao natural: 36.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 3500 PACIENTES -> Bubble: 32.95s | Selecao: 0.04s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 15000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 150
+Tempo total selecao natural: 198.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 28
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 1
+Tempo total selecao natural: 2.00 ms
+Pacientes por particao (media): 28.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 28 PACIENTES -> Bubble: 0.00s | Selecao: 0.00s | Vencedores: 0.00s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 0
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 0
+Tempo total selecao natural: 1.00 ms
+Pacientes por particao (media): -nan(ind)
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 10
+Tempo total selecao natural: 10.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1000 PACIENTES -> Bubble: 2.08s | Selecao: 0.01s | Vencedores: 0.00s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 3500
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 35
+Tempo total selecao natural: 26.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 3500 PACIENTES -> Bubble: 27.70s | Selecao: 0.03s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 0
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 0
+Tempo total selecao natural: 1.00 ms
+Pacientes por particao (media): -nan(ind)
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 5000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 50
+Tempo total selecao natural: 70.00 ms
+Pacientes por particao (media): 100.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 21
+Tempo total selecao natural: 23.00 ms
+Pacientes por particao (media): 95.2
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 100 pacientes
+Particoes criadas: 21
+Tempo total selecao natural: 14.00 ms
+Pacientes por particao (media): 95.2
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 2000 PACIENTES -> Bubble: 10.87s | Selecao: 0.01s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 6 pacientes
+Particoes criadas: 334
+Tempo total selecao natural: 172.00 ms
+Pacientes por particao (media): 6.0
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 2000 PACIENTES -> Bubble: 11.29s | Selecao: 0.17s | Vencedores: 0.07s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memoria: 6 pacientes
+Particoes criadas: 85
+Tempo total selecao natural: 44.00 ms
+Pacientes por particao (media): 11.8
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1000 PACIENTES -> Bubble: 3.12s | Selecao: 0.04s | Vencedores: 0.03s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 6 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particao 0: 0 pacientes
+Particoes criadas: 0
+Tempo total selecao natural: 77.00 ms
+Pacientes por particao (media): inf
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 2000 PACIENTES -> Bubble: 11.14s | Selecao: 0.08s | Vencedores: 0.00s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2500
+Tamanho da memoria: 6 pacientes
+Particao 0: 6 pacientes
+Particao 1: 13 pacientes
+Particao 2: 18 pacientes
+Particao 3: 14 pacientes
+Particao 4: 11 pacientes
+Particao 5: 11 pacientes
+Particao 6: 10 pacientes
+Particao 7: 11 pacientes
+Particao 8: 12 pacientes
+Particao 9: 13 pacientes
+Particao 10: 19 pacientes
+Particao 11: 18 pacientes
+Particao 12: 12 pacientes
+Particao 13: 10 pacientes
+Particao 14: 11 pacientes
+Particao 15: 11 pacientes
+Particao 16: 10 pacientes
+Particao 17: 13 pacientes
+Particao 18: 12 pacientes
+Particao 19: 10 pacientes
+Particao 20: 12 pacientes
+Particao 21: 12 pacientes
+Particao 22: 13 pacientes
+Particao 23: 13 pacientes
+Particao 24: 11 pacientes
+Particao 25: 17 pacientes
+Particao 26: 11 pacientes
+Particao 27: 10 pacientes
+Particao 28: 8 pacientes
+Particao 29: 14 pacientes
+Particao 30: 10 pacientes
+Particao 31: 11 pacientes
+Particao 32: 12 pacientes
+Particao 33: 14 pacientes
+Particao 34: 14 pacientes
+Particao 35: 7 pacientes
+Particao 36: 11 pacientes
+Particao 37: 15 pacientes
+Particao 38: 10 pacientes
+Particao 39: 9 pacientes
+Particao 40: 14 pacientes
+Particao 41: 9 pacientes
+Particao 42: 13 pacientes
+Particao 43: 11 pacientes
+Particao 44: 10 pacientes
+Particao 45: 11 pacientes
+Particao 46: 12 pacientes
+Particao 47: 12 pacientes
+Particao 48: 13 pacientes
+Particao 49: 13 pacientes
+Particao 50: 9 pacientes
+Particao 51: 13 pacientes
+Particao 52: 12 pacientes
+Particao 53: 14 pacientes
+Particao 54: 12 pacientes
+Particao 55: 12 pacientes
+Particao 56: 14 pacientes
+Particao 57: 13 pacientes
+Particao 58: 11 pacientes
+Particao 59: 14 pacientes
+Particao 60: 15 pacientes
+Particao 61: 8 pacientes
+Particao 62: 10 pacientes
+Particao 63: 11 pacientes
+Particao 64: 13 pacientes
+Particao 65: 9 pacientes
+Particao 66: 16 pacientes
+Particao 67: 10 pacientes
+Particao 68: 8 pacientes
+Particao 69: 10 pacientes
+Particao 70: 14 pacientes
+Particao 71: 15 pacientes
+Particao 72: 14 pacientes
+Particao 73: 9 pacientes
+Particao 74: 9 pacientes
+Particao 75: 11 pacientes
+Particao 76: 10 pacientes
+Particao 77: 10 pacientes
+Particao 78: 13 pacientes
+Particao 79: 16 pacientes
+Particao 80: 12 pacientes
+Particao 81: 12 pacientes
+Particao 82: 12 pacientes
+Particao 83: 12 pacientes
+Particao 84: 9 pacientes
+Particao 85: 11 pacientes
+Particao 86: 10 pacientes
+Particao 87: 12 pacientes
+Particao 88: 16 pacientes
+Particao 89: 12 pacientes
+Particao 90: 14 pacientes
+Particao 91: 12 pacientes
+Particao 92: 11 pacientes
+Particao 93: 12 pacientes
+Particao 94: 10 pacientes
+Particao 95: 9 pacientes
+Particao 96: 12 pacientes
+Particao 97: 11 pacientes
+Particao 98: 7 pacientes
+Particao 99: 16 pacientes
+Particao 100: 12 pacientes
+Particao 101: 13 pacientes
+Particao 102: 11 pacientes
+Particao 103: 11 pacientes
+Particao 104: 12 pacientes
+Particao 105: 10 pacientes
+Particao 106: 15 pacientes
+Particao 107: 18 pacientes
+Particao 108: 12 pacientes
+Particao 109: 12 pacientes
+Particao 110: 13 pacientes
+Particao 111: 12 pacientes
+Particao 112: 9 pacientes
+Particao 113: 17 pacientes
+Particao 114: 11 pacientes
+Particao 115: 13 pacientes
+Particao 116: 17 pacientes
+Particao 117: 8 pacientes
+Particao 118: 11 pacientes
+Particao 119: 16 pacientes
+Particao 120: 10 pacientes
+Particao 121: 11 pacientes
+Particao 122: 10 pacientes
+Particao 123: 9 pacientes
+Particao 124: 9 pacientes
+Particao 125: 12 pacientes
+Particao 126: 9 pacientes
+Particao 127: 13 pacientes
+Particao 128: 11 pacientes
+Particao 129: 11 pacientes
+Particao 130: 11 pacientes
+Particao 131: 13 pacientes
+Particao 132: 9 pacientes
+Particao 133: 11 pacientes
+Particao 134: 10 pacientes
+Particao 135: 12 pacientes
+Particao 136: 9 pacientes
+Particao 137: 9 pacientes
+Particao 138: 17 pacientes
+Particao 139: 8 pacientes
+Particao 140: 9 pacientes
+Particao 141: 16 pacientes
+Particao 142: 14 pacientes
+Particao 143: 15 pacientes
+Particao 144: 13 pacientes
+Particao 145: 15 pacientes
+Particao 146: 9 pacientes
+Particao 147: 15 pacientes
+Particao 148: 9 pacientes
+Particao 149: 16 pacientes
+Particao 150: 11 pacientes
+Particao 151: 15 pacientes
+Particao 152: 15 pacientes
+Particao 153: 15 pacientes
+Particao 154: 8 pacientes
+Particao 155: 11 pacientes
+Particao 156: 11 pacientes
+Particao 157: 13 pacientes
+Particao 158: 11 pacientes
+Particao 159: 11 pacientes
+Particao 160: 10 pacientes
+Particao 161: 13 pacientes
+Particao 162: 10 pacientes
+Particao 163: 13 pacientes
+Particao 164: 12 pacientes
+Particao 165: 12 pacientes
+Particao 166: 10 pacientes
+Particao 167: 9 pacientes
+Particao 168: 11 pacientes
+Particao 169: 10 pacientes
+Particao 170: 20 pacientes
+Particao 171: 16 pacientes
+Particao 172: 12 pacientes
+Particao 173: 11 pacientes
+Particao 174: 12 pacientes
+Particao 175: 18 pacientes
+Particao 176: 9 pacientes
+Particao 177: 12 pacientes
+Particao 178: 11 pacientes
+Particao 179: 10 pacientes
+Particao 180: 11 pacientes
+Particao 181: 12 pacientes
+Particao 182: 9 pacientes
+Particao 183: 9 pacientes
+Particao 184: 11 pacientes
+Particao 185: 12 pacientes
+Particao 186: 14 pacientes
+Particao 187: 10 pacientes
+Particao 188: 12 pacientes
+Particao 189: 14 pacientes
+Particao 190: 10 pacientes
+Particao 191: 10 pacientes
+Particao 192: 14 pacientes
+Particao 193: 13 pacientes
+Particao 194: 11 pacientes
+Particao 195: 12 pacientes
+Particao 196: 12 pacientes
+Particao 197: 16 pacientes
+Particao 198: 9 pacientes
+Particao 199: 12 pacientes
+Particao 200: 9 pacientes
+Particao 201: 10 pacientes
+Particao 202: 13 pacientes
+Particao 203: 11 pacientes
+Particao 204: 12 pacientes
+Particao 205: 13 pacientes
+Particao 206: 12 pacientes
+Particao 207: 12 pacientes
+Particao 208: 16 pacientes
+Particao 209: 12 pacientes
+Particao 210: 3 pacientes
+Particoes criadas: 211
+Tempo total selecao natural: 130.00 ms
+Pacientes por particao (media): 11.8
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 2500 PACIENTES -> Bubble: 16.11s | Selecao: 0.13s | Vencedores: 0.05s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 6 pacientes
+Particao 0: 8 pacientes
+Particao 1: 12 pacientes
+Particao 2: 12 pacientes
+Particao 3: 14 pacientes
+Particao 4: 10 pacientes
+Particao 5: 15 pacientes
+Particao 6: 10 pacientes
+Particao 7: 10 pacientes
+Particao 8: 11 pacientes
+Particao 9: 14 pacientes
+Particao 10: 14 pacientes
+Particao 11: 12 pacientes
+Particao 12: 10 pacientes
+Particao 13: 13 pacientes
+Particao 14: 9 pacientes
+Particao 15: 13 pacientes
+Particao 16: 11 pacientes
+Particao 17: 12 pacientes
+Particao 18: 16 pacientes
+Particao 19: 10 pacientes
+Particao 20: 13 pacientes
+Particao 21: 10 pacientes
+Particao 22: 8 pacientes
+Particao 23: 12 pacientes
+Particao 24: 13 pacientes
+Particao 25: 15 pacientes
+Particao 26: 9 pacientes
+Particao 27: 14 pacientes
+Particao 28: 9 pacientes
+Particao 29: 10 pacientes
+Particao 30: 13 pacientes
+Particao 31: 17 pacientes
+Particao 32: 11 pacientes
+Particao 33: 11 pacientes
+Particao 34: 14 pacientes
+Particao 35: 13 pacientes
+Particao 36: 10 pacientes
+Particao 37: 11 pacientes
+Particao 38: 11 pacientes
+Particao 39: 12 pacientes
+Particao 40: 11 pacientes
+Particao 41: 12 pacientes
+Particao 42: 12 pacientes
+Particao 43: 9 pacientes
+Particao 44: 15 pacientes
+Particao 45: 9 pacientes
+Particao 46: 8 pacientes
+Particao 47: 16 pacientes
+Particao 48: 14 pacientes
+Particao 49: 8 pacientes
+Particao 50: 10 pacientes
+Particao 51: 18 pacientes
+Particao 52: 13 pacientes
+Particao 53: 8 pacientes
+Particao 54: 15 pacientes
+Particao 55: 14 pacientes
+Particao 56: 14 pacientes
+Particao 57: 10 pacientes
+Particao 58: 14 pacientes
+Particao 59: 13 pacientes
+Particao 60: 11 pacientes
+Particao 61: 14 pacientes
+Particao 62: 10 pacientes
+Particao 63: 9 pacientes
+Particao 64: 13 pacientes
+Particao 65: 11 pacientes
+Particao 66: 13 pacientes
+Particao 67: 11 pacientes
+Particao 68: 11 pacientes
+Particao 69: 12 pacientes
+Particao 70: 17 pacientes
+Particao 71: 12 pacientes
+Particao 72: 11 pacientes
+Particao 73: 16 pacientes
+Particao 74: 13 pacientes
+Particao 75: 7 pacientes
+Particao 76: 10 pacientes
+Particao 77: 14 pacientes
+Particao 78: 11 pacientes
+Particao 79: 10 pacientes
+Particao 80: 11 pacientes
+Particao 81: 14 pacientes
+Particao 82: 10 pacientes
+Particao 83: 12 pacientes
+Particao 84: 8 pacientes
+Particao 85: 13 pacientes
+Particao 86: 10 pacientes
+Particao 87: 15 pacientes
+Particao 88: 9 pacientes
+Particao 89: 10 pacientes
+Particao 90: 12 pacientes
+Particao 91: 14 pacientes
+Particao 92: 12 pacientes
+Particao 93: 15 pacientes
+Particao 94: 14 pacientes
+Particao 95: 11 pacientes
+Particao 96: 9 pacientes
+Particao 97: 11 pacientes
+Particao 98: 13 pacientes
+Particao 99: 11 pacientes
+Particao 100: 12 pacientes
+Particao 101: 15 pacientes
+Particao 102: 16 pacientes
+Particao 103: 11 pacientes
+Particao 104: 12 pacientes
+Particao 105: 13 pacientes
+Particao 106: 15 pacientes
+Particao 107: 15 pacientes
+Particao 108: 12 pacientes
+Particao 109: 13 pacientes
+Particao 110: 10 pacientes
+Particao 111: 14 pacientes
+Particao 112: 10 pacientes
+Particao 113: 10 pacientes
+Particao 114: 12 pacientes
+Particao 115: 12 pacientes
+Particao 116: 12 pacientes
+Particao 117: 14 pacientes
+Particao 118: 11 pacientes
+Particao 119: 9 pacientes
+Particao 120: 12 pacientes
+Particao 121: 14 pacientes
+Particao 122: 17 pacientes
+Particao 123: 9 pacientes
+Particao 124: 10 pacientes
+Particao 125: 13 pacientes
+Particao 126: 9 pacientes
+Particao 127: 11 pacientes
+Particao 128: 13 pacientes
+Particao 129: 14 pacientes
+Particao 130: 9 pacientes
+Particao 131: 12 pacientes
+Particao 132: 13 pacientes
+Particao 133: 8 pacientes
+Particao 134: 12 pacientes
+Particao 135: 15 pacientes
+Particao 136: 12 pacientes
+Particao 137: 9 pacientes
+Particao 138: 12 pacientes
+Particao 139: 18 pacientes
+Particao 140: 11 pacientes
+Particao 141: 10 pacientes
+Particao 142: 13 pacientes
+Particao 143: 12 pacientes
+Particao 144: 16 pacientes
+Particao 145: 10 pacientes
+Particao 146: 13 pacientes
+Particao 147: 8 pacientes
+Particao 148: 15 pacientes
+Particao 149: 15 pacientes
+Particao 150: 10 pacientes
+Particao 151: 15 pacientes
+Particao 152: 12 pacientes
+Particao 153: 13 pacientes
+Particao 154: 12 pacientes
+Particao 155: 9 pacientes
+Particao 156: 12 pacientes
+Particao 157: 13 pacientes
+Particao 158: 12 pacientes
+Particao 159: 9 pacientes
+Particao 160: 10 pacientes
+Particao 161: 11 pacientes
+Particao 162: 10 pacientes
+Particao 163: 12 pacientes
+Particao 164: 12 pacientes
+Particao 165: 13 pacientes
+Particao 166: 13 pacientes
+Particao 167: 4 pacientes
+Particoes criadas: 168
+Tempo total selecao natural: 206.00 ms
+Pacientes por particao (media): 11.9
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 100
+Tamanho da memoria: 6 pacientes
+Particao 0: 8 pacientes
+Particao 1: 9 pacientes
+Particao 2: 12 pacientes
+Particao 3: 8 pacientes
+Particao 4: 10 pacientes
+Particao 5: 14 pacientes
+Particao 6: 12 pacientes
+Particao 7: 9 pacientes
+Particao 8: 12 pacientes
+Particao 9: 6 pacientes
+Particoes criadas: 10
+Tempo total selecao natural: 10.00 ms
+Pacientes por particao (media): 10.0
+=== FIM SELECAO NATURAL ===
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1000
+Tamanho da memoria: 6 pacientes
+Particao 0: 12 pacientes
+Particao 1: 9 pacientes
+Particao 2: 13 pacientes
+Particao 3: 15 pacientes
+Particao 4: 12 pacientes
+Particao 5: 9 pacientes
+Particao 6: 9 pacientes
+Particao 7: 11 pacientes
+Particao 8: 11 pacientes
+Particao 9: 12 pacientes
+Particao 10: 11 pacientes
+Particao 11: 11 pacientes
+Particao 12: 12 pacientes
+Particao 13: 13 pacientes
+Particao 14: 11 pacientes
+Particao 15: 9 pacientes
+Particao 16: 12 pacientes
+Particao 17: 13 pacientes
+Particao 18: 13 pacientes
+Particao 19: 11 pacientes
+Particao 20: 10 pacientes
+Particao 21: 15 pacientes
+Particao 22: 8 pacientes
+Particao 23: 11 pacientes
+Particao 24: 19 pacientes
+Particao 25: 10 pacientes
+Particao 26: 10 pacientes
+Particao 27: 12 pacientes
+Particao 28: 9 pacientes
+Particao 29: 17 pacientes
+Particao 30: 10 pacientes
+Particao 31: 10 pacientes
+Particao 32: 12 pacientes
+Particao 33: 11 pacientes
+Particao 34: 15 pacientes
+Particao 35: 11 pacientes
+Particao 36: 11 pacientes
+Particao 37: 13 pacientes
+Particao 38: 8 pacientes
+Particao 39: 11 pacientes
+Particao 40: 14 pacientes
+Particao 41: 13 pacientes
+Particao 42: 13 pacientes
+Particao 43: 19 pacientes
+Particao 44: 12 pacientes
+Particao 45: 12 pacientes
+Particao 46: 10 pacientes
+Particao 47: 14 pacientes
+Particao 48: 10 pacientes
+Particao 49: 13 pacientes
+Particao 50: 11 pacientes
+Particao 51: 13 pacientes
+Particao 52: 10 pacientes
+Particao 53: 13 pacientes
+Particao 54: 13 pacientes
+Particao 55: 16 pacientes
+Particao 56: 10 pacientes
+Particao 57: 15 pacientes
+Particao 58: 12 pacientes
+Particao 59: 13 pacientes
+Particao 60: 12 pacientes
+Particao 61: 8 pacientes
+Particao 62: 14 pacientes
+Particao 63: 11 pacientes
+Particao 64: 14 pacientes
+Particao 65: 7 pacientes
+Particao 66: 16 pacientes
+Particao 67: 10 pacientes
+Particao 68: 13 pacientes
+Particao 69: 14 pacientes
+Particao 70: 11 pacientes
+Particao 71: 9 pacientes
+Particao 72: 15 pacientes
+Particao 73: 10 pacientes
+Particao 74: 10 pacientes
+Particao 75: 10 pacientes
+Particao 76: 8 pacientes
+Particao 77: 12 pacientes
+Particao 78: 14 pacientes
+Particao 79: 9 pacientes
+Particao 80: 15 pacientes
+Particao 81: 11 pacientes
+Particao 82: 10 pacientes
+Particao 83: 13 pacientes
+Particao 84: 6 pacientes
+Particoes criadas: 85
+Tempo total selecao natural: 76.00 ms
+Pacientes por particao (media): 11.8
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1000 PACIENTES -> Bubble: 3.32s | Selecao: 0.08s | Vencedores: 0.05s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1500
+Tamanho da memoria: 6 pacientes
+Particao 0: 11 pacientes
+Particao 1: 13 pacientes
+Particao 2: 12 pacientes
+Particao 3: 15 pacientes
+Particao 4: 13 pacientes
+Particao 5: 14 pacientes
+Particao 6: 12 pacientes
+Particao 7: 12 pacientes
+Particao 8: 12 pacientes
+Particao 9: 12 pacientes
+Particao 10: 10 pacientes
+Particao 11: 13 pacientes
+Particao 12: 12 pacientes
+Particao 13: 9 pacientes
+Particao 14: 13 pacientes
+Particao 15: 15 pacientes
+Particao 16: 13 pacientes
+Particao 17: 11 pacientes
+Particao 18: 12 pacientes
+Particao 19: 11 pacientes
+Particao 20: 13 pacientes
+Particao 21: 8 pacientes
+Particao 22: 9 pacientes
+Particao 23: 13 pacientes
+Particao 24: 10 pacientes
+Particao 25: 11 pacientes
+Particao 26: 13 pacientes
+Particao 27: 9 pacientes
+Particao 28: 12 pacientes
+Particao 29: 15 pacientes
+Particao 30: 11 pacientes
+Particao 31: 16 pacientes
+Particao 32: 11 pacientes
+Particao 33: 12 pacientes
+Particao 34: 12 pacientes
+Particao 35: 13 pacientes
+Particao 36: 13 pacientes
+Particao 37: 13 pacientes
+Particao 38: 12 pacientes
+Particao 39: 12 pacientes
+Particao 40: 16 pacientes
+Particao 41: 11 pacientes
+Particao 42: 11 pacientes
+Particao 43: 12 pacientes
+Particao 44: 11 pacientes
+Particao 45: 14 pacientes
+Particao 46: 11 pacientes
+Particao 47: 10 pacientes
+Particao 48: 14 pacientes
+Particao 49: 12 pacientes
+Particao 50: 14 pacientes
+Particao 51: 11 pacientes
+Particao 52: 10 pacientes
+Particao 53: 14 pacientes
+Particao 54: 11 pacientes
+Particao 55: 11 pacientes
+Particao 56: 17 pacientes
+Particao 57: 13 pacientes
+Particao 58: 14 pacientes
+Particao 59: 12 pacientes
+Particao 60: 8 pacientes
+Particao 61: 17 pacientes
+Particao 62: 11 pacientes
+Particao 63: 14 pacientes
+Particao 64: 9 pacientes
+Particao 65: 13 pacientes
+Particao 66: 13 pacientes
+Particao 67: 11 pacientes
+Particao 68: 14 pacientes
+Particao 69: 13 pacientes
+Particao 70: 12 pacientes
+Particao 71: 13 pacientes
+Particao 72: 10 pacientes
+Particao 73: 10 pacientes
+Particao 74: 9 pacientes
+Particao 75: 14 pacientes
+Particao 76: 11 pacientes
+Particao 77: 15 pacientes
+Particao 78: 12 pacientes
+Particao 79: 18 pacientes
+Particao 80: 15 pacientes
+Particao 81: 13 pacientes
+Particao 82: 12 pacientes
+Particao 83: 12 pacientes
+Particao 84: 13 pacientes
+Particao 85: 12 pacientes
+Particao 86: 10 pacientes
+Particao 87: 13 pacientes
+Particao 88: 13 pacientes
+Particao 89: 9 pacientes
+Particao 90: 14 pacientes
+Particao 91: 13 pacientes
+Particao 92: 13 pacientes
+Particao 93: 10 pacientes
+Particao 94: 16 pacientes
+Particao 95: 10 pacientes
+Particao 96: 10 pacientes
+Particao 97: 11 pacientes
+Particao 98: 12 pacientes
+Particao 99: 13 pacientes
+Particao 100: 15 pacientes
+Particao 101: 10 pacientes
+Particao 102: 13 pacientes
+Particao 103: 13 pacientes
+Particao 104: 13 pacientes
+Particao 105: 12 pacientes
+Particao 106: 10 pacientes
+Particao 107: 11 pacientes
+Particao 108: 13 pacientes
+Particao 109: 10 pacientes
+Particao 110: 10 pacientes
+Particao 111: 12 pacientes
+Particao 112: 15 pacientes
+Particao 113: 13 pacientes
+Particao 114: 9 pacientes
+Particao 115: 13 pacientes
+Particao 116: 12 pacientes
+Particao 117: 16 pacientes
+Particao 118: 12 pacientes
+Particao 119: 9 pacientes
+Particao 120: 14 pacientes
+Particao 121: 11 pacientes
+Particao 122: 10 pacientes
+Particao 123: 1 pacientes
+Particoes criadas: 124
+Tempo total selecao natural: 143.00 ms
+Pacientes por particao (media): 12.1
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1500 PACIENTES -> Bubble: 7.38s | Selecao: 0.14s | Vencedores: 0.04s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 500
+Tamanho da memoria: 6 pacientes
+Particao 0: 7 pacientes
+Particao 1: 15 pacientes
+Particao 2: 9 pacientes
+Particao 3: 12 pacientes
+Particao 4: 15 pacientes
+Particao 5: 10 pacientes
+Particao 6: 11 pacientes
+Particao 7: 8 pacientes
+Particao 8: 11 pacientes
+Particao 9: 14 pacientes
+Particao 10: 11 pacientes
+Particao 11: 10 pacientes
+Particao 12: 10 pacientes
+Particao 13: 15 pacientes
+Particao 14: 13 pacientes
+Particao 15: 12 pacientes
+Particao 16: 15 pacientes
+Particao 17: 12 pacientes
+Particao 18: 9 pacientes
+Particao 19: 9 pacientes
+Particao 20: 16 pacientes
+Particao 21: 10 pacientes
+Particao 22: 16 pacientes
+Particao 23: 12 pacientes
+Particao 24: 13 pacientes
+Particao 25: 9 pacientes
+Particao 26: 16 pacientes
+Particao 27: 11 pacientes
+Particao 28: 11 pacientes
+Particao 29: 15 pacientes
+Particao 30: 14 pacientes
+Particao 31: 14 pacientes
+Particao 32: 14 pacientes
+Particao 33: 10 pacientes
+Particao 34: 13 pacientes
+Particao 35: 9 pacientes
+Particao 36: 11 pacientes
+Particao 37: 14 pacientes
+Particao 38: 12 pacientes
+Particao 39: 9 pacientes
+Particao 40: 13 pacientes
+Particao 41: 9 pacientes
+Particao 42: 1 pacientes
+Particoes criadas: 43
+Tempo total selecao natural: 54.00 ms
+Pacientes por particao (media): 11.6
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 500 PACIENTES -> Bubble: 0.91s | Selecao: 0.06s | Vencedores: 0.01s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 5000
+Tamanho da memoria: 6 pacientes
+Particao 0: 13 pacientes
+Particao 1: 12 pacientes
+Particao 2: 13 pacientes
+Particao 3: 8 pacientes
+Particao 4: 13 pacientes
+Particao 5: 11 pacientes
+Particao 6: 14 pacientes
+Particao 7: 13 pacientes
+Particao 8: 13 pacientes
+Particao 9: 15 pacientes
+Particao 10: 15 pacientes
+Particao 11: 10 pacientes
+Particao 12: 13 pacientes
+Particao 13: 14 pacientes
+Particao 14: 9 pacientes
+Particao 15: 7 pacientes
+Particao 16: 13 pacientes
+Particao 17: 12 pacientes
+Particao 18: 9 pacientes
+Particao 19: 11 pacientes
+Particao 20: 16 pacientes
+Particao 21: 13 pacientes
+Particao 22: 11 pacientes
+Particao 23: 16 pacientes
+Particao 24: 11 pacientes
+Particao 25: 12 pacientes
+Particao 26: 14 pacientes
+Particao 27: 10 pacientes
+Particao 28: 14 pacientes
+Particao 29: 10 pacientes
+Particao 30: 10 pacientes
+Particao 31: 13 pacientes
+Particao 32: 13 pacientes
+Particao 33: 11 pacientes
+Particao 34: 13 pacientes
+Particao 35: 12 pacientes
+Particao 36: 12 pacientes
+Particao 37: 8 pacientes
+Particao 38: 10 pacientes
+Particao 39: 11 pacientes
+Particao 40: 11 pacientes
+Particao 41: 17 pacientes
+Particao 42: 13 pacientes
+Particao 43: 12 pacientes
+Particao 44: 11 pacientes
+Particao 45: 12 pacientes
+Particao 46: 10 pacientes
+Particao 47: 16 pacientes
+Particao 48: 16 pacientes
+Particao 49: 14 pacientes
+Particao 50: 12 pacientes
+Particao 51: 12 pacientes
+Particao 52: 12 pacientes
+Particao 53: 16 pacientes
+Particao 54: 11 pacientes
+Particao 55: 10 pacientes
+Particao 56: 13 pacientes
+Particao 57: 13 pacientes
+Particao 58: 12 pacientes
+Particao 59: 10 pacientes
+Particao 60: 16 pacientes
+Particao 61: 12 pacientes
+Particao 62: 10 pacientes
+Particao 63: 13 pacientes
+Particao 64: 11 pacientes
+Particao 65: 12 pacientes
+Particao 66: 13 pacientes
+Particao 67: 9 pacientes
+Particao 68: 13 pacientes
+Particao 69: 9 pacientes
+Particao 70: 11 pacientes
+Particao 71: 11 pacientes
+Particao 72: 16 pacientes
+Particao 73: 12 pacientes
+Particao 74: 13 pacientes
+Particao 75: 9 pacientes
+Particao 76: 12 pacientes
+Particao 77: 13 pacientes
+Particao 78: 11 pacientes
+Particao 79: 15 pacientes
+Particao 80: 13 pacientes
+Particao 81: 11 pacientes
+Particao 82: 14 pacientes
+Particao 83: 11 pacientes
+Particao 84: 12 pacientes
+Particao 85: 13 pacientes
+Particao 86: 9 pacientes
+Particao 87: 13 pacientes
+Particao 88: 10 pacientes
+Particao 89: 15 pacientes
+Particao 90: 16 pacientes
+Particao 91: 10 pacientes
+Particao 92: 13 pacientes
+Particao 93: 12 pacientes
+Particao 94: 8 pacientes
+Particao 95: 12 pacientes
+Particao 96: 12 pacientes
+Particao 97: 12 pacientes
+Particao 98: 11 pacientes
+Particao 99: 12 pacientes
+Particao 100: 8 pacientes
+Particao 101: 12 pacientes
+Particao 102: 11 pacientes
+Particao 103: 10 pacientes
+Particao 104: 11 pacientes
+Particao 105: 11 pacientes
+Particao 106: 10 pacientes
+Particao 107: 16 pacientes
+Particao 108: 9 pacientes
+Particao 109: 11 pacientes
+Particao 110: 10 pacientes
+Particao 111: 12 pacientes
+Particao 112: 11 pacientes
+Particao 113: 13 pacientes
+Particao 114: 7 pacientes
+Particao 115: 19 pacientes
+Particao 116: 10 pacientes
+Particao 117: 11 pacientes
+Particao 118: 9 pacientes
+Particao 119: 12 pacientes
+Particao 120: 11 pacientes
+Particao 121: 16 pacientes
+Particao 122: 10 pacientes
+Particao 123: 12 pacientes
+Particao 124: 14 pacientes
+Particao 125: 14 pacientes
+Particao 126: 12 pacientes
+Particao 127: 15 pacientes
+Particao 128: 13 pacientes
+Particao 129: 10 pacientes
+Particao 130: 11 pacientes
+Particao 131: 12 pacientes
+Particao 132: 13 pacientes
+Particao 133: 12 pacientes
+Particao 134: 13 pacientes
+Particao 135: 12 pacientes
+Particao 136: 12 pacientes
+Particao 137: 11 pacientes
+Particao 138: 9 pacientes
+Particao 139: 14 pacientes
+Particao 140: 15 pacientes
+Particao 141: 15 pacientes
+Particao 142: 12 pacientes
+Particao 143: 11 pacientes
+Particao 144: 9 pacientes
+Particao 145: 8 pacientes
+Particao 146: 11 pacientes
+Particao 147: 13 pacientes
+Particao 148: 12 pacientes
+Particao 149: 12 pacientes
+Particao 150: 14 pacientes
+Particao 151: 8 pacientes
+Particao 152: 10 pacientes
+Particao 153: 11 pacientes
+Particao 154: 9 pacientes
+Particao 155: 11 pacientes
+Particao 156: 10 pacientes
+Particao 157: 9 pacientes
+Particao 158: 14 pacientes
+Particao 159: 18 pacientes
+Particao 160: 9 pacientes
+Particao 161: 15 pacientes
+Particao 162: 14 pacientes
+Particao 163: 11 pacientes
+Particao 164: 12 pacientes
+Particao 165: 9 pacientes
+Particao 166: 11 pacientes
+Particao 167: 12 pacientes
+Particao 168: 10 pacientes
+Particao 169: 12 pacientes
+Particao 170: 11 pacientes
+Particao 171: 11 pacientes
+Particao 172: 12 pacientes
+Particao 173: 16 pacientes
+Particao 174: 10 pacientes
+Particao 175: 11 pacientes
+Particao 176: 14 pacientes
+Particao 177: 10 pacientes
+Particao 178: 10 pacientes
+Particao 179: 15 pacientes
+Particao 180: 9 pacientes
+Particao 181: 12 pacientes
+Particao 182: 12 pacientes
+Particao 183: 17 pacientes
+Particao 184: 10 pacientes
+Particao 185: 9 pacientes
+Particao 186: 12 pacientes
+Particao 187: 12 pacientes
+Particao 188: 14 pacientes
+Particao 189: 10 pacientes
+Particao 190: 11 pacientes
+Particao 191: 10 pacientes
+Particao 192: 8 pacientes
+Particao 193: 17 pacientes
+Particao 194: 10 pacientes
+Particao 195: 10 pacientes
+Particao 196: 12 pacientes
+Particao 197: 11 pacientes
+Particao 198: 14 pacientes
+Particao 199: 12 pacientes
+Particao 200: 10 pacientes
+Particao 201: 11 pacientes
+Particao 202: 10 pacientes
+Particao 203: 12 pacientes
+Particao 204: 13 pacientes
+Particao 205: 12 pacientes
+Particao 206: 13 pacientes
+Particao 207: 11 pacientes
+Particao 208: 11 pacientes
+Particao 209: 12 pacientes
+Particao 210: 12 pacientes
+Particao 211: 9 pacientes
+Particao 212: 14 pacientes
+Particao 213: 11 pacientes
+Particao 214: 19 pacientes
+Particao 215: 12 pacientes
+Particao 216: 15 pacientes
+Particao 217: 10 pacientes
+Particao 218: 13 pacientes
+Particao 219: 13 pacientes
+Particao 220: 12 pacientes
+Particao 221: 11 pacientes
+Particao 222: 16 pacientes
+Particao 223: 14 pacientes
+Particao 224: 9 pacientes
+Particao 225: 15 pacientes
+Particao 226: 9 pacientes
+Particao 227: 12 pacientes
+Particao 228: 10 pacientes
+Particao 229: 11 pacientes
+Particao 230: 11 pacientes
+Particao 231: 13 pacientes
+Particao 232: 14 pacientes
+Particao 233: 12 pacientes
+Particao 234: 13 pacientes
+Particao 235: 16 pacientes
+Particao 236: 9 pacientes
+Particao 237: 13 pacientes
+Particao 238: 11 pacientes
+Particao 239: 12 pacientes
+Particao 240: 9 pacientes
+Particao 241: 11 pacientes
+Particao 242: 15 pacientes
+Particao 243: 12 pacientes
+Particao 244: 13 pacientes
+Particao 245: 10 pacientes
+Particao 246: 11 pacientes
+Particao 247: 10 pacientes
+Particao 248: 14 pacientes
+Particao 249: 12 pacientes
+Particao 250: 13 pacientes
+Particao 251: 11 pacientes
+Particao 252: 13 pacientes
+Particao 253: 14 pacientes
+Particao 254: 11 pacientes
+Particao 255: 12 pacientes
+Particao 256: 9 pacientes
+Particao 257: 12 pacientes
+Particao 258: 10 pacientes
+Particao 259: 12 pacientes
+Particao 260: 11 pacientes
+Particao 261: 13 pacientes
+Particao 262: 15 pacientes
+Particao 263: 12 pacientes
+Particao 264: 9 pacientes
+Particao 265: 10 pacientes
+Particao 266: 13 pacientes
+Particao 267: 13 pacientes
+Particao 268: 11 pacientes
+Particao 269: 11 pacientes
+Particao 270: 13 pacientes
+Particao 271: 15 pacientes
+Particao 272: 9 pacientes
+Particao 273: 12 pacientes
+Particao 274: 13 pacientes
+Particao 275: 10 pacientes
+Particao 276: 16 pacientes
+Particao 277: 13 pacientes
+Particao 278: 10 pacientes
+Particao 279: 11 pacientes
+Particao 280: 12 pacientes
+Particao 281: 10 pacientes
+Particao 282: 13 pacientes
+Particao 283: 10 pacientes
+Particao 284: 12 pacientes
+Particao 285: 13 pacientes
+Particao 286: 12 pacientes
+Particao 287: 13 pacientes
+Particao 288: 8 pacientes
+Particao 289: 10 pacientes
+Particao 290: 11 pacientes
+Particao 291: 9 pacientes
+Particao 292: 11 pacientes
+Particao 293: 12 pacientes
+Particao 294: 14 pacientes
+Particao 295: 9 pacientes
+Particao 296: 9 pacientes
+Particao 297: 12 pacientes
+Particao 298: 11 pacientes
+Particao 299: 12 pacientes
+Particao 300: 11 pacientes
+Particao 301: 11 pacientes
+Particao 302: 23 pacientes
+Particao 303: 13 pacientes
+Particao 304: 11 pacientes
+Particao 305: 11 pacientes
+Particao 306: 12 pacientes
+Particao 307: 17 pacientes
+Particao 308: 7 pacientes
+Particao 309: 11 pacientes
+Particao 310: 13 pacientes
+Particao 311: 15 pacientes
+Particao 312: 14 pacientes
+Particao 313: 14 pacientes
+Particao 314: 19 pacientes
+Particao 315: 12 pacientes
+Particao 316: 12 pacientes
+Particao 317: 10 pacientes
+Particao 318: 11 pacientes
+Particao 319: 15 pacientes
+Particao 320: 13 pacientes
+Particao 321: 9 pacientes
+Particao 322: 11 pacientes
+Particao 323: 10 pacientes
+Particao 324: 14 pacientes
+Particao 325: 11 pacientes
+Particao 326: 15 pacientes
+Particao 327: 11 pacientes
+Particao 328: 10 pacientes
+Particao 329: 13 pacientes
+Particao 330: 7 pacientes
+Particao 331: 15 pacientes
+Particao 332: 12 pacientes
+Particao 333: 13 pacientes
+Particao 334: 11 pacientes
+Particao 335: 13 pacientes
+Particao 336: 9 pacientes
+Particao 337: 10 pacientes
+Particao 338: 11 pacientes
+Particao 339: 9 pacientes
+Particao 340: 12 pacientes
+Particao 341: 7 pacientes
+Particao 342: 14 pacientes
+Particao 343: 11 pacientes
+Particao 344: 12 pacientes
+Particao 345: 10 pacientes
+Particao 346: 12 pacientes
+Particao 347: 10 pacientes
+Particao 348: 11 pacientes
+Particao 349: 8 pacientes
+Particao 350: 12 pacientes
+Particao 351: 13 pacientes
+Particao 352: 12 pacientes
+Particao 353: 15 pacientes
+Particao 354: 15 pacientes
+Particao 355: 13 pacientes
+Particao 356: 6 pacientes
+Particao 357: 11 pacientes
+Particao 358: 17 pacientes
+Particao 359: 10 pacientes
+Particao 360: 10 pacientes
+Particao 361: 15 pacientes
+Particao 362: 13 pacientes
+Particao 363: 10 pacientes
+Particao 364: 11 pacientes
+Particao 365: 8 pacientes
+Particao 366: 12 pacientes
+Particao 367: 17 pacientes
+Particao 368: 11 pacientes
+Particao 369: 10 pacientes
+Particao 370: 15 pacientes
+Particao 371: 12 pacientes
+Particao 372: 11 pacientes
+Particao 373: 13 pacientes
+Particao 374: 13 pacientes
+Particao 375: 12 pacientes
+Particao 376: 14 pacientes
+Particao 377: 12 pacientes
+Particao 378: 12 pacientes
+Particao 379: 13 pacientes
+Particao 380: 13 pacientes
+Particao 381: 11 pacientes
+Particao 382: 9 pacientes
+Particao 383: 12 pacientes
+Particao 384: 14 pacientes
+Particao 385: 9 pacientes
+Particao 386: 14 pacientes
+Particao 387: 12 pacientes
+Particao 388: 8 pacientes
+Particao 389: 13 pacientes
+Particao 390: 9 pacientes
+Particao 391: 12 pacientes
+Particao 392: 11 pacientes
+Particao 393: 16 pacientes
+Particao 394: 9 pacientes
+Particao 395: 17 pacientes
+Particao 396: 12 pacientes
+Particao 397: 16 pacientes
+Particao 398: 10 pacientes
+Particao 399: 14 pacientes
+Particao 400: 12 pacientes
+Particao 401: 17 pacientes
+Particao 402: 13 pacientes
+Particao 403: 11 pacientes
+Particao 404: 11 pacientes
+Particao 405: 10 pacientes
+Particao 406: 12 pacientes
+Particao 407: 18 pacientes
+Particao 408: 12 pacientes
+Particao 409: 11 pacientes
+Particao 410: 11 pacientes
+Particao 411: 10 pacientes
+Particao 412: 11 pacientes
+Particao 413: 12 pacientes
+Particao 414: 13 pacientes
+Particao 415: 13 pacientes
+Particao 416: 11 pacientes
+Particao 417: 14 pacientes
+Particao 418: 11 pacientes
+Particoes criadas: 419
+Tempo total selecao natural: 424.00 ms
+Pacientes por particao (media): 11.9
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 5000 PACIENTES -> Bubble: 93.25s | Selecao: 0.42s | Vencedores: 0.16s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1800
+Tamanho da memoria: 6 pacientes
+Particao 0: 7 pacientes
+Particao 1: 11 pacientes
+Particao 2: 13 pacientes
+Particao 3: 11 pacientes
+Particao 4: 13 pacientes
+Particao 5: 15 pacientes
+Particao 6: 14 pacientes
+Particao 7: 11 pacientes
+Particao 8: 15 pacientes
+Particao 9: 12 pacientes
+Particao 10: 10 pacientes
+Particao 11: 9 pacientes
+Particao 12: 16 pacientes
+Particao 13: 14 pacientes
+Particao 14: 14 pacientes
+Particao 15: 16 pacientes
+Particao 16: 14 pacientes
+Particao 17: 13 pacientes
+Particao 18: 12 pacientes
+Particao 19: 10 pacientes
+Particao 20: 13 pacientes
+Particao 21: 13 pacientes
+Particao 22: 10 pacientes
+Particao 23: 11 pacientes
+Particao 24: 15 pacientes
+Particao 25: 14 pacientes
+Particao 26: 14 pacientes
+Particao 27: 13 pacientes
+Particao 28: 12 pacientes
+Particao 29: 12 pacientes
+Particao 30: 11 pacientes
+Particao 31: 12 pacientes
+Particao 32: 11 pacientes
+Particao 33: 13 pacientes
+Particao 34: 11 pacientes
+Particao 35: 12 pacientes
+Particao 36: 11 pacientes
+Particao 37: 8 pacientes
+Particao 38: 12 pacientes
+Particao 39: 11 pacientes
+Particao 40: 10 pacientes
+Particao 41: 11 pacientes
+Particao 42: 12 pacientes
+Particao 43: 12 pacientes
+Particao 44: 14 pacientes
+Particao 45: 12 pacientes
+Particao 46: 13 pacientes
+Particao 47: 11 pacientes
+Particao 48: 9 pacientes
+Particao 49: 11 pacientes
+Particao 50: 12 pacientes
+Particao 51: 12 pacientes
+Particao 52: 14 pacientes
+Particao 53: 10 pacientes
+Particao 54: 13 pacientes
+Particao 55: 14 pacientes
+Particao 56: 8 pacientes
+Particao 57: 12 pacientes
+Particao 58: 10 pacientes
+Particao 59: 14 pacientes
+Particao 60: 22 pacientes
+Particao 61: 9 pacientes
+Particao 62: 11 pacientes
+Particao 63: 14 pacientes
+Particao 64: 9 pacientes
+Particao 65: 11 pacientes
+Particao 66: 12 pacientes
+Particao 67: 13 pacientes
+Particao 68: 13 pacientes
+Particao 69: 11 pacientes
+Particao 70: 10 pacientes
+Particao 71: 13 pacientes
+Particao 72: 11 pacientes
+Particao 73: 11 pacientes
+Particao 74: 15 pacientes
+Particao 75: 10 pacientes
+Particao 76: 12 pacientes
+Particao 77: 11 pacientes
+Particao 78: 12 pacientes
+Particao 79: 8 pacientes
+Particao 80: 14 pacientes
+Particao 81: 12 pacientes
+Particao 82: 13 pacientes
+Particao 83: 11 pacientes
+Particao 84: 15 pacientes
+Particao 85: 11 pacientes
+Particao 86: 16 pacientes
+Particao 87: 14 pacientes
+Particao 88: 11 pacientes
+Particao 89: 12 pacientes
+Particao 90: 12 pacientes
+Particao 91: 9 pacientes
+Particao 92: 12 pacientes
+Particao 93: 12 pacientes
+Particao 94: 11 pacientes
+Particao 95: 15 pacientes
+Particao 96: 8 pacientes
+Particao 97: 9 pacientes
+Particao 98: 12 pacientes
+Particao 99: 12 pacientes
+Particao 100: 10 pacientes
+Particao 101: 13 pacientes
+Particao 102: 15 pacientes
+Particao 103: 11 pacientes
+Particao 104: 12 pacientes
+Particao 105: 8 pacientes
+Particao 106: 12 pacientes
+Particao 107: 12 pacientes
+Particao 108: 17 pacientes
+Particao 109: 13 pacientes
+Particao 110: 11 pacientes
+Particao 111: 11 pacientes
+Particao 112: 14 pacientes
+Particao 113: 14 pacientes
+Particao 114: 14 pacientes
+Particao 115: 10 pacientes
+Particao 116: 13 pacientes
+Particao 117: 8 pacientes
+Particao 118: 11 pacientes
+Particao 119: 11 pacientes
+Particao 120: 11 pacientes
+Particao 121: 12 pacientes
+Particao 122: 13 pacientes
+Particao 123: 11 pacientes
+Particao 124: 11 pacientes
+Particao 125: 13 pacientes
+Particao 126: 15 pacientes
+Particao 127: 11 pacientes
+Particao 128: 12 pacientes
+Particao 129: 9 pacientes
+Particao 130: 11 pacientes
+Particao 131: 11 pacientes
+Particao 132: 9 pacientes
+Particao 133: 17 pacientes
+Particao 134: 11 pacientes
+Particao 135: 11 pacientes
+Particao 136: 13 pacientes
+Particao 137: 10 pacientes
+Particao 138: 13 pacientes
+Particao 139: 11 pacientes
+Particao 140: 13 pacientes
+Particao 141: 10 pacientes
+Particao 142: 11 pacientes
+Particao 143: 11 pacientes
+Particao 144: 13 pacientes
+Particao 145: 11 pacientes
+Particao 146: 17 pacientes
+Particao 147: 7 pacientes
+Particao 148: 12 pacientes
+Particao 149: 11 pacientes
+Particao 150: 7 pacientes
+Particoes criadas: 151
+Tempo total selecao natural: 101.00 ms
+Pacientes por particao (media): 11.9
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1800 PACIENTES -> Bubble: 7.21s | Selecao: 0.10s | Vencedores: 0.04s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1500
+Tamanho da memoria: 6 pacientes
+Particao 0: 11 pacientes
+Particao 1: 13 pacientes
+Particao 2: 12 pacientes
+Particao 3: 15 pacientes
+Particao 4: 13 pacientes
+Particao 5: 14 pacientes
+Particao 6: 12 pacientes
+Particao 7: 12 pacientes
+Particao 8: 12 pacientes
+Particao 9: 12 pacientes
+Particao 10: 10 pacientes
+Particao 11: 13 pacientes
+Particao 12: 12 pacientes
+Particao 13: 9 pacientes
+Particao 14: 13 pacientes
+Particao 15: 15 pacientes
+Particao 16: 13 pacientes
+Particao 17: 11 pacientes
+Particao 18: 12 pacientes
+Particao 19: 11 pacientes
+Particao 20: 13 pacientes
+Particao 21: 8 pacientes
+Particao 22: 9 pacientes
+Particao 23: 13 pacientes
+Particao 24: 10 pacientes
+Particao 25: 11 pacientes
+Particao 26: 13 pacientes
+Particao 27: 9 pacientes
+Particao 28: 12 pacientes
+Particao 29: 15 pacientes
+Particao 30: 11 pacientes
+Particao 31: 16 pacientes
+Particao 32: 11 pacientes
+Particao 33: 12 pacientes
+Particao 34: 12 pacientes
+Particao 35: 13 pacientes
+Particao 36: 13 pacientes
+Particao 37: 13 pacientes
+Particao 38: 12 pacientes
+Particao 39: 12 pacientes
+Particao 40: 16 pacientes
+Particao 41: 11 pacientes
+Particao 42: 11 pacientes
+Particao 43: 12 pacientes
+Particao 44: 11 pacientes
+Particao 45: 14 pacientes
+Particao 46: 11 pacientes
+Particao 47: 10 pacientes
+Particao 48: 14 pacientes
+Particao 49: 12 pacientes
+Particao 50: 14 pacientes
+Particao 51: 11 pacientes
+Particao 52: 10 pacientes
+Particao 53: 14 pacientes
+Particao 54: 11 pacientes
+Particao 55: 11 pacientes
+Particao 56: 17 pacientes
+Particao 57: 13 pacientes
+Particao 58: 14 pacientes
+Particao 59: 12 pacientes
+Particao 60: 8 pacientes
+Particao 61: 17 pacientes
+Particao 62: 11 pacientes
+Particao 63: 14 pacientes
+Particao 64: 9 pacientes
+Particao 65: 13 pacientes
+Particao 66: 13 pacientes
+Particao 67: 11 pacientes
+Particao 68: 14 pacientes
+Particao 69: 13 pacientes
+Particao 70: 12 pacientes
+Particao 71: 13 pacientes
+Particao 72: 10 pacientes
+Particao 73: 10 pacientes
+Particao 74: 9 pacientes
+Particao 75: 14 pacientes
+Particao 76: 11 pacientes
+Particao 77: 15 pacientes
+Particao 78: 12 pacientes
+Particao 79: 18 pacientes
+Particao 80: 15 pacientes
+Particao 81: 13 pacientes
+Particao 82: 12 pacientes
+Particao 83: 12 pacientes
+Particao 84: 13 pacientes
+Particao 85: 12 pacientes
+Particao 86: 10 pacientes
+Particao 87: 13 pacientes
+Particao 88: 13 pacientes
+Particao 89: 9 pacientes
+Particao 90: 14 pacientes
+Particao 91: 13 pacientes
+Particao 92: 13 pacientes
+Particao 93: 10 pacientes
+Particao 94: 16 pacientes
+Particao 95: 10 pacientes
+Particao 96: 10 pacientes
+Particao 97: 11 pacientes
+Particao 98: 12 pacientes
+Particao 99: 13 pacientes
+Particao 100: 15 pacientes
+Particao 101: 10 pacientes
+Particao 102: 13 pacientes
+Particao 103: 13 pacientes
+Particao 104: 13 pacientes
+Particao 105: 12 pacientes
+Particao 106: 10 pacientes
+Particao 107: 11 pacientes
+Particao 108: 13 pacientes
+Particao 109: 10 pacientes
+Particao 110: 10 pacientes
+Particao 111: 12 pacientes
+Particao 112: 15 pacientes
+Particao 113: 13 pacientes
+Particao 114: 9 pacientes
+Particao 115: 13 pacientes
+Particao 116: 12 pacientes
+Particao 117: 16 pacientes
+Particao 118: 12 pacientes
+Particao 119: 9 pacientes
+Particao 120: 14 pacientes
+Particao 121: 11 pacientes
+Particao 122: 10 pacientes
+Particao 123: 1 pacientes
+Particoes criadas: 124
+Tempo total selecao natural: 60.00 ms
+Pacientes por particao (media): 12.1
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1500 PACIENTES -> Bubble: 4.74s | Selecao: 0.06s | Vencedores: 0.03s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 1500
+Tamanho da memoria: 6 pacientes
+Particao 0: 11 pacientes
+Particao 1: 13 pacientes
+Particao 2: 12 pacientes
+Particao 3: 15 pacientes
+Particao 4: 13 pacientes
+Particao 5: 14 pacientes
+Particao 6: 12 pacientes
+Particao 7: 12 pacientes
+Particao 8: 12 pacientes
+Particao 9: 12 pacientes
+Particao 10: 10 pacientes
+Particao 11: 13 pacientes
+Particao 12: 12 pacientes
+Particao 13: 9 pacientes
+Particao 14: 13 pacientes
+Particao 15: 15 pacientes
+Particao 16: 13 pacientes
+Particao 17: 11 pacientes
+Particao 18: 12 pacientes
+Particao 19: 11 pacientes
+Particao 20: 13 pacientes
+Particao 21: 8 pacientes
+Particao 22: 9 pacientes
+Particao 23: 13 pacientes
+Particao 24: 10 pacientes
+Particao 25: 11 pacientes
+Particao 26: 13 pacientes
+Particao 27: 9 pacientes
+Particao 28: 12 pacientes
+Particao 29: 15 pacientes
+Particao 30: 11 pacientes
+Particao 31: 16 pacientes
+Particao 32: 11 pacientes
+Particao 33: 12 pacientes
+Particao 34: 12 pacientes
+Particao 35: 13 pacientes
+Particao 36: 13 pacientes
+Particao 37: 13 pacientes
+Particao 38: 12 pacientes
+Particao 39: 12 pacientes
+Particao 40: 16 pacientes
+Particao 41: 11 pacientes
+Particao 42: 11 pacientes
+Particao 43: 12 pacientes
+Particao 44: 11 pacientes
+Particao 45: 14 pacientes
+Particao 46: 11 pacientes
+Particao 47: 10 pacientes
+Particao 48: 14 pacientes
+Particao 49: 12 pacientes
+Particao 50: 14 pacientes
+Particao 51: 11 pacientes
+Particao 52: 10 pacientes
+Particao 53: 14 pacientes
+Particao 54: 11 pacientes
+Particao 55: 11 pacientes
+Particao 56: 17 pacientes
+Particao 57: 13 pacientes
+Particao 58: 14 pacientes
+Particao 59: 12 pacientes
+Particao 60: 8 pacientes
+Particao 61: 17 pacientes
+Particao 62: 11 pacientes
+Particao 63: 14 pacientes
+Particao 64: 9 pacientes
+Particao 65: 13 pacientes
+Particao 66: 13 pacientes
+Particao 67: 11 pacientes
+Particao 68: 14 pacientes
+Particao 69: 13 pacientes
+Particao 70: 12 pacientes
+Particao 71: 13 pacientes
+Particao 72: 10 pacientes
+Particao 73: 10 pacientes
+Particao 74: 9 pacientes
+Particao 75: 14 pacientes
+Particao 76: 11 pacientes
+Particao 77: 15 pacientes
+Particao 78: 12 pacientes
+Particao 79: 18 pacientes
+Particao 80: 15 pacientes
+Particao 81: 13 pacientes
+Particao 82: 12 pacientes
+Particao 83: 12 pacientes
+Particao 84: 13 pacientes
+Particao 85: 12 pacientes
+Particao 86: 10 pacientes
+Particao 87: 13 pacientes
+Particao 88: 13 pacientes
+Particao 89: 9 pacientes
+Particao 90: 14 pacientes
+Particao 91: 13 pacientes
+Particao 92: 13 pacientes
+Particao 93: 10 pacientes
+Particao 94: 16 pacientes
+Particao 95: 10 pacientes
+Particao 96: 10 pacientes
+Particao 97: 11 pacientes
+Particao 98: 12 pacientes
+Particao 99: 13 pacientes
+Particao 100: 15 pacientes
+Particao 101: 10 pacientes
+Particao 102: 13 pacientes
+Particao 103: 13 pacientes
+Particao 104: 13 pacientes
+Particao 105: 12 pacientes
+Particao 106: 10 pacientes
+Particao 107: 11 pacientes
+Particao 108: 13 pacientes
+Particao 109: 10 pacientes
+Particao 110: 10 pacientes
+Particao 111: 12 pacientes
+Particao 112: 15 pacientes
+Particao 113: 13 pacientes
+Particao 114: 9 pacientes
+Particao 115: 13 pacientes
+Particao 116: 12 pacientes
+Particao 117: 16 pacientes
+Particao 118: 12 pacientes
+Particao 119: 9 pacientes
+Particao 120: 14 pacientes
+Particao 121: 11 pacientes
+Particao 122: 10 pacientes
+Particao 123: 1 pacientes
+Particoes criadas: 124
+Tempo total selecao natural: 126.00 ms
+Pacientes por particao (media): 12.1
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 1500 PACIENTES -> Bubble: 6.84s | Selecao: 0.13s | Vencedores: 0.06s
+=== INICIO SELECAO NATURAL ===
+Total de pacientes: 2000
+Tamanho da memoria: 6 pacientes
+Particao 0: 14 pacientes
+Particao 1: 10 pacientes
+Particao 2: 13 pacientes
+Particao 3: 10 pacientes
+Particao 4: 14 pacientes
+Particao 5: 13 pacientes
+Particao 6: 11 pacientes
+Particao 7: 15 pacientes
+Particao 8: 12 pacientes
+Particao 9: 11 pacientes
+Particao 10: 12 pacientes
+Particao 11: 13 pacientes
+Particao 12: 15 pacientes
+Particao 13: 9 pacientes
+Particao 14: 13 pacientes
+Particao 15: 9 pacientes
+Particao 16: 14 pacientes
+Particao 17: 9 pacientes
+Particao 18: 13 pacientes
+Particao 19: 13 pacientes
+Particao 20: 13 pacientes
+Particao 21: 14 pacientes
+Particao 22: 16 pacientes
+Particao 23: 11 pacientes
+Particao 24: 15 pacientes
+Particao 25: 11 pacientes
+Particao 26: 16 pacientes
+Particao 27: 11 pacientes
+Particao 28: 11 pacientes
+Particao 29: 12 pacientes
+Particao 30: 11 pacientes
+Particao 31: 10 pacientes
+Particao 32: 11 pacientes
+Particao 33: 12 pacientes
+Particao 34: 12 pacientes
+Particao 35: 13 pacientes
+Particao 36: 13 pacientes
+Particao 37: 8 pacientes
+Particao 38: 14 pacientes
+Particao 39: 11 pacientes
+Particao 40: 13 pacientes
+Particao 41: 13 pacientes
+Particao 42: 17 pacientes
+Particao 43: 13 pacientes
+Particao 44: 12 pacientes
+Particao 45: 15 pacientes
+Particao 46: 13 pacientes
+Particao 47: 12 pacientes
+Particao 48: 18 pacientes
+Particao 49: 8 pacientes
+Particao 50: 9 pacientes
+Particao 51: 11 pacientes
+Particao 52: 14 pacientes
+Particao 53: 12 pacientes
+Particao 54: 14 pacientes
+Particao 55: 13 pacientes
+Particao 56: 9 pacientes
+Particao 57: 11 pacientes
+Particao 58: 12 pacientes
+Particao 59: 11 pacientes
+Particao 60: 16 pacientes
+Particao 61: 10 pacientes
+Particao 62: 11 pacientes
+Particao 63: 9 pacientes
+Particao 64: 16 pacientes
+Particao 65: 14 pacientes
+Particao 66: 12 pacientes
+Particao 67: 11 pacientes
+Particao 68: 12 pacientes
+Particao 69: 9 pacientes
+Particao 70: 8 pacientes
+Particao 71: 13 pacientes
+Particao 72: 11 pacientes
+Particao 73: 10 pacientes
+Particao 74: 13 pacientes
+Particao 75: 10 pacientes
+Particao 76: 9 pacientes
+Particao 77: 13 pacientes
+Particao 78: 8 pacientes
+Particao 79: 14 pacientes
+Particao 80: 10 pacientes
+Particao 81: 13 pacientes
+Particao 82: 11 pacientes
+Particao 83: 10 pacientes
+Particao 84: 11 pacientes
+Particao 85: 13 pacientes
+Particao 86: 9 pacientes
+Particao 87: 15 pacientes
+Particao 88: 16 pacientes
+Particao 89: 10 pacientes
+Particao 90: 11 pacientes
+Particao 91: 12 pacientes
+Particao 92: 9 pacientes
+Particao 93: 11 pacientes
+Particao 94: 13 pacientes
+Particao 95: 10 pacientes
+Particao 96: 14 pacientes
+Particao 97: 12 pacientes
+Particao 98: 10 pacientes
+Particao 99: 9 pacientes
+Particao 100: 11 pacientes
+Particao 101: 11 pacientes
+Particao 102: 11 pacientes
+Particao 103: 11 pacientes
+Particao 104: 13 pacientes
+Particao 105: 11 pacientes
+Particao 106: 12 pacientes
+Particao 107: 11 pacientes
+Particao 108: 13 pacientes
+Particao 109: 8 pacientes
+Particao 110: 16 pacientes
+Particao 111: 12 pacientes
+Particao 112: 12 pacientes
+Particao 113: 11 pacientes
+Particao 114: 10 pacientes
+Particao 115: 12 pacientes
+Particao 116: 14 pacientes
+Particao 117: 10 pacientes
+Particao 118: 20 pacientes
+Particao 119: 11 pacientes
+Particao 120: 13 pacientes
+Particao 121: 12 pacientes
+Particao 122: 11 pacientes
+Particao 123: 13 pacientes
+Particao 124: 12 pacientes
+Particao 125: 14 pacientes
+Particao 126: 15 pacientes
+Particao 127: 11 pacientes
+Particao 128: 8 pacientes
+Particao 129: 10 pacientes
+Particao 130: 10 pacientes
+Particao 131: 11 pacientes
+Particao 132: 10 pacientes
+Particao 133: 9 pacientes
+Particao 134: 13 pacientes
+Particao 135: 12 pacientes
+Particao 136: 17 pacientes
+Particao 137: 9 pacientes
+Particao 138: 15 pacientes
+Particao 139: 9 pacientes
+Particao 140: 10 pacientes
+Particao 141: 15 pacientes
+Particao 142: 9 pacientes
+Particao 143: 12 pacientes
+Particao 144: 13 pacientes
+Particao 145: 13 pacientes
+Particao 146: 10 pacientes
+Particao 147: 10 pacientes
+Particao 148: 12 pacientes
+Particao 149: 13 pacientes
+Particao 150: 10 pacientes
+Particao 151: 10 pacientes
+Particao 152: 10 pacientes
+Particao 153: 9 pacientes
+Particao 154: 12 pacientes
+Particao 155: 11 pacientes
+Particao 156: 11 pacientes
+Particao 157: 8 pacientes
+Particao 158: 12 pacientes
+Particao 159: 12 pacientes
+Particao 160: 9 pacientes
+Particao 161: 15 pacientes
+Particao 162: 16 pacientes
+Particao 163: 9 pacientes
+Particao 164: 13 pacientes
+Particao 165: 8 pacientes
+Particao 166: 12 pacientes
+Particao 167: 10 pacientes
+Particao 168: 14 pacientes
+Particao 169: 2 pacientes
+Particoes criadas: 170
+Tempo total selecao natural: 113.00 ms
+Pacientes por particao (media): 11.8
+=== FIM SELECAO NATURAL ===
+[RESUMO] TESTE 2000 PACIENTES -> Bubble: 10.75s | Selecao: 0.11s | Vencedores: 0.04s

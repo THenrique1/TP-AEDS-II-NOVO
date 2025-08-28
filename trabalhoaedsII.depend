@@ -1,0 +1,283 @@
+# depslib dependency file v1.0
+1750882277 source:c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\main.c
+	"hospital.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750875825 c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\rh.h
+
+1750880209 c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\departamento.h
+
+1750877340 c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\funcionario.h
+	"hospital.h"
+
+1750881921 source:c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\funcionario.c
+	"funcionario.h"
+	"hospital.h"
+	<stdio.h>
+
+1750875842 source:c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\rh.c
+	"rh.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750879998 c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\paciente.h
+
+1750877340 source:c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\departamento.c
+	"hospital.h"
+	<stdio.h>
+
+1750882502 c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\hospital.h
+
+1750881908 source:c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\hospital.c
+	"hospital.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750878424 source:c:\users\otcti\downloads\tp aeds  ii\trabalhoaedsii\paciente.c
+	"hospital.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750995469 source:c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\funcionario.c
+	"funcionario.h"
+	"hospital.h"
+	"salvamentodat.h"
+
+1750899822 c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\funcionario.h
+
+1750995150 c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hospital.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1750997972 source:c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hospital.c
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"hospital.h"
+
+1750998427 source:c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\main.c
+	"salvamentodat.h"
+	"carregarent.h"
+	"hospital.h"
+	"departamento.h"
+	"funcionario.h"
+	"paciente.h"
+	"gerador_dados.h"
+	<stdlib.h>
+	<stdio.h>
+
+1750995464 source:c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\departamento.c
+	"departamento.h"
+	"hospital.h"
+	"salvamentodat.h"
+
+1750899800 c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\departamento.h
+
+1750995394 source:c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\paciente.c
+	"paciente.h"
+	"hospital.h"
+	<stdio.h>
+	"salvamentodat.h"
+	<string.h>
+
+1750899846 c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\paciente.h
+
+1751034322 source:c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\gerador_dados.c
+	"salvamentodat.h"
+	"hospital.h"
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<stdio.h>
+
+1750963162 c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\gerador_dados.h
+
+1750992861 c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\salvamentodat.h
+
+1750993987 c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\carregarent.h
+
+1750996488 source:c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\carregarent.c
+	<stdio.h>
+	"funcionario.h"
+	"paciente.h"
+	"departamento.h"
+	"carregarent.h"
+	"hospital.h"
+
+1750996498 source:c:\users\otcti\downloads\tp aeds  atual\tp aeds  ii\trabalhoaedsii\salvamentodat.c
+	<stdio.h>
+	"funcionario.h"
+	"paciente.h"
+	"departamento.h"
+	"salvamentodat.h"
+	"hospital.h"
+
+1750996488 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\carregarent.c
+	<stdio.h>
+	"funcionario.h"
+	"paciente.h"
+	"departamento.h"
+	"carregarent.h"
+	"hospital.h"
+
+1754438982 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\funcionario.h
+	"hospital.h"
+
+1754438985 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\paciente.h
+	"hospital.h"
+
+1754438980 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\departamento.h
+	"hospital.h"
+
+1750993986 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\carregarent.h
+
+1755484684 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hospital.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1754931355 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\departamento.c
+	"hospital.h"
+	"departamento.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"tempo.h"
+
+1750992860 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\salvamentodat.h
+
+1754438921 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\funcionario.c
+	"hospital.h"
+	"funcionario.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"tempo.h"
+
+1754931632 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\gerador_dados.c
+	"hospital.h"
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<stdio.h>
+
+1752635343 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hospital.c
+	"hospital.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1755485131 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\main.c
+	"hospital.h"
+	"funcionario.h"
+	"paciente.h"
+	"departamento.h"
+	"gerador_dados.h"
+	"ordem.h"
+	"tempo.h"
+	"hash_pacientes.h"
+	"iteracoes.h"
+	<stdio.h>
+	<stdlib.h>
+	<dirent.h>
+
+1754440051 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\gerador_dados.h
+	"hospital.h"
+
+1755723586 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\paciente.c
+	"paciente.h"
+	"hospital.h"
+	"tempo.h"
+	"hash_pacientes.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+
+1750996498 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\salvamentodat.c
+	<stdio.h>
+	"funcionario.h"
+	"paciente.h"
+	"departamento.h"
+	"salvamentodat.h"
+	"hospital.h"
+
+1754021601 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\tempo.h
+
+1754449580 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\tempo.c
+	<stdio.h>
+	<time.h>
+	<string.h>
+
+1752245729 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\ordenacao.h
+
+1754439960 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\ordenacao.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<direct.h>
+	<errno.h>
+	"ordem.h"
+	"paciente.h"
+	"departamento.h"
+	"funcionario.h"
+	"gerador_dados.h"
+	"subpaciente.h"
+	"tempo.h"
+
+1752246759 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\ordem.h
+
+1755485696 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\iteracoes.c
+	"hospital.h"
+	"funcionario.h"
+	"paciente.h"
+	"departamento.h"
+	"gerador_dados.h"
+	"subpaciente.h"
+	"tempo.h"
+	"iteracoes.h"
+	"hash_pacientes.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1754021601 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\iteracoes.h
+	"paciente.h"
+	"funcionario.h"
+	"departamento.h"
+
+1754085386 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\subpaciente.h
+	<stdio.h>
+	"paciente.h"
+
+1754449477 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\subpaciente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<dirent.h>
+	<limits.h>
+	<direct.h>
+	<sys/stat.h>
+	<time.h>
+	"tempo.h"
+	"subpaciente.h"
+	"paciente.h"
+
+1755723023 source:c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hash_pacientes.c
+	"hash_pacientes.h"
+
+1756422049 c:\users\otcti\downloads\tp aeds ii\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hash_pacientes.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"paciente.h"
+

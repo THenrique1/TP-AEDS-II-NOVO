@@ -1,0 +1,13 @@
+[2025-07-04 19:33:28] Tipo de pesquisa: Pesquisa Sequencial (Departamento) | Código: 88 | Resultado: Encontrado | Tempo de Execução: 0.001000 segundos
+[2025-07-14 16:38:11] Tipo de pesquisa: Pesquisa Sequencial (Departamento) | Código: 30150 | Resultado: Encontrado | Tempo de Execução: 0.000000 segundos
+[2025-07-14 16:38:35] Tipo de pesquisa: Pesquisa Binária (Departamento) | Código: 30150 | Resultado: Encontrado | Tempo de Execução: 0.000000 segundos
+[2025-07-15 20:04:54] Tipo de pesquisa: Pesquisa Sequencial (Funcionario) | Código: 25804 | Resultado: Encontrado | Tempo de Execução: 0.000000 segundos
+[2025-07-15 20:05:00] Tipo de pesquisa: Pesquisa Binária (Funcionario) | Código: 25804 | Resultado: Encontrado | Tempo de Execução: 0.000000 segundos
+[2025-07-15 20:05:16] Tipo de pesquisa: Pesquisa Sequencial (Paciente) | Código: 32703 | Resultado: Encontrado | Tempo de Execução: 0.000000 segundos
+[2025-07-15 20:05:24] Tipo de pesquisa: Pesquisa Binária (Paciente) | Código: 32703 | Resultado: Encontrado | Tempo de Execução: 0.000000 segundos
+[2025-07-15 20:05:42] Tipo de pesquisa: Pesquisa Sequencial (Departamento) | Código: 137 | Resultado: Encontrado | Tempo de Execução: 0.000000 segundos
+[2025-07-15 20:05:54] Tipo de pesquisa: Pesquisa Binária (Departamento) | Código: 137 | Resultado: Encontrado | Tempo de Execução: 0.001000 segundos
+[2025-07-16 23:51:22] Tipo de pesquisa: Pesquisa Binaria (Funcionario) | Código: 450000 | Resultado: Encontrado | Tempo de Execução: 0.001000 segundos
+[2025-07-17 14:58:52] Tipo de pesquisa: Pesquisa Sequencial (Funcionario) | Código: 635000 | Resultado: Encontrado | Tempo de Execução: 0.014000 segundos
+[2025-07-17 14:59:08] Tipo de pesquisa: Pesquisa Sequencial (Funcionario) | Código: 635000 | Resultado: Encontrado | Tempo de Execução: 0.014000 segundos
+[2025-07-17 14:59:21] Tipo de pesquisa: Pesquisa Binaria (Funcionario) | Código: 635000 | Resultado: Encontrado | Tempo de Execução: 0.000000 segundos
