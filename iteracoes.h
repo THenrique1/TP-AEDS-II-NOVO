@@ -16,6 +16,8 @@ void salvarTotalDepartamentos();
 
 void processarMenuPrincipal();
 void processarOpcaoMenu(int opcao);
+void menuHash();
+
 
 
 

@@ -326,7 +326,7 @@
 	<string.h>
 	<ctype.h>
 
-1755485696 source:c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\iteracoes.c
+1756439804 source:c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\iteracoes.c
 	"hospital.h"
 	"funcionario.h"
 	"paciente.h"
@@ -340,7 +340,7 @@
 	<stdlib.h>
 	<time.h>
 
-1754438985 c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\paciente.h
+1756470340 c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\paciente.h
 	"hospital.h"
 
 1754440051 c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\gerador_dados.h
@@ -350,18 +350,19 @@
 	<stdio.h>
 	"paciente.h"
 
-1754021601 c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\iteracoes.h
+1756439201 c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\iteracoes.h
 	"paciente.h"
 	"funcionario.h"
 	"departamento.h"
 
-1756433305 c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hash_pacientes.h
+1756439861 c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hash_pacientes.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	"hospital.h"
 	"paciente.h"
 
-1755485131 source:c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\main.c
+1756440150 source:c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\main.c
 	"hospital.h"
 	"funcionario.h"
 	"paciente.h"
@@ -418,4 +419,7 @@
 	<stdio.h>
 	<time.h>
 	<string.h>
+
+1756440024 source:c:\users\otcti\downloads\tp aeds ii novo\tp aeds  atual\tp aeds  ii\trabalhoaedsii\hash_pacientes.c
+	"hash_pacientes.h"
 

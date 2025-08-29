@@ -4,40 +4,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "paciente.h"  // Inclua a estrutura Paciente
+#include "hospital.h"
+#include "paciente.h"
 
-#define TAMANHO_TABELA_HASH 101  // Tamanho da tabela hash
-#define ARQUIVO_PACIENTES "pacientes.dat"  // Arquivo de dados dos pacientes
+#define TAM_TABELA_HASH_ENC 50  // Tamanho da tabela hash
+#define ARQUIVO_PACIENTES "pacientes.dat"
+#define OFFSET_INVALIDO -1L // Valor para indicar que não há próximo nó
 
-// Estrutura do nó para a tabela hash (lista encadeada exterior)
-typedef struct No {
-    int codigo;
-    long offset;  // Posição do paciente no arquivo
-    struct No *prox;  // Ponteiro para o próximo nó (colisão)
-} No;
+// Estrutura do nó encadeado (com paciente e o próximo nó no arquivo)
+typedef struct NoPaciente {
+    Paciente paciente;  // Dados do paciente
+    long prox;          // Offset para o próximo nó (ou -1 se não houver)
+} NoPaciente;
 
-// Estrutura da tabela hash
+// Estrutura da tabela hash com encadeamento exterior
 typedef struct {
-    No *buckets[TAMANHO_TABELA_HASH];  // Array de buckets (listas encadeadas)
-} HashPacientes;
+    long buckets[TAM_TABELA_HASH_ENC];  // Cada índice armazena o offset do primeiro nó da lista encadeada
+} TabelaHashPacientes;
 
-// Funções de manipulação de dados e tabela hash
-int funcao_hash(int codigo);  // Função de hash
-void criar_tabela_hash_pacientes(FILE *tabela_hash);  // Cria a tabela hash
-void inicializarHash(HashPacientes *tabela);  // Inicializa a tabela hash
-void inserir_na_lista_hash(FILE *tabela_hash, FILE *arq_pacientes, int pos_novo_paciente, int cod_novo_paciente);  // Insere pacientes na lista encadeada da tabela hash
-void inserirPacienteHash(HashPacientes *tabela, Paciente p);  // Insere um paciente na tabela hash
-Paciente* buscarPacienteHash(HashPacientes *tabela, int codigo, FILE *arq_pacientes);  // Busca um paciente na tabela hash
-int removerPacienteHash(HashPacientes *tabela, int codigo, FILE *arq_pacientes);  // Remove um paciente da tabela hash
-void carregar_hash_pacientes(HashPacientes *tabela, FILE *arq_pacientes);  // Carrega dados de pacientes na tabela hash
-void liberar_hash(HashPacientes *tabela);  // Libera a memória da tabela hash
-void recarregar_hash_pacientes(HashPacientes *tabela, FILE *arq_pacientes);  // Recarrega a tabela hash
-void imprimir_tabela_hash_pacientes(FILE *tabela_hash, FILE *arq_pacientes);  // Imprime a tabela hash e as listas encadeadas
+// Funções
+int hash(int codigo);
+void inicializarTabelaHashEncArquivo(FILE *arq);
+void inserirPacienteHashEncArquivo(FILE *arq, Paciente paciente);
+int buscarPacienteHashEncArquivo(FILE *arq, int codigo, Paciente *pacienteEncontrado);
+int removerPacienteHashEncArquivo(FILE *arq, int codigo);
+void carregarHashPacientes(FILE *arq, TabelaHashPacientes *tabela);
+void liberarHash(TabelaHashPacientes *tabela);
+void recarregarHashPacientes(TabelaHashPacientes *tabela);
 
-// Funções auxiliares para leitura e escrita de pacientes
-int tamanho_registro_paciente();  // Retorna o tamanho do registro de um paciente
-Paciente* le_paciente(FILE *in);  // Lê um paciente do arquivo
-void salva_paciente(Paciente *p, FILE *out);  // Salva um paciente no arquivo
-FILE* abrirArquivoPacientesParaAnexar(void);  // Abre o arquivo de pacientes para anexar novos dados
 
-#endif  // HASH_PACIENTES_H
+
+#endif

@@ -6,6 +6,7 @@
 // Funções de manipulação de dados de pacientes
 void listarPacientes();
 void ordenarPacientesPorCodigo();
+int removerPacienteArquivo(int codigo);
 int buscaSequencialPaciente(int codigo); // Adaptada para busca diretamente no arquivo
 int buscaBinariaPaciente(int codigo);   // Adaptada para busca diretamente no arquivo
 

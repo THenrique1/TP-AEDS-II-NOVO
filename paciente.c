@@ -111,9 +111,12 @@ int buscaBinariaPaciente(int codigo) {
 }
 
 void listarPacientes(void) {
-    FILE *arquivo = fopen(ARQUIVO_PACIENTES, "rb"); // use a macro única
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo de pacientes.\n");
+    /* Garante os departamentos carregados para resolver nomes */
+    carregarDepartamentosDoArquivo();
+
+    FILE *arquivo = fopen(ARQUIVO_PACIENTES, "rb");
+    if (!arquivo) {
+        printf("Erro ao abrir o arquivo de pacientes (%s).\n", ARQUIVO_PACIENTES);
         return;
     }
 
@@ -123,48 +126,37 @@ void listarPacientes(void) {
     printf("\n--- Lista de Pacientes ---\n");
 
     while (fread(&p, sizeof(Paciente), 1, arquivo) == 1) {
-        /* FILTRO ESSENCIAL: só mostra ativos */
-        if (p.ativo != 1) {
-            continue;
-        }
+        /* FILTRO: só mostra registros ativos */
+        if (p.ativo != 1) continue;
 
-        /* Buscar nome do departamento */
-        const char *nomeDep = "Desconhecido";
-        for (int i = 0; i < totalDepartamentos; i++) {
-            if (departamentos[i].codigo == p.codigoDepartamento) {
-                nomeDep = departamentos[i].nome;
-                break;
-            }
-        }
+        /* Nome do departamento */
+        char nomeDep[100] = "Desconhecido";
+        buscarNomeDepartamentoPorCodigo(p.codigoDepartamento, nomeDep, sizeof(nomeDep));
 
-        /* Buscar nome do responsável (funcionário) */
+        /* Nome do responsável (funcionário) */
         char nomeResp[100] = "Desconhecido";
         buscarNomeFuncionarioPorCodigo(p.codigoFuncionarioResponsavel, nomeResp, sizeof(nomeResp));
 
         printf("Codigo: %d\n", p.codigo);
         printf("Nome: %s\n", p.nome);
         printf("CPF: %s\n", p.cpf);
-        /* Se dataNascimento for string, mantenha assim; se for struct, ajuste a impressão */
         printf("Nascimento: %s\n", p.dataNascimento);
         printf("Telefone: %s\n", p.telefone);
         printf("Endereco: %s\n", p.endereco);
         printf("Departamento: %d - %s\n", p.codigoDepartamento, nomeDep);
         printf("Responsavel: %d - %s\n", p.codigoFuncionarioResponsavel, nomeResp);
-        printf("----------------------------------------\n");
+        printf("--------------------------------------------\n");
 
         exibidos++;
     }
 
     fclose(arquivo);
 
-    if (exibidos == 0) {
-        printf("Nenhum paciente encontrado.\n");
-    }
+    if (exibidos == 0)
+        printf("Nenhum paciente ativo encontrado.\n");
 
-    /* Mostra o que de fato foi listado, não o global */
-    printf("Total listado: %d pacientes.\n", exibidos);
+    printf("Total listado: %d paciente(s).\n", exibidos);
 }
-
 
  void buscarNomeFuncionarioPorCodigo(int codigo, char *destino, size_t tamanho) {
     FILE *arq = fopen("funcionarios.dat", "rb");
@@ -206,3 +198,26 @@ void buscarNomeDepartamentoPorCodigo(int codigo, char *destino, size_t tamanho) 
     strncpy(destino, "Desconhecido", tamanho);
 }
 
+int removerPacienteArquivo(int codigo) {
+    FILE *f = fopen("pacientes.dat", "rb+");
+    if (!f) {
+        printf("Erro ao abrir pacientes.dat para remoção.\n");
+        return 0;
+    }
+
+    Paciente p;
+    while (fread(&p, sizeof(Paciente), 1, f) == 1) {
+        if (p.codigo == codigo && p.ativo == 1) {
+            p.ativo = 0;  // marca como inativo
+            fseek(f, -(long)sizeof(Paciente), SEEK_CUR);
+            fwrite(&p, sizeof(Paciente), 1, f);
+            fclose(f);
+            printf("Paciente %d marcado como inativo no arquivo.\n", codigo);
+            return 1;
+        }
+    }
+
+    fclose(f);
+    printf("Paciente %d não encontrado ou já removido.\n", codigo);
+    return 0;
+}

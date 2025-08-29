@@ -7,12 +7,156 @@
 #include "tempo.h"
 #include "iteracoes.h"
 #include "hash_pacientes.h"
-extern HashPacientes tabelaHash;
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
+TabelaHashPacientes tabelaHash;
 
+
+void menuHash() {
+    int op;
+    do {
+        printf("\nMENU HASH - Pacientes\n");
+        printf("1. Inicializar Hash Encadeado (Arquivo)\n");
+        printf("2. Inserir Paciente (Hash Encadeado/Arquivo)\n");
+        printf("3. Buscar Paciente (Hash Encadeado/Arquivo)\n");
+        printf("4. Remover Paciente (Hash Encadeado/Arquivo)\n");
+        printf("5. Listar Pacientes (Hash Encadeado/Arquivo)\n");
+        printf("0. Voltar\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &op);
+        switch (op) {
+            case 1: {
+                char confirma;
+                printf("ATENCAO: Esta operacao vai apagar TODOS os pacientes do hash! Deseja continuar? (s/n): ");
+                scanf(" %c", &confirma);
+                if (confirma == 's' || confirma == 'S') {
+                    FILE *arqHash = fopen("pacientes_hash.dat", "wb+");
+                    if (arqHash != NULL) {
+                        inicializarTabelaHashEncArquivo(arqHash); // Inicializa a tabela hash
+                        fclose(arqHash);
+                        printf("Arquivo de hash encadeado inicializado com sucesso!\n");
+                    } else {
+                        printf("Erro ao criar arquivo de hash encadeado.\n");
+                    }
+                } else {
+                    printf("Operacao cancelada. O hash NAO foi apagado.\n");
+                }
+                break;
+            }
+            case 2: {
+                Paciente paciente;
+                printf("Nome: ");
+                scanf(" %[^\n]", paciente.nome);  // Corrigido para permitir leitura de strings com espaços
+                printf("Codigo (ID): ");
+                scanf("%d", &paciente.codigo);
+                printf("CPF: ");
+                scanf("%s", paciente.cpf);
+                printf("Data de Nascimento (dd/mm/aaaa): ");
+                scanf("%s", paciente.dataNascimento);
+                printf("Telefone: ");
+                scanf("%s", paciente.telefone);
+                printf("Endereco: ");
+                scanf(" %[^\n]", paciente.endereco); // Corrigido para permitir leitura de endereços com espaços
+                printf("Codigo do Departamento: ");
+                scanf("%d", &paciente.codigoDepartamento);
+                printf("Codigo do Funcionario Responsavel: ");
+                scanf("%d", &paciente.codigoFuncionarioResponsavel);
+                paciente.ativo = 1; // Assume que o paciente é ativo inicialmente
+
+                // Grava no arquivo .dat para obter a posição
+                FILE *arqDat = fopen("pacientes.dat", "ab");
+                long posicaoArquivo = -1;
+                if (arqDat != NULL) {
+                    posicaoArquivo = ftell(arqDat); // Obtém o offset do arquivo
+                    fwrite(&paciente, sizeof(Paciente), 1, arqDat);
+                    fclose(arqDat);
+                }
+
+                // Depois insere no hash
+                FILE *arqHash = fopen("pacientes_hash.dat", "rb+");
+                if (arqHash != NULL) {
+                    inserirPacienteHashEncArquivo(arqHash, paciente); // Insere no hash
+                    int slot = hash(paciente.codigo); // Exibe onde o paciente foi inserido
+                    printf("Gaveta %d: %s | Codigo: %d | Posicao .dat: %ld\n",
+                           slot, paciente.nome, paciente.codigo, posicaoArquivo);
+                    fclose(arqHash);
+                } else {
+                    printf("Arquivo de hash encadeado nao encontrado. Inicialize primeiro!\n");
+                }
+                break;
+            }
+            case 3: {
+                int codigo;
+                printf("Digite o codigo (ID) do paciente para buscar: ");
+                scanf("%d", &codigo);
+                FILE *arqHash = fopen("pacientes_hash.dat", "rb");
+                if (arqHash != NULL) {
+                    Paciente paciente;
+                    if (buscarPacienteHashEncArquivo(arqHash, codigo, &paciente)) {
+                        int slot = hash(codigo);
+                        printf("Paciente encontrado na gaveta %d: %s | Codigo: %d\n",
+                               slot, paciente.nome, paciente.codigo);
+                    } else {
+                        printf("Paciente nao encontrado na tabela hash encadeada (arquivo).\n");
+                    }
+                    fclose(arqHash);
+                } else {
+                    printf("Arquivo de hash encadeado nao encontrado. Inicialize primeiro!\n");
+                }
+                break;
+            }
+            case 4: {
+                int codigo;
+                printf("Digite o codigo (ID) do paciente para remover: ");
+                scanf("%d", &codigo);
+                FILE *arqHash = fopen("pacientes_hash.dat", "rb+");
+                if (arqHash != NULL) {
+                    removerPacienteHashEncArquivo(arqHash, codigo); // Remove o paciente
+                    fclose(arqHash);
+                    removerPacienteArquivo(codigo);
+                } else {
+                    printf("Arquivo de hash encadeado nao encontrado. Inicialize primeiro!\n");
+                }
+                break;
+            }
+            case 5: {
+                FILE *arqHash = fopen("pacientes_hash.dat", "rb");
+                if (arqHash != NULL) {
+                    printf("\n--- Listagem de pacientes na tabela hash encadeada (arquivo) ---\n");
+                    for (int i = 0; i < TAM_TABELA_HASH_ENC; i++) {
+                        long head;
+                        fseek(arqHash, i * sizeof(long), SEEK_SET); // Vai até o ponteiro do bucket
+                        fread(&head, sizeof(long), 1, arqHash); // Lê o ponteiro para o início da lista
+                        long atual = head;
+                        NoPaciente no;
+                        if (atual != OFFSET_INVALIDO) {
+                            printf("Gaveta %d:\n", i);
+                            while (atual != OFFSET_INVALIDO) {
+                                fseek(arqHash, atual, SEEK_SET); // Vai até o nó atual
+                                fread(&no, sizeof(NoPaciente), 1, arqHash); // Lê o nó
+                                printf("  Nome: %s | Codigo: %d\n",
+                                       no.paciente.nome, no.paciente.codigo);
+                                atual = no.prox; // Vai para o próximo nó
+                            }
+                        }
+                    }
+                    fclose(arqHash);
+                } else {
+                    printf("Arquivo de hash encadeado nao encontrado. Inicialize primeiro!\n");
+                }
+                break;
+            }
+            case 0: {
+                printf("Voltando ao menu principal...\n");
+                break;
+            }
+            default:
+                printf("Opcao invalida!\n");
+        }
+    } while (op != 0);
+}
 
 void exibirCabecalho() {
 
@@ -41,10 +185,8 @@ void exibirMenu() {
     printf("16. Relatorio de Ocupacao dos Departamentos\n");
     printf("17. Ordenar pacientes usando Selecao Natural + Arvore de Vencedores\n");
     printf("18. Testar tempos de Execucao Bubble sort, Selecao Natural e Arvore de Vencedores \n");
-    printf("19. Inserir Paciente (Hash)\n");
-    printf("20. Buscar Paciente (Hash)\n");
-    printf("21. Remover Paciente (Hash)\n");
-    printf("22. imprimir tabela Hash");
+    printf("19. Menu (Hash)\n");
+    printf("20. Sair e Encerrar o Programa\n");
     printf("====================================================\n");
     printf("Escolha uma opcao: ");
 }
@@ -81,7 +223,7 @@ void processarOpcaoMenu(int opcao) {
         int quantidade;
         printf("Digite a quantidade de funcionarios aleatorios: ");
         scanf("%d", &quantidade);
-        gerarFuncionariosAleatorios(quantidade); // já salva e atualiza total
+        gerarFuncionariosAleatorios(quantidade); // j  salva e atualiza total
         break;
       }
 
@@ -89,7 +231,7 @@ void processarOpcaoMenu(int opcao) {
        int quantidade;
        printf("Digite a quantidade de pacientes aleatorios: ");
        scanf("%d", &quantidade);
-       gerarPacientesAleatorios(quantidade); // já salva e atualiza total
+       gerarPacientesAleatorios(quantidade); // j  salva e atualiza total
         recarregarHashPacientes(&tabelaHash);
        break;
       }
@@ -144,7 +286,7 @@ void processarOpcaoMenu(int opcao) {
     Funcionario f;
     int exibidos = 0;
 
-    printf("\n--- Lista de Funcionários ---\n");
+    printf("\n--- Lista de Funcion rios ---\n");
 
     while (fread(&f, sizeof(Funcionario), 1, arquivo) == 1) {
         char nomeDep[100];
@@ -186,7 +328,7 @@ void processarOpcaoMenu(int opcao) {
 
 case 8:
     if (totalFuncionarios == 0) {
-        printf("Nenhum funcionário cadastrado para ordenar.\n");
+        printf("Nenhum funcion rio cadastrado para ordenar.\n");
         break;
     }
     ordenarFuncionariosPorCodigo();
@@ -220,7 +362,7 @@ case 11: {
     else if (tipoBusca == 2)
         buscaSequencialFuncionario(codigo);
     else
-        printf("Opção invalida!\n");
+        printf("Op  o invalida!\n");
 
     break;
 }
@@ -241,7 +383,7 @@ case 10: {
     else if (tipoBusca == 2)
         buscaSequencialPaciente(codigo);
     else
-        printf("Opção inválida!\n");
+        printf("Op  o inv lida!\n");
 
     break;
 }
@@ -262,7 +404,7 @@ case 12: {
     else if (tipoBusca == 2)
         buscaSequencialDepartamento(codigo);
     else
-        printf("Opção inválida!\n");
+        printf("Op  o inv lida!\n");
 
     break;
 }
@@ -291,7 +433,7 @@ case 17: {
     printf("\n Gerando particoes com Selecao Natural...\n");
     int totalParticoes = gerarParticoesPorSelecaoNaturalPacientes();
 
-    printf("\n Intercalando partições com Arvore de Vencedores...\n");
+    printf("\n Intercalando parti  es com Arvore de Vencedores...\n");
     intercalarComArvoreDeVencedoresPacientes(totalParticoes);
 
     // === Listar os pacientes ordenados ===
@@ -367,14 +509,14 @@ case 18: {
     double tempoBubble = (double)(fimBubble - inicioBubble) / CLOCKS_PER_SEC;
     fclose(arqBubble);
 
-    // === Teste Seleção Natural ===
+    // === Teste Sele  o Natural ===
     gerarPacientesAleatorios(qtd);
     clock_t inicioSelecao = clock();
     int numParticoes = gerarParticoesPorSelecaoNaturalPacientes();
     clock_t fimSelecao = clock();
     double tempoSelecao = (double)(fimSelecao - inicioSelecao) / CLOCKS_PER_SEC;
 
-    // === Teste Árvore de Vencedores ===
+    // === Teste  rvore de Vencedores ===
     double tempoVencedores = 0.0;
     if (numParticoes > 0) {
         clock_t inicioVencedores = clock();
@@ -382,7 +524,7 @@ case 18: {
         clock_t fimVencedores = clock();
         tempoVencedores = (double)(fimVencedores - inicioVencedores) / CLOCKS_PER_SEC;
     } else {
-        printf("Nenhuma partição gerada. Intercalação cancelada.\n");
+        printf("Nenhuma parti  o gerada. Intercala  o cancelada.\n");
     }
 
     // === Log consolidado (arquivo e terminal) ===
@@ -400,74 +542,16 @@ case 18: {
     printf("=======================================================================");
     break;
 }
-   case 19: {  // Inserir Paciente (Hash)
-            Paciente p;
-            printf("Codigo: ");
-            scanf("%d", &p.codigo);
+    case 19: {
+      menuHash();
+      break;
+    }
 
-            printf("Nome: ");
-            scanf(" %[^\n]", p.nome);
-
-            printf("CPF: ");
-            scanf(" %[^\n]", p.cpf);
-
-            printf("Data de Nascimento (dd/mm/aaaa): ");
-            scanf(" %[^\n]", p.dataNascimento);
-
-            printf("Telefone: ");
-            scanf(" %[^\n]", p.telefone);
-
-            printf("Endereco: ");
-            scanf(" %[^\n]", p.endereco);
-
-            printf("Codigo do Departamento: ");
-            scanf("%d", &p.codigoDepartamento);
-
-            printf("Codigo do Funcionario Responsavel: ");
-            scanf("%d", &p.codigoFuncionarioResponsavel);
-
-            p.ativo = 1;  // Marca como válido
-            inserirPacienteHash(&tabelaHash, p);  // Chama a função de inserção no hash
-            printf("Paciente inserido com sucesso!\n");
+        case 20:
+            printf("Saindo...\n");
             break;
-        }
 
-        case 20: {  // Buscar Paciente (Hash)
-            int codigo;
-            printf("Codigo do paciente a buscar: ");
-            scanf("%d", &codigo);
-
-            Paciente *p = buscarPacienteHash(&tabelaHash, codigo);  // Chama a função de busca no hash
-            if (p) {
-                printf("\n--- Paciente encontrado ---\n");
-                printf("Codigo: %d\n", p->codigo);
-                printf("Nome: %s\n", p->nome);
-                printf("CPF: %s\n", p->cpf);
-                printf("Data de Nascimento: %s\n", p->dataNascimento);
-                printf("Telefone: %s\n", p->telefone);
-                printf("Endereco: %s\n", p->endereco);
-                printf("Departamento: %d\n", p->codigoDepartamento);
-                printf("Funcionario Responsavel: %d\n", p->codigoFuncionarioResponsavel);
-                free(p);
-            } else {
-                printf("Paciente não encontrado.\n");
-            }
-            break;
-        }
-
-        case 21: {  // Remover Paciente (Hash)
-            int codigo;
-            printf("Codigo do paciente a remover: ");
-            scanf("%d", &codigo);
-            removerPacienteHash(&tabelaHash, codigo);  // Chama a função de remoção no hash
-            printf("Paciente removido com sucesso!\n");
-            break;
-        }
-
-        case 22: {  // Imprimir Tabela Hash Completa
-            imprimir_tabela_hash_pacientes(&tabelaHash, arq_pacientes);  // Chama a função de impressão da tabela hash
-            break;
-        }
+    }
 }
 
 void transferirPaciente() {
@@ -482,11 +566,11 @@ void transferirPaciente() {
 
     int iDepartamento = buscarIndiceDepartamento(codDepartamento);
     if (iDepartamento == -1) {
-        printf("Departamento não encontrado.\n");
+        printf("Departamento n o encontrado.\n");
         return;
     }
 
-    // Buscar novo responsável no departamento
+    // Buscar novo respons vel no departamento
     FILE *arquivoFunc = fopen("funcionarios.dat", "rb");
     if (!arquivoFunc) {
         printf("Erro ao abrir funcionarios.dat\n");
@@ -504,7 +588,7 @@ void transferirPaciente() {
     fclose(arquivoFunc);
 
     if (novoResponsavel == -1) {
-        printf("Departamento não possui funcionario. Transferencia cancelada.\n");
+        printf("Departamento n o possui funcionario. Transferencia cancelada.\n");
         return;
     }
 
@@ -537,15 +621,15 @@ void transferirPaciente() {
         remove("pacientes.dat");
         rename("temp.dat", "pacientes.dat");
         carregarPacientesDoArquivo();  // Atualiza totalPacientes
-        printf("Paciente transferido para o departamento %s (Resp. código %d).\n",
+        printf("Paciente transferido para o departamento %s (Resp. c digo %d).\n",
                departamentos[iDepartamento].nome, novoResponsavel);
     } else {
         remove("temp.dat");
-        printf("Paciente não encontrado.\n");
+        printf("Paciente n o encontrado.\n");
     }
 }
 
-// Função: Listar pacientes por departamento
+// Fun  o: Listar pacientes por departamento
 void listarPacientesPorDepartamento() {
      carregarDepartamentosDoArquivo();
     int codDepartamento;
@@ -554,7 +638,7 @@ void listarPacientesPorDepartamento() {
 
     int iDepartamento = buscarIndiceDepartamento(codDepartamento);
     if (iDepartamento == -1) {
-        printf("Departamento não encontrado.\n");
+        printf("Departamento n o encontrado.\n");
         return;
     }
 
@@ -571,7 +655,7 @@ void listarPacientesPorDepartamento() {
 
     while (fread(&p, sizeof(Paciente), 1, arquivo) == 1) {
         if (p.codigoDepartamento == codDepartamento) {
-            printf("Código: %d | Nome: %s\n", p.codigo, p.nome);
+            printf("C digo: %d | Nome: %s\n", p.codigo, p.nome);
             encontrou = 1;
         }
     }
@@ -583,7 +667,7 @@ void listarPacientesPorDepartamento() {
     }
 }
 
-// Função: Listar funcionários por departamento
+// Fun  o: Listar funcion rios por departamento
 void listarFuncionariosPorDepartamento() {
      carregarDepartamentosDoArquivo();
     int codDepartamento;
@@ -592,11 +676,11 @@ void listarFuncionariosPorDepartamento() {
 
     int iDepartamento = buscarIndiceDepartamento(codDepartamento);
     if (iDepartamento == -1) {
-        printf("Departamento não encontrado.\n");
+        printf("Departamento n o encontrado.\n");
         return;
     }
 
-    printf("\nFuncionários no Departamento %s:\n", departamentos[iDepartamento].nome);
+    printf("\nFuncion rios no Departamento %s:\n", departamentos[iDepartamento].nome);
 
     FILE *arquivo = fopen("funcionarios.dat", "rb");
     if (!arquivo) {
@@ -609,7 +693,7 @@ void listarFuncionariosPorDepartamento() {
 
     while (fread(&f, sizeof(Funcionario), 1, arquivo) == 1) {
         if (f.codigoDepartamento == codDepartamento) {
-            printf("Código: %d | Nome: %s | Cargo: %s\n",
+            printf("C digo: %d | Nome: %s | Cargo: %s\n",
                    f.codigo, f.nome, f.cargo);
             encontrou = 1;
         }
@@ -618,12 +702,12 @@ void listarFuncionariosPorDepartamento() {
     fclose(arquivo);
 
     if (!encontrou) {
-        printf("Nenhum funcionário alocado neste departamento.\n");
+        printf("Nenhum funcion rio alocado neste departamento.\n");
     }
 }
 
 
-// Função: Relatório geral de ocupação
+// Fun  o: Relat rio geral de ocupa  o
 void relatorioOcupacaoDepartamentos() {
     printf("\n=== Relatorio de Ocupacao por Departamento ===\n");
    carregarDepartamentosDoArquivo();
@@ -644,7 +728,7 @@ void relatorioOcupacaoDepartamentos() {
             printf("Erro ao abrir pacientes.dat\n");
         }
 
-        // Contar funcionários
+        // Contar funcion rios
         FILE *arquivoFuncionarios = fopen("funcionarios.dat", "rb");
         if (arquivoFuncionarios) {
             Funcionario f;
@@ -658,7 +742,7 @@ void relatorioOcupacaoDepartamentos() {
             printf("Erro ao abrir funcionarios.dat\n");
         }
 
-        // Imprimir o relatório
+        // Imprimir o relat rio
         printf("Departamento: %s (Codigo: %d)\n", departamentos[i].nome, departamentos[i].codigo);
         printf("  Pacientes: %d\n", qtdPacientes);
         printf("  Funcionarios: %d\n\n", qtdFuncionarios);
