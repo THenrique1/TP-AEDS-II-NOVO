@@ -8,11 +8,10 @@ int funcao_hash(int cod) {
 
 // Criar a tabela hash de pacientes
 void criar_tabela_hash_pacientes(FILE *tabela_hash) {
-    // Move o cursor para o início do arquivo e cria um do zero
+    // Move o cursor para o início do arquivo
     rewind(tabela_hash);
-    ftruncate(fileno(tabela_hash), 0); // Cria ou reinicia o arquivo
-    int pos_vazia = -1;
 
+    int pos_vazia = -1;
     printf("Criando a tabela com %d posicoes\n", TAMANHO_TABELA_HASH);
 
     // Preenche a tabela com -1 indicando posições vazias
@@ -20,17 +19,23 @@ void criar_tabela_hash_pacientes(FILE *tabela_hash) {
         fwrite(&pos_vazia, sizeof(int), 1, tabela_hash);
     }
 
+    // Garante que os dados sejam gravados no disco
+    fflush(tabela_hash);  // Garante que os dados sejam efetivamente gravados no arquivo
+
+    // Agora, mova o ponteiro de volta para o início do arquivo
+    rewind(tabela_hash);
+
     printf("Tabela Hash 'pacientes.dat' criada e inicializada com sucesso\n");
 }
 
-// Função de inicialização da tabela hash
+// Função para inicializar a tabela hash
 void inicializarHash(HashPacientes *tabela) {
     for (int i = 0; i < TAMANHO_TABELA_HASH; i++) {
         tabela->buckets[i] = NULL;
     }
 }
 
-// Função para inserir um novo paciente na lista hash (com colisões)
+// Função para inserir um paciente na lista encadeada na tabela hash
 void inserir_na_lista_hash(FILE *tabela_hash, FILE *arq_pacientes, int pos_novo_paciente, int cod_novo_paciente) {
     int hash_addr = funcao_hash(cod_novo_paciente);
     fseek(tabela_hash, hash_addr * sizeof(int), SEEK_SET);
@@ -127,10 +132,6 @@ void inserirPacienteHash(HashPacientes *tabela, Paciente p) {
     printf("Paciente %s (cod=%d) inserido com sucesso!\n", p.nome, p.codigo);
 }
 
-/* =========================
-   Funções de Leitura e Salvamento
-   ========================= */
-
 // Função que retorna o tamanho do registro do paciente
 int tamanho_registro_paciente() {
     return sizeof(Paciente);  // Retorna o tamanho da estrutura Paciente
@@ -165,10 +166,6 @@ FILE* abrirArquivoPacientesParaAnexar() {
     if (!f) f = fopen(ARQUIVO_PACIENTES, "wb+");
     return f;
 }
-
-/* =========================
-   Carregar / Liberar / Recarregar
-   ========================= */
 
 // Função para carregar os pacientes na tabela hash
 void carregar_hash_pacientes(HashPacientes *tabela, FILE *arq_pacientes) {
@@ -226,33 +223,28 @@ void recarregar_hash_pacientes(HashPacientes *tabela, FILE *arq_pacientes) {
 }
 
 // Função para imprimir o estado atual da tabela hash
-void imprimir_tabela_hash_pacientes(FILE *tabela_hash, FILE *arq_pacientes) {
-    printf("\n--- IMPRIMINDO TABELA HASH E LISTAS ENCADEADAS ---\n");
-    rewind(tabela_hash);
+void imprimir_tabela_hash_pacientes(HashPacientes *tabela_hash, FILE *arq_pacientes) {
+    printf("\n--- IMPRIMINDO TABELA HASH DE PACIENTES ---\n");
 
     for (int i = 0; i < TAMANHO_TABELA_HASH; i++) {
-        int pos_cabeca_lista;
-        fread(&pos_cabeca_lista, sizeof(int), 1, tabela_hash);
-        printf("COMPARTIMENTO [%03d]: ", i);
-
-        if (pos_cabeca_lista == -1) {
-            printf("-> VAZIA\n");
+        No *atual = tabela_hash->buckets[i];
+        if (atual == NULL) {
+            printf("Bucket %d: Vazio\n", i);
         } else {
-            int pos_atual = pos_cabeca_lista;
-            while(pos_atual != -1) {
-                fseek(arq_pacientes, pos_atual * tamanho_registro_paciente(), SEEK_SET);
-                Paciente* p = le_paciente(arq_pacientes);
+            printf("Bucket %d: ", i);
+            while (atual != NULL) {
+                Paciente *p = NULL;
+                fseek(arq_pacientes, atual->offset, SEEK_SET);
+                fread(&p, sizeof(Paciente), 1, arq_pacientes);
+
                 if (p != NULL) {
-                    if (p->ativo == 1) {
-                        printf("-> (Pos %d, Cod %d) ", pos_atual, p->codigo);
-                    }
-                    int proxima_pos = p->prox;
-                    free(p);
-                    pos_atual = proxima_pos;
-                } else { break; }
+                    printf("(Codigo %d) %s\n", p->codigo, p->nome);
+                }
+
+                atual = atual->prox;
             }
             printf("\n");
         }
     }
-    printf("---------------------------------------------------\n");
+    printf("---------------------------------------------\n");
 }

@@ -44,7 +44,7 @@ void exibirMenu() {
     printf("19. Inserir Paciente (Hash)\n");
     printf("20. Buscar Paciente (Hash)\n");
     printf("21. Remover Paciente (Hash)\n");
-    printf("22. Sair e Encerrar o Programa\n");
+    printf("22. imprimir tabela Hash");
     printf("====================================================\n");
     printf("Escolha uma opcao: ");
 }
@@ -400,74 +400,74 @@ case 18: {
     printf("=======================================================================");
     break;
 }
-    case 19: {
-        Paciente p;
-        printf("Codigo: ");
-        scanf("%d", &p.codigo);
+   case 19: {  // Inserir Paciente (Hash)
+            Paciente p;
+            printf("Codigo: ");
+            scanf("%d", &p.codigo);
 
-        printf("Nome: ");
-        scanf(" %[^\n]", p.nome);
+            printf("Nome: ");
+            scanf(" %[^\n]", p.nome);
 
-        printf("CPF: ");
-        scanf(" %[^\n]", p.cpf);
+            printf("CPF: ");
+            scanf(" %[^\n]", p.cpf);
 
-        printf("Data de Nascimento (dd/mm/aaaa): ");
-        scanf(" %[^\n]", p.dataNascimento);
+            printf("Data de Nascimento (dd/mm/aaaa): ");
+            scanf(" %[^\n]", p.dataNascimento);
 
-        printf("Telefone: ");
-        scanf(" %[^\n]", p.telefone);
+            printf("Telefone: ");
+            scanf(" %[^\n]", p.telefone);
 
-        printf("Endereco: ");
-        scanf(" %[^\n]", p.endereco);
+            printf("Endereco: ");
+            scanf(" %[^\n]", p.endereco);
 
-        printf("Codigo do Departamento: ");
-        scanf("%d", &p.codigoDepartamento);
+            printf("Codigo do Departamento: ");
+            scanf("%d", &p.codigoDepartamento);
 
-        printf("Codigo do Funcionario Responsavel: ");
-        scanf("%d", &p.codigoFuncionarioResponsavel);
+            printf("Codigo do Funcionario Responsavel: ");
+            scanf("%d", &p.codigoFuncionarioResponsavel);
 
-        p.ativo = 1; // marca como válido
-        inserirPacienteHash(&tabelaHash, p);
-        break;
-    }
-
-    case 20: {
-        int codigo;
-        printf("Codigo do paciente a buscar: ");
-        scanf("%d", &codigo);
-
-        Paciente *p = buscarPacienteHash(&tabelaHash, codigo);
-        if (p) {
-            printf("\n--- Paciente encontrado ---\n");
-            printf("Codigo: %d\n", p->codigo);
-            printf("Nome: %s\n", p->nome);
-            printf("CPF: %s\n", p->cpf);
-            printf("Data de Nascimento: %s\n", p->dataNascimento);
-            printf("Telefone: %s\n", p->telefone);
-            printf("Endereco: %s\n", p->endereco);
-            printf("Departamento: %d\n", p->codigoDepartamento);
-            printf("Funcionario Responsavel: %d\n", p->codigoFuncionarioResponsavel);
-            free(p);
-        } else {
-            printf("Paciente nao encontrado.\n");
-        }
-        break;
-    }
-
-    case 21: {
-        int codigo;
-        printf("Codigo do paciente a remover: ");
-        scanf("%d", &codigo);
-        removerPacienteHash(&tabelaHash, codigo);
-        break;
-    }
-
-
-        case 22:
-            printf("Saindo...\n");
+            p.ativo = 1;  // Marca como válido
+            inserirPacienteHash(&tabelaHash, p);  // Chama a função de inserção no hash
+            printf("Paciente inserido com sucesso!\n");
             break;
+        }
 
-    }
+        case 20: {  // Buscar Paciente (Hash)
+            int codigo;
+            printf("Codigo do paciente a buscar: ");
+            scanf("%d", &codigo);
+
+            Paciente *p = buscarPacienteHash(&tabelaHash, codigo);  // Chama a função de busca no hash
+            if (p) {
+                printf("\n--- Paciente encontrado ---\n");
+                printf("Codigo: %d\n", p->codigo);
+                printf("Nome: %s\n", p->nome);
+                printf("CPF: %s\n", p->cpf);
+                printf("Data de Nascimento: %s\n", p->dataNascimento);
+                printf("Telefone: %s\n", p->telefone);
+                printf("Endereco: %s\n", p->endereco);
+                printf("Departamento: %d\n", p->codigoDepartamento);
+                printf("Funcionario Responsavel: %d\n", p->codigoFuncionarioResponsavel);
+                free(p);
+            } else {
+                printf("Paciente não encontrado.\n");
+            }
+            break;
+        }
+
+        case 21: {  // Remover Paciente (Hash)
+            int codigo;
+            printf("Codigo do paciente a remover: ");
+            scanf("%d", &codigo);
+            removerPacienteHash(&tabelaHash, codigo);  // Chama a função de remoção no hash
+            printf("Paciente removido com sucesso!\n");
+            break;
+        }
+
+        case 22: {  // Imprimir Tabela Hash Completa
+            imprimir_tabela_hash_pacientes(&tabelaHash, arq_pacientes);  // Chama a função de impressão da tabela hash
+            break;
+        }
 }
 
 void transferirPaciente() {
