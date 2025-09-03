@@ -6,41 +6,12 @@
 #include <time.h>
 #include "tempo.h"
 
-
-// Função de listagem de departamentos (lê diretamente do arquivo)
+// Lista departamentos lendo/contando direto dos arquivos .dat (memória secundária)
 void listarDepartamentos() {
     FILE *arqDeptos = fopen("departamentos.dat", "rb");
     if (!arqDeptos) {
         printf("Erro ao abrir o arquivo de departamentos.\n");
         return;
-    }
-
-    // --- Carregar funcionários ---
-    FILE *arqFuncs = fopen("funcionarios.dat", "rb");
-    int totalFuncs = 0;
-    Funcionario *funcionarios = NULL;
-    if (arqFuncs) {
-        fseek(arqFuncs, 0, SEEK_END);
-        long tamFuncs = ftell(arqFuncs);
-        rewind(arqFuncs);
-        totalFuncs = tamFuncs / sizeof(Funcionario);
-        funcionarios = malloc(tamFuncs);
-        fread(funcionarios, sizeof(Funcionario), totalFuncs, arqFuncs);
-        fclose(arqFuncs);
-    }
-
-    // --- Carregar pacientes ---
-    FILE *arqPacs = fopen("pacientes.dat", "rb");
-    int totalPacs = 0;
-    Paciente *pacientes = NULL;
-    if (arqPacs) {
-        fseek(arqPacs, 0, SEEK_END);
-        long tamPacs = ftell(arqPacs);
-        rewind(arqPacs);
-        totalPacs = tamPacs / sizeof(Paciente);
-        pacientes = malloc(tamPacs);
-        fread(pacientes, sizeof(Paciente), totalPacs, arqPacs);
-        fclose(arqPacs);
     }
 
     Departamento d;
@@ -50,22 +21,37 @@ void listarDepartamentos() {
 
     while (fread(&d, sizeof(Departamento), 1, arqDeptos) == 1) {
         int qtdFuncionarios = 0;
-        int qtdPacientes = 0;
+        int qtdPacientes   = 0;
 
-        // Contar funcionários do departamento
-        for (int i = 0; i < totalFuncs; i++) {
-            if (funcionarios[i].codigoDepartamento == d.codigo) {
-                qtdFuncionarios++;
+        // Contar funcionários do departamento (streaming)
+        FILE *arqFuncs = fopen("funcionarios.dat", "rb");
+        if (arqFuncs) {
+            Funcionario f;
+            while (fread(&f, sizeof(Funcionario), 1, arqFuncs) == 1) {
+                if (f.codigoDepartamento == d.codigo) {
+                    qtdFuncionarios++;
+                }
             }
+            fclose(arqFuncs);
+        } else {
+            printf("Aviso: funcionarios.dat não encontrado.\n");
         }
 
-        // Contar pacientes do departamento
-        for (int i = 0; i < totalPacs; i++) {
-            if (pacientes[i].codigoDepartamento == d.codigo) {
-                qtdPacientes++;
+        // Contar pacientes do departamento (streaming)
+        FILE *arqPacs = fopen("pacientes.dat", "rb");
+        if (arqPacs) {
+            Paciente p;
+            while (fread(&p, sizeof(Paciente), 1, arqPacs) == 1) {
+                if (p.codigoDepartamento == d.codigo) {
+                    qtdPacientes++;
+                }
             }
+            fclose(arqPacs);
+        } else {
+            printf("Aviso: pacientes.dat não encontrado.\n");
         }
 
+        // Impressão (mantém o formato)
         printf("Codigo: %d\n", d.codigo);
         printf("Nome: %s\n", d.nome);
         printf("Responsavel: %s\n", d.responsavel);
@@ -79,12 +65,13 @@ void listarDepartamentos() {
 
     if (registrosLidos == 0) {
         printf("Nenhum departamento encontrado.\n");
+    } else {
+        printf("Total listado: %d departamento(s).\n", registrosLidos);
     }
 
-    free(funcionarios);
-    free(pacientes);
     fclose(arqDeptos);
 }
+
 
 // Função de busca sequencial para departamentos (lê diretamente do arquivo)
 int buscaSequencialDepartamento(int codigo) {

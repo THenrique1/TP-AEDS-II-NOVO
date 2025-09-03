@@ -3,15 +3,16 @@
 #include <string.h>
 #include <time.h>
 #include <stdio.h>
-
+#include "paciente.h"
+#include "funcionario.h"
+#include "departamento.h"
+#include "hash_pacientes.h"
+#include "gerador_dados.h"
 #define MAX_CODIGOS 1000000
 
-// Variáveis globais externas
-extern int totalPacientes;
-extern int totalDepartamentos;
-extern int totalFuncionarios;
 
-extern Departamento departamentos[MAX_DEPARTAMENTOS];
+
+//extern Departamento departamentos[MAX_DEPARTAMENTOS];
 
 // Controle de códigos únicos
 int codigosUsados[MAX_CODIGOS + 1] = {0};
@@ -133,6 +134,117 @@ void gerarDepartamentosAleatorios(int quantidade) {
     printf("%d Departamentos aleatorios gerados com sucesso.\n", totalDepartamentos);
 }
 
+void gerarPacientesAleatorios(int quantidade) {
+    carregarDepartamentosDoArquivo();
+    carregarTotalFuncionarios();
+
+    if (totalDepartamentos == 0 || totalFuncionarios == 0) {
+        printf("Erro: É necessário ter ao menos 1 departamento e 1 funcionário.\n");
+        return;
+    }
+
+    /* SOBRESCREVE a base (não acumula) */
+    FILE *arquivoPacientes = fopen(ARQUIVO_PACIENTES, "wb");
+    FILE *arquivoFuncionarios = fopen("funcionarios.dat", "rb");
+    if (!arquivoPacientes || !arquivoFuncionarios) {
+        printf("Erro ao abrir arquivos de pacientes ou funcionários.\n");
+        if (arquivoPacientes) fclose(arquivoPacientes);
+        if (arquivoFuncionarios) fclose(arquivoFuncionarios);
+        return;
+    }
+
+    /* gera códigos únicos 1..quantidade embaralhados */
+    int *codigos = (int *)malloc((size_t)quantidade * sizeof(int));
+    if (!codigos) {
+        printf("Erro ao alocar memória para códigos.\n");
+        fclose(arquivoPacientes);
+        fclose(arquivoFuncionarios);
+        return;
+    }
+    for (int i = 0; i < quantidade; i++) codigos[i] = i + 1;
+    for (int i = quantidade - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        int tmp = codigos[i]; codigos[i] = codigos[j]; codigos[j] = tmp;
+    }
+
+    /* === departamentos com ao menos 1 funcionário (sem usar vetor global) === */
+    int departamentosValidos[MAX_DEPARTAMENTOS];
+    int totalValidos = 0;
+
+    rewind(arquivoFuncionarios);
+    Funcionario f;
+    while (fread(&f, sizeof(Funcionario), 1, arquivoFuncionarios) == 1) {
+        int codDep = f.codigoDepartamento;
+
+        int ja = 0;
+        for (int i = 0; i < totalValidos; i++) {
+            if (departamentosValidos[i] == codDep) { ja = 1; break; }
+        }
+
+        if (!ja) {
+            departamentosValidos[totalValidos++] = codDep;
+            if (totalValidos >= MAX_DEPARTAMENTOS) break;
+        }
+    }
+
+    if (totalValidos == 0) {
+        printf("Erro: Nenhum departamento com funcionários disponíveis.\n");
+        fclose(arquivoPacientes);
+        fclose(arquivoFuncionarios);
+        free(codigos);
+        return;
+    }
+
+    int gerados = 0;
+    for (int i = 0; i < quantidade; i++) {
+        Paciente p;
+        p.codigo = codigos[i];
+        strcpy(p.nome, nomes[rand() % 40]);
+        gerarCPF(p.cpf);
+        sprintf(p.dataNascimento, "%02d/%02d/%04d",
+                rand() % 28 + 1, rand() % 12 + 1, 1970 + rand() % 40);
+        gerarTelefone(p.telefone);
+        strcpy(p.endereco, enderecos[rand() % 18]);
+
+        /* escolhe um departamento válido e um responsável desse depto */
+        int codDepSorteado = departamentosValidos[rand() % totalValidos];
+
+        rewind(arquivoFuncionarios);
+        int responsavel = -1;
+        while (fread(&f, sizeof(Funcionario), 1, arquivoFuncionarios) == 1) {
+            if (f.codigoDepartamento == codDepSorteado) { responsavel = f.codigo; break; }
+        }
+        if (responsavel == -1) continue; /* segurança */
+
+        p.codigoDepartamento = codDepSorteado;
+        p.codigoFuncionarioResponsavel = responsavel;
+        p.ativo = 1; /* ESSENCIAL: só ativos serão indexados */
+
+        if (fwrite(&p, sizeof(Paciente), 1, arquivoPacientes) == 1) {
+            gerados++;
+        }
+    }
+
+    fclose(arquivoPacientes);
+    fclose(arquivoFuncionarios);
+    free(codigos);
+
+    totalPacientes = gerados;
+    salvarTotalPacientes();
+    printf("%d Pacientes aleatorios gerados com sucesso.\n", gerados);
+
+    // ==== reseta e reindexa o HASH para refletir a nova base ====
+    FILE *h = fopen("pacientes_hash.dat", "wb+");
+    if (h) {
+        inicializarTabelaHashEncArquivo(h);  // zera as gavetas (-1)
+        fclose(h);
+    } else {
+        printf("Aviso: não consegui acessar o arquivo, verifique permissões.\n");
+    }
+
+    // reconstrói o índice a partir do .dat (somente ativos)
+    recarregarHashAPartirDoDat();
+}
 
 void gerarFuncionariosAleatorios(int quantidade) {
     carregarDepartamentosDoArquivo();
@@ -148,10 +260,25 @@ void gerarFuncionariosAleatorios(int quantidade) {
         return;
     }
 
+    /* abre departamentos.dat para escolher um depto aleatório por registro */
+    FILE *arqDep = fopen("departamentos.dat", "rb");
+    if (!arqDep) {
+        printf("Erro ao abrir departamentos.dat\n");
+        fclose(arquivo);
+        return;
+    }
+
     totalFuncionarios = 0;
 
     // Gerar códigos únicos embaralhados
     int *codigos = malloc(sizeof(int) * quantidade);
+    if (!codigos) {
+        printf("Erro ao alocar memoria para codigos.\n");
+        fclose(arqDep);
+        fclose(arquivo);
+        return;
+    }
+
     for (int i = 0; i < quantidade; i++) {
         codigos[i] = i + 1;
     }
@@ -179,120 +306,31 @@ void gerarFuncionariosAleatorios(int quantidade) {
             f.salario = 3000 + rand() % 2000;
         }
 
-        // Departamento aleatório
+        // Departamento aleatório (lido direto do arquivo .dat)
         int indiceDep = rand() % totalDepartamentos;
-        f.codigoDepartamento = departamentos[indiceDep].codigo;
+        Departamento d;
 
-        fwrite(&f, sizeof(Funcionario), 1, arquivo);
-        totalFuncionarios++;
+        if (fseek(arqDep, (long)indiceDep * (long)sizeof(Departamento), SEEK_SET) == 0 &&
+            fread(&d, sizeof(Departamento), 1, arqDep) == 1) {
+            f.codigoDepartamento = d.codigo;
+        } else {
+            // fallback simples: usa o primeiro registro do arquivo, se existir
+            rewind(arqDep);
+            if (fread(&d, sizeof(Departamento), 1, arqDep) == 1)
+                f.codigoDepartamento = d.codigo;
+            else
+                f.codigoDepartamento = 0; // sem depto válido (não deve acontecer pois totalDepartamentos > 0)
+        }
+
+        if (fwrite(&f, sizeof(Funcionario), 1, arquivo) == 1) {
+            totalFuncionarios++;
+        }
     }
 
     free(codigos);
+    fclose(arqDep);
     fclose(arquivo);
     salvarTotalFuncionarios();
     printf("%d Funcionarios aleatorios gerados com sucesso.\n", totalFuncionarios);
 }
 
-
-void gerarPacientesAleatorios(int quantidade) {
-    carregarDepartamentosDoArquivo();
-    carregarTotalFuncionarios();
-
-    if (totalDepartamentos == 0 || totalFuncionarios == 0) {
-        printf("Erro: É necessário ter ao menos 1 departamento e 1 funcionário.\n");
-        return;
-    }
-
-    FILE *arquivoPacientes = fopen("pacientes.dat", "wb");
-    FILE *arquivoFuncionarios = fopen("funcionarios.dat", "rb");
-    if (!arquivoPacientes || !arquivoFuncionarios) {
-        printf("Erro ao abrir arquivos de pacientes ou funcionários.\n");
-        if (arquivoPacientes) fclose(arquivoPacientes);
-        if (arquivoFuncionarios) fclose(arquivoFuncionarios);
-        return;
-    }
-
-    // Gerar vetor com códigos únicos aleatórios de 1 até quantidade
-    int *codigos = malloc(quantidade * sizeof(int));
-    if (!codigos) {
-        printf("Erro ao alocar memória para códigos.\n");
-        fclose(arquivoPacientes);
-        fclose(arquivoFuncionarios);
-        return;
-    }
-
-    for (int i = 0; i < quantidade; i++)
-        codigos[i] = i + 1;
-
-    // Embaralhar o vetor de códigos
-    for (int i = quantidade - 1; i > 0; i--) {
-        int j = rand() % (i + 1);
-        int temp = codigos[i];
-        codigos[i] = codigos[j];
-        codigos[j] = temp;
-    }
-
-    // Identificar departamentos válidos
-    int departamentosValidos[MAX_DEPARTAMENTOS];
-    int totalValidos = 0;
-
-    for (int d = 0; d < totalDepartamentos; d++) {
-        int codDep = departamentos[d].codigo;
-        rewind(arquivoFuncionarios);
-        Funcionario f;
-        while (fread(&f, sizeof(Funcionario), 1, arquivoFuncionarios) == 1) {
-            if (f.codigoDepartamento == codDep) {
-                departamentosValidos[totalValidos++] = codDep;
-                break;
-            }
-        }
-    }
-
-    if (totalValidos == 0) {
-        printf("Erro: Nenhum departamento com funcionários disponíveis.\n");
-        fclose(arquivoPacientes);
-        fclose(arquivoFuncionarios);
-        free(codigos);
-        return;
-    }
-
-    totalPacientes = 0;
-
-    for (int i = 0; i < quantidade; i++) {
-        Paciente p;
-        p.codigo = codigos[i]; // código aleatório único
-        strcpy(p.nome, nomes[rand() % 40]);
-        gerarCPF(p.cpf);
-        sprintf(p.dataNascimento, "%02d/%02d/%04d", rand() % 28 + 1, rand() % 12 + 1, 1970 + rand() % 40);
-        gerarTelefone(p.telefone);
-        strcpy(p.endereco, enderecos[rand() % 18]);
-
-        // Departamento sorteado
-        int indice = rand() % totalValidos;
-        int codDepSorteado = departamentosValidos[indice];
-
-        // Buscar funcionário no departamento sorteado
-        rewind(arquivoFuncionarios);
-        Funcionario f;
-        int responsavel = -1;
-        while (fread(&f, sizeof(Funcionario), 1, arquivoFuncionarios) == 1) {
-            if (f.codigoDepartamento == codDepSorteado) {
-                responsavel = f.codigo;
-                break;
-            }
-        }
-
-        p.codigoDepartamento = codDepSorteado;
-        p.codigoFuncionarioResponsavel = responsavel;
-
-        fwrite(&p, sizeof(Paciente), 1, arquivoPacientes);
-        totalPacientes++;
-    }
-
-    fclose(arquivoPacientes);
-    fclose(arquivoFuncionarios);
-    free(codigos);
-    salvarTotalPacientes();
-
-    printf("%d Pacientes aleatorios gerados com sucesso.\n", totalPacientes);
-}

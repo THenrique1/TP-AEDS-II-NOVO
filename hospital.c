@@ -4,12 +4,11 @@
 #include <string.h>
 #include <ctype.h>
 
-
-int totalDepartamentos = 0;
-int totalFuncionarios = 0;
 int totalPacientes = 0;
+int totalFuncionarios = 0;
+int totalDepartamentos = 0;
 
-Departamento departamentos[MAX_DEPARTAMENTOS];
+
 // ----- Funções para salvar totais -----
 
 void salvarTotalPacientes() {
@@ -117,62 +116,66 @@ void carregarDepartamentosDoArquivo() {
         totalDepartamentos = 0;
         return;
     }
-
-    totalDepartamentos = 0;
-    while (fread(&departamentos[totalDepartamentos], sizeof(Departamento), 1, arquivo) == 1) {
-        totalDepartamentos++;
-        if (totalDepartamentos >= MAX_DEPARTAMENTOS) break;
-    }
-
+    fseek(arquivo, 0, SEEK_END);
+    long bytes = ftell(arquivo);
     fclose(arquivo);
-    printf("Departamentos carregados: %d\n", totalDepartamentos);
+    totalDepartamentos = (int)(bytes / sizeof(Departamento));
+    printf("Carregamento de %d departamentos (dados permanecem no disco).\n", totalDepartamentos);
 }
 
 
-// ----- Funções de busca por código -----
 
-int buscarIndicePaciente(int codigo) {
+// ----- Funções de busca por código -----
+// Retorna 1 se o paciente for encontrado, -1 se não encontrado, -2 se erro de I/O.
+// Se encontrado e *out != NULL, preenche o struct.
+int buscarIndicePaciente(int codigo, Paciente *out) {
     FILE *arquivo = fopen("pacientes.dat", "rb");
-    if (!arquivo) {
-        printf("Erro ao abrir pacientes.dat\n");
-        return -1;
-    }
+    if (!arquivo) return -2;
 
     Paciente p;
     while (fread(&p, sizeof(Paciente), 1, arquivo) == 1) {
         if (p.codigo == codigo) {
+            if (out) *out = p;
             fclose(arquivo);
-            return 1;  // Encontrado
+            return 1;
         }
     }
-
     fclose(arquivo);
-    return -1; // Não encontrado
+    return -1;
 }
 
-int buscarIndiceFuncionario(int codigo) {
+// Retorna 1 se o funcionário for encontrado, -1 se não encontrado, -2 se erro de I/O.
+// Se encontrado e *out != NULL, preenche o struct.
+int buscarIndiceFuncionario(int codigo, Funcionario *out) {
     FILE *arquivo = fopen("funcionarios.dat", "rb");
-    if (!arquivo) {
-        printf("Erro ao abrir funcionarios.dat\n");
-        return -1;
-    }
+    if (!arquivo) return -2;
 
     Funcionario f;
     while (fread(&f, sizeof(Funcionario), 1, arquivo) == 1) {
         if (f.codigo == codigo) {
+            if (out) *out = f;
             fclose(arquivo);
-            return 1;  // Encontrado
+            return 1;
         }
     }
-
     fclose(arquivo);
-    return -1; // Não encontrado
+    return -1;
 }
 
-int buscarIndiceDepartamento(int codigo) {
-    for (int i = 0; i < totalDepartamentos; i++) {
-        if (departamentos[i].codigo == codigo)
-            return i;
+// Retorna 1 se o departamento for encontrado, -1 se não encontrado, -2 se erro de I/O.
+// Se encontrado e *out != NULL, preenche o struct.
+int buscarIndiceDepartamento(int codigo, Departamento *out) {
+    FILE *arquivo = fopen("departamentos.dat", "rb");
+    if (!arquivo) return -2;
+
+    Departamento d;
+    while (fread(&d, sizeof(Departamento), 1, arquivo) == 1) {
+        if (d.codigo == codigo) {
+            if (out) *out = d;
+            fclose(arquivo);
+            return 1;
+        }
     }
+    fclose(arquivo);
     return -1;
 }

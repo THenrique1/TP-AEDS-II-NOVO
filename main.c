@@ -12,6 +12,7 @@
 #include <dirent.h>
 
 int main() {
+recarregarHashAPartirDoDat();
 processarMenuPrincipal();
 return 0;
 }

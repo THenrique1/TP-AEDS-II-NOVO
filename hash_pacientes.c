@@ -1,23 +1,29 @@
 #include "hash_pacientes.h"
 
+
 // Função de hash por divisão
 int hash(int codigo) {
-    int h = codigo % TAM_TABELA_HASH_ENC;
+    int h = codigo % TAM_TABELA_HASH_ENC; // tamanho = 51
     if (h < 0) {
         h = h + TAM_TABELA_HASH_ENC;
     }
     return h;
 }
 
+
+
 // Função para inicializar a tabela hash no arquivo
 void inicializarTabelaHashEncArquivo(FILE *arq) {
     if (!arq) return; // Se o arquivo não foi aberto corretamente, retorna
     long offsets[TAM_TABELA_HASH_ENC];
-    for (int i = 0; i < TAM_TABELA_HASH_ENC; i++) offsets[i] = OFFSET_INVALIDO; // Inicializa todos os ponteiros como inválidos
+    for (int i = 0; i < TAM_TABELA_HASH_ENC; i++) offsets[i] = OFFSET_INVALIDO; // Inicializa todos os ponteiros como inválidos !
     fseek(arq, 0, SEEK_SET); // Vai para o início do arquivo
     fwrite(offsets, sizeof(long), TAM_TABELA_HASH_ENC, arq); // Escreve o vetor de ponteiros no arquivo
     fflush(arq); // Garante que os dados sejam gravados imediatamente
 }
+
+
+
 
 // Insere paciente no hash encadeado exterior (arquivo)
 void inserirPacienteHashEncArquivo(FILE *arq, Paciente paciente) {
@@ -52,8 +58,11 @@ void inserirPacienteHashEncArquivo(FILE *arq, Paciente paciente) {
     fseek(arq, idx * sizeof(long), SEEK_SET);
     fwrite(&novo_offset, sizeof(long), 1, arq); // Atualiza o ponteiro para o novo início
     fflush(arq); // Garante que os dados sejam gravados
-    printf("Paciente %s (cod=%d) inserido na tabela hash encadeada (arquivo, slot %d).\n", paciente.nome, paciente.codigo, idx); // Mensagem de sucesso
+    // printf("Paciente %s (cod=%d) inserido na tabela hash encadeada (arquivo, slot %d).\n", paciente.nome, paciente.codigo, idx); // Mensagem de sucesso
 }
+
+
+
 
 // Busca paciente no hash encadeado exterior (arquivo)
 int buscarPacienteHashEncArquivo(FILE *arq, int codigo, Paciente *pacienteEncontrado) {
@@ -76,6 +85,9 @@ int buscarPacienteHashEncArquivo(FILE *arq, int codigo, Paciente *pacienteEncont
     return 0; // Não encontrou
 }
 
+
+
+
 // Remove paciente do hash encadeado exterior (arquivo)
 int removerPacienteHashEncArquivo(FILE *arq, int codigo) {
     if (!arq) return 0; // Se o arquivo não foi aberto corretamente, retorna 0
@@ -95,7 +107,7 @@ int removerPacienteHashEncArquivo(FILE *arq, int codigo) {
                 fseek(arq, idx * sizeof(long), SEEK_SET);
                 fwrite(&no.prox, sizeof(long), 1, arq); // Atualiza o ponteiro para o próximo nó
             } else {
-                // Remove do meio/fim: atualiza o ponteiro do nó anterior
+                // Remove do meio/fim: atualiza o ponteiro do nó anterior para saber que é o proximo ou vira -1 caso seja o ultimo
                 NoPaciente anteriorNo;
                 fseek(arq, anterior, SEEK_SET);
                 fread(&anteriorNo, sizeof(NoPaciente), 1, arq);
@@ -114,45 +126,36 @@ int removerPacienteHashEncArquivo(FILE *arq, int codigo) {
     return 0;
 }
 
-// Carrega os pacientes na tabela hash do arquivo
-void carregarHashPacientes(FILE *arq, TabelaHashPacientes *tabela) {
-    if (!arq) return; // Se o arquivo não foi aberto corretamente, retorna
-    for (int i = 0; i < TAM_TABELA_HASH_ENC; i++) tabela->buckets[i] = OFFSET_INVALIDO; // Inicializa os ponteiros
-    Paciente p;
-    long pos = 0;
-    NoPaciente no;
-    while (fread(&no, sizeof(NoPaciente), 1, arq)) { // Lê os dados do arquivo
-        int idx = hash(no.paciente.codigo);
-        tabela->buckets[idx] = pos;
-        pos = ftell(arq);
+
+
+int recarregarHashAPartirDoDat(void) {
+    // 1) Abre/cria e zera o arquivo de hash
+    FILE *h = fopen("pacientes_hash.dat", "wb+");
+    if (!h) {
+        printf("Erro ao criar pacientes_hash.dat\n");
+        return 0;
     }
-}
+    inicializarTabelaHashEncArquivo(h);
 
-// Função para liberar a memória da tabela hash
-void liberarHash(TabelaHashPacientes *tabela) {
-    // Neste caso, não há memória alocada dinamicamente, então nada a liberar
-}
-
-void recarregarHashPacientes(TabelaHashPacientes *tabela) {
-    if (!tabela) return;  // Verifica se a tabela não é nula
-
-    // Abre o arquivo de pacientes para leitura
-    FILE *arq = fopen(ARQUIVO_PACIENTES, "rb");
-    if (!arq) {
-        printf("Erro ao abrir o arquivo de pacientes.\n");
-        return;  // Se não conseguiu abrir o arquivo, retorna
+    // 2) Percorre o arquivo de dados e insere no índice
+    FILE *d = fopen(ARQUIVO_PACIENTES, "rb");
+    if (!d) {
+        printf("Erro ao abrir %s\n", ARQUIVO_PACIENTES);
+        fclose(h);
+        return 0;
     }
 
     Paciente p;
-    long pos = 0;
-    NoPaciente no;
-
-    // Percorre o arquivo de pacientes e atualiza os offsets na tabela hash
-    while (fread(&no, sizeof(NoPaciente), 1, arq)) {
-        int idx = hash(no.paciente.codigo);  // Calcula o índice da gaveta usando o código do paciente
-        tabela->buckets[idx] = pos;  // Atualiza a tabela hash com o offset do paciente
-        pos = ftell(arq);  // Avança para a próxima posição no arquivo
+    int inseridos = 0;
+    while (fread(&p, sizeof(Paciente), 1, d) == 1) { // Lê um paciente por vez do arquivo (pacientes.dat) e continua o loop enquanto a leitura retornar 1 (ou seja, até o fim do arquivo)
+        if (p.ativo != 1) continue;              // só indexa ativos
+        inserirPacienteHashEncArquivo(h, p);     // grava nó (NoPaciente) no hash encadeado
+        inseridos++;
     }
 
-    fclose(arq);  // Fecha o arquivo após terminar
+    fclose(d);
+    fclose(h);
+   // printf("Reindexacao concluida: %d paciente(s) ativo(s) indexado(s).\n", inseridos);
+    return 1;
 }
+

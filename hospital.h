@@ -5,7 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+extern int totalPacientes;
+extern int totalFuncionarios;
+extern int totalDepartamentos;
+
 #define MAX_DEPARTAMENTOS 1000
+
 
 // Definição das estruturas
 typedef struct {
@@ -65,22 +70,15 @@ int buscaBinariaDepartamento(int codigo);
 int buscaSequencialFuncionario(int codigo);
 int buscaBinariaFuncionario(int codigo);
 
-// Variáveis globais
-extern int totalFuncionarios;
-extern int totalDepartamentos;
-extern int totalPacientes;
-
 extern Departamento departamentos[MAX_DEPARTAMENTOS];
 
 void removerPaciente(int codigo);
 void removerDepartamento(int codigo);
 
-int buscarIndiceFuncionario(int codigo);
-int buscarIndicePaciente(int codigo);
-int buscarIndiceDepartamento(int codigo);
+int buscarIndicePaciente(int codigo, Paciente *out);
+int buscarIndiceFuncionario(int codigo, Funcionario *out);
+int buscarIndiceDepartamento(int codigo, Departamento *out);
 
-
-//#define BLOCO_TAM 100
 int contarBlocosArquivo(const char *nomeArquivo, size_t tamanhoRegistro);
 
 void buscarNomeFuncionarioPorCodigo(int codigo, char *destino, size_t tamanho);

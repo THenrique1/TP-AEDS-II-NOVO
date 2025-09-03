@@ -28,59 +28,8 @@ void registrarLog(const char *mensagem) {
     }
 }
 
-void bubbleSortPaciente(Paciente *v, int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (v[j].codigo > v[j + 1].codigo) {
-                Paciente temp = v[j];
-                v[j] = v[j + 1];
-                v[j + 1] = temp;
-            }
-        }
-    }
-}
-void bubbleSortFuncionario(Funcionario *v, int n) {
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (v[j].codigo > v[j + 1].codigo) {
-                Funcionario temp = v[j];
-                v[j] = v[j + 1];
-                v[j + 1] = temp;
-            }
-}
 
-void bubbleSortDepartamento(Departamento *v, int n) {
-    for (int i = 0; i < n - 1; i++)
-        for (int j = 0; j < n - i - 1; j++)
-            if (v[j].codigo > v[j + 1].codigo) {
-                Departamento temp = v[j];
-                v[j] = v[j + 1];
-                v[j + 1] = temp;
-            }
-}
-
-// ====== Contagem de blocos ======
-int contarBlocosArquivo(const char *nomeArquivo, size_t tamanhoRegistro) {
-    FILE *arquivo = fopen(nomeArquivo, "rb");
-    if (!arquivo) return 0;
-    fseek(arquivo, 0, SEEK_END);
-    long tamanho = ftell(arquivo);
-    fclose(arquivo);
-    long totalRegistros = tamanho / tamanhoRegistro;
-    return (totalRegistros + BLOCO_TAM - 1) / BLOCO_TAM;
-}
-
-// ====== Ordenação com seleção por seleção Natural (Pacientes) ======
-void ordenarPacientesPorCodigo() {
-    printf("Iniciando ordenação \n");
-    int totalBlocos = gerarParticoesPorSelecaoNaturalPacientes();
-    printf("Total de blocos gerados: %d\n", totalBlocos);
-    intercalarComArvoreDeVencedoresPacientes(totalBlocos);
-    printf(" Ordenação concluída.\n");
-}
-
-
-// ====== (Pacientes ordenação antiga) ======
+// ====== (Pacientes ordenação trabalho 1) ======
 void ordenarPacientesPorCodigoBubbleSort() {
     FILE *arq = fopen("pacientes.dat", "rb+");
     if (arq == NULL) {
@@ -301,4 +250,24 @@ void ordenarDepartamentosPorCodigo() {
 
     printf("\nBase de dados de departamentos ordenada com sucesso!\n");
     fclose(arq);
+}
+
+// ====== Contagem de blocos para seleção natural ======
+int contarBlocosArquivo(const char *nomeArquivo, size_t tamanhoRegistro) {
+    FILE *arquivo = fopen(nomeArquivo, "rb");
+    if (!arquivo) return 0;
+    fseek(arquivo, 0, SEEK_END);
+    long tamanho = ftell(arquivo);
+    fclose(arquivo);
+    long totalRegistros = tamanho / tamanhoRegistro;
+    return (totalRegistros + BLOCO_TAM - 1) / BLOCO_TAM;
+}
+
+// ====== Ordenação com seleção por seleção Natural (Pacientes) ======
+void ordenarPacientesPorCodigo() {
+    printf("Iniciando ordenação \n");
+    int totalBlocos = gerarParticoesPorSelecaoNaturalPacientes();
+    printf("Total de blocos gerados: %d\n", totalBlocos);
+    intercalarComArvoreDeVencedoresPacientes(totalBlocos);
+    printf(" Ordenação concluída.\n");
 }

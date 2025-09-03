@@ -20,13 +20,18 @@ void listarFuncionarios() {
     printf("\n--- Lista de Funcionários ---\n");
 
     while (fread(&f, sizeof(Funcionario), 1, arquivo) == 1) {
-        // Buscar nome do departamento
+        // Buscar nome do departamento diretamente em departamentos.dat
         const char *nomeDepartamento = "Desconhecido";
-        for (int i = 0; i < totalDepartamentos; i++) {
-            if (departamentos[i].codigo == f.codigoDepartamento) {
-                nomeDepartamento = departamentos[i].nome;
-                break;
+        Departamento d;
+        FILE *arqDep = fopen("departamentos.dat", "rb");
+        if (arqDep) {
+            while (fread(&d, sizeof(Departamento), 1, arqDep) == 1) {
+                if (d.codigo == f.codigoDepartamento) {
+                    nomeDepartamento = d.nome;
+                    break;
+                }
             }
+            fclose(arqDep);
         }
 
         printf("Codigo: %d\n", f.codigo);
