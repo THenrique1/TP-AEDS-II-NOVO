@@ -21,7 +21,5 @@ void atualizarArvore(int *arvore, Fonte *fontes, int k, int fonteModificada);
 int gerarParticoesPorSelecaoNaturalPacientes(void);
 void intercalarComArvoreDeVencedoresPacientes(int totalBlocos);
 
-// Função para limpar arquivos temporários (como blocos e intercalados)
-
 
 #endif

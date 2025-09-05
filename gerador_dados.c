@@ -8,14 +8,7 @@
 #include "departamento.h"
 #include "hash_pacientes.h"
 #include "gerador_dados.h"
-#define MAX_CODIGOS 1000000
 
-
-
-//extern Departamento departamentos[MAX_DEPARTAMENTOS];
-
-// Controle de códigos únicos
-int codigosUsados[MAX_CODIGOS + 1] = {0};
 
 // Listas de dados aleatórios
 char *nomes[] = {
@@ -54,7 +47,7 @@ char *responsaveis[] = {
 char *departamentoNomes[] = {
     "Cardiologia", "Ortopedia", "Pediatria", "Radiologia", "Clinica Geral",
     "Neurologia", "Oncologia", "Psiquiatria", "Dermatologia",
-    "Ginecologia", "Urgência e Emergência", "Endocrinologia", "Reabilitação", "Imunologia"
+    "Ginecologia", "Urgência e Emergencia", "Endocrinologia", "Reabilitacao", "Imunologia"
 };
 
 void inicializarAleatorio() {
@@ -101,59 +94,168 @@ void embaralharDepartamentos(Departamento *vet, int n) {
     }
 }
 
-void gerarDepartamentosAleatorios(int quantidade) {
-    Departamento *vet = malloc(sizeof(Departamento) * quantidade);
-    totalDepartamentos = 0;
 
+// Gera departamentos aleatórios e grava diretamente em departamentos.dat
+void gerarDepartamentosAleatorios(int quantidade) {
+    if (quantidade <= 0) {
+        printf("Quantidade invalida.\n");
+        return;
+    }
+
+    FILE *arquivo = fopen("departamentos.dat", "wb");  // cria/sobrescreve o arquivo
+    if (!arquivo) {
+        printf("Erro ao abrir o arquivo de departamentos.\n");
+        return;
+    }
+
+    // gera códigos únicos embaralhados
+    int *codigos = (int *)malloc((size_t)quantidade * sizeof(int));
+    if (!codigos) {
+        printf("Erro ao alocar memoria para codigos.\n");
+        fclose(arquivo);
+        return;
+    }
+    for (int i = 0; i < quantidade; i++) codigos[i] = i + 1;
+    // Embaralha
+    for (int i = quantidade - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        int tmp = codigos[i]; codigos[i] = codigos[j]; codigos[j] = tmp;
+    }
+
+    // === gera e grava cada departamento no arquivo ===
+    totalDepartamentos = 0;
     for (int i = 0; i < quantidade; i++) {
-        vet[i].codigo = gerarCodigoUnico("codigo_departamentos.dat");
-        strcpy(vet[i].nome, departamentoNomes[i % 14]);
-        strcpy(vet[i].responsavel, responsaveis[i % 15]);
-        vet[i].andar = 1 + rand() % 5;
-        vet[i].quantidadeFuncionarios = 0;
+        Departamento d;
+
+        d.codigo = codigos[i];  // código único desordenado
+        strcpy(d.nome,        departamentoNomes[rand() % 14]); // nome aleatório
+        strcpy(d.responsavel, responsaveis[rand() % 15]);      // responsável aleatório
+        d.andar = 1 + rand() % 5;                              // andar entre 1 e 5
+
+        if (fwrite(&d, sizeof(Departamento), 1, arquivo) != 1) {
+            printf("Erro de escrita em departamentos.dat na posicao %d.\n", i);
+            break;
+        }
         totalDepartamentos++;
     }
 
-    // Embaralha antes de salvar
-    embaralharDepartamentos(vet, quantidade);
-
-    FILE *arquivo = fopen("departamentos.dat", "wb");
-    if (!arquivo) {
-        printf("Erro ao abrir o arquivo de departamentos.\n");
-        free(vet);
-        return;
-    }
-    fwrite(vet, sizeof(Departamento), quantidade, arquivo);
+    free(codigos);
     fclose(arquivo);
 
-    free(vet);
-
-    salvarTotalDepartamentos();
-    carregarDepartamentosDoArquivo();
-
+    salvarTotalDepartamentos(); // salva o total de departamentos em arquivo auxiliar
     printf("%d Departamentos aleatorios gerados com sucesso.\n", totalDepartamentos);
 }
+
+// Gera funcionários aleatórios e grava diretamente em funcionarios.dat
+void gerarFuncionariosAleatorios(int quantidade) {
+    carregarDepartamentosDoArquivo();
+
+    FILE *arquivo = fopen("funcionarios.dat", "wb"); // cria/sobrescreve o arquivo
+    if (!arquivo) {
+        printf("Erro ao abrir o arquivo de funcionarios.\n");
+        return;
+    }
+
+    // Abre departamentos.dat para sortear departamentos
+    FILE *arqDep = fopen("departamentos.dat", "rb");
+    if (!arqDep) {
+        printf("Erro ao abrir departamentos.dat\n");
+        fclose(arquivo);
+        return;
+    }
+
+    totalFuncionarios = 0;
+
+    // gera códigos únicos embaralhados
+    int *codigos = malloc(sizeof(int) * quantidade);
+    if (!codigos) {
+        printf("Erro ao alocar memoria para codigos.\n");
+        fclose(arqDep);
+        fclose(arquivo);
+        return;
+    }
+
+    for (int i = 0; i < quantidade; i++) codigos[i] = i + 1;
+    for (int i = quantidade - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        int temp = codigos[i];
+        codigos[i] = codigos[j];
+        codigos[j] = temp;
+    }
+
+    // gera e grava cada funcionário
+    for (int i = 0; i < quantidade; i++) {
+        Funcionario f;
+        f.codigo = codigos[i];                      // código único desordenado
+        strcpy(f.nome, nomes[rand() % 40]);         // nome aleatório
+        strcpy(f.cargo, cargos[rand() % 4]);        // cargo aleatório
+
+        // especialização e salário conforme cargo
+        if (strcmp(f.cargo, "Medico") == 0) {
+            strcpy(f.especializacao, especializacoes[rand() % 14]);
+            f.salario = 9000 + rand() % 5000;
+        } else if (strcmp(f.cargo, "Administrador") == 0) {
+            strcpy(f.especializacao, "-");
+            f.salario = 5000 + rand() % 3000;
+        } else { // Enfermeiro ou Técnico
+            strcpy(f.especializacao, "-");
+            f.salario = 3000 + rand() % 2000;
+        }
+
+        // sorteia um departamento existente
+        int indiceDep = rand() % totalDepartamentos;
+        Departamento d;
+
+        // lê o departamento sorteado diretamente do arquivo
+        if (fseek(arqDep, (long)indiceDep * (long)sizeof(Departamento), SEEK_SET) == 0 &&
+            fread(&d, sizeof(Departamento), 1, arqDep) == 1) {
+            f.codigoDepartamento = d.codigo;
+        } else {
+            // fallback: usa o primeiro registro
+            rewind(arqDep);
+            if (fread(&d, sizeof(Departamento), 1, arqDep) == 1)
+                f.codigoDepartamento = d.codigo;
+            else
+                f.codigoDepartamento = 0; // segurança
+        }
+
+        // grava o funcionário em funcionarios.dat
+        if (fwrite(&f, sizeof(Funcionario), 1, arquivo) == 1) {
+            totalFuncionarios++;
+        }
+    }
+
+    free(codigos);
+    fclose(arqDep);
+    fclose(arquivo);
+
+    salvarTotalFuncionarios(); // salva o total em arquivo auxiliar
+    printf("%d Funcionarios aleatorios gerados com sucesso.\n", totalFuncionarios);
+}
+
+
 
 void gerarPacientesAleatorios(int quantidade) {
     carregarDepartamentosDoArquivo();
     carregarTotalFuncionarios();
 
-    if (totalDepartamentos == 0 || totalFuncionarios == 0) {
-        printf("Erro: É necessário ter ao menos 1 departamento e 1 funcionário.\n");
+    if (quantidade <= 0) {
+        printf("Quantidade invalida.\n");
         return;
     }
 
-    /* SOBRESCREVE a base (não acumula) */
-    FILE *arquivoPacientes = fopen(ARQUIVO_PACIENTES, "wb");
+    //SOBRESCREVE a base (não acumula)
+
+    FILE *arquivoPacientes   = fopen(ARQUIVO_PACIENTES, "wb");
     FILE *arquivoFuncionarios = fopen("funcionarios.dat", "rb");
     if (!arquivoPacientes || !arquivoFuncionarios) {
         printf("Erro ao abrir arquivos de pacientes ou funcionários.\n");
-        if (arquivoPacientes) fclose(arquivoPacientes);
+        if (arquivoPacientes)   fclose(arquivoPacientes);
         if (arquivoFuncionarios) fclose(arquivoFuncionarios);
         return;
     }
 
-    /* gera códigos únicos 1..quantidade embaralhados */
+    //gera códigos únicos 1..quantidade embaralhados
     int *codigos = (int *)malloc((size_t)quantidade * sizeof(int));
     if (!codigos) {
         printf("Erro ao alocar memória para códigos.\n");
@@ -167,38 +269,36 @@ void gerarPacientesAleatorios(int quantidade) {
         int tmp = codigos[i]; codigos[i] = codigos[j]; codigos[j] = tmp;
     }
 
-    /* === departamentos com ao menos 1 funcionário (sem usar vetor global) === */
-    int departamentosValidos[MAX_DEPARTAMENTOS];
-    int totalValidos = 0;
-
-    rewind(arquivoFuncionarios);
-    Funcionario f;
-    while (fread(&f, sizeof(Funcionario), 1, arquivoFuncionarios) == 1) {
-        int codDep = f.codigoDepartamento;
-
-        int ja = 0;
-        for (int i = 0; i < totalValidos; i++) {
-            if (departamentosValidos[i] == codDep) { ja = 1; break; }
-        }
-
-        if (!ja) {
-            departamentosValidos[totalValidos++] = codDep;
-            if (totalValidos >= MAX_DEPARTAMENTOS) break;
-        }
-    }
-
-    if (totalValidos == 0) {
-        printf("Erro: Nenhum departamento com funcionários disponíveis.\n");
+    //total de funcionarios direto do arquivo (confirmação)
+    fseek(arquivoFuncionarios, 0, SEEK_END);
+    long bytesFunc = ftell(arquivoFuncionarios);
+    int totalFuncsArquivo = (int)(bytesFunc / (long)sizeof(Funcionario));
+    if (totalFuncsArquivo <= 0) {
+        printf("Erro: funcionarios.dat vazio.\n");
+        free(codigos);
         fclose(arquivoPacientes);
         fclose(arquivoFuncionarios);
-        free(codigos);
         return;
     }
 
     int gerados = 0;
     for (int i = 0; i < quantidade; i++) {
+        // Escolhe UM funcionário aleatório do arquivo e usa seu departamento/código
+        int idxFunc = rand() % totalFuncsArquivo;
+
+        Funcionario f;
+        if (fseek(arquivoFuncionarios, (long)idxFunc * (long)sizeof(Funcionario), SEEK_SET) != 0 ||
+            fread(&f, sizeof(Funcionario), 1, arquivoFuncionarios) != 1) {
+            rewind(arquivoFuncionarios);
+            if (fread(&f, sizeof(Funcionario), 1, arquivoFuncionarios) != 1) {
+                printf("Falha ao ler funcionario. \n");
+                break;
+            }
+        }
+
         Paciente p;
         p.codigo = codigos[i];
+
         strcpy(p.nome, nomes[rand() % 40]);
         gerarCPF(p.cpf);
         sprintf(p.dataNascimento, "%02d/%02d/%04d",
@@ -206,131 +306,31 @@ void gerarPacientesAleatorios(int quantidade) {
         gerarTelefone(p.telefone);
         strcpy(p.endereco, enderecos[rand() % 18]);
 
-        /* escolhe um departamento válido e um responsável desse depto */
-        int codDepSorteado = departamentosValidos[rand() % totalValidos];
 
-        rewind(arquivoFuncionarios);
-        int responsavel = -1;
-        while (fread(&f, sizeof(Funcionario), 1, arquivoFuncionarios) == 1) {
-            if (f.codigoDepartamento == codDepSorteado) { responsavel = f.codigo; break; }
-        }
-        if (responsavel == -1) continue; /* segurança */
-
-        p.codigoDepartamento = codDepSorteado;
-        p.codigoFuncionarioResponsavel = responsavel;
-        p.ativo = 1; /* ESSENCIAL: só ativos serão indexados */
+        p.codigoDepartamento = f.codigoDepartamento;
+        p.codigoFuncionarioResponsavel = f.codigo;
+        p.ativo = 1;
 
         if (fwrite(&p, sizeof(Paciente), 1, arquivoPacientes) == 1) {
             gerados++;
+        } else {
+            printf("Falha ao escrever paciente codigo %d.\n", p.codigo);
         }
     }
 
+    free(codigos);
     fclose(arquivoPacientes);
     fclose(arquivoFuncionarios);
-    free(codigos);
 
     totalPacientes = gerados;
     salvarTotalPacientes();
     printf("%d Pacientes aleatorios gerados com sucesso.\n", gerados);
 
-    // ==== reseta e reindexa o HASH para refletir a nova base ====
-    FILE *h = fopen("pacientes_hash.dat", "wb+");
-    if (h) {
-        inicializarTabelaHashEncArquivo(h);  // zera as gavetas (-1)
-        fclose(h);
-    } else {
-        printf("Aviso: não consegui acessar o arquivo, verifique permissões.\n");
-    }
-
-    // reconstrói o índice a partir do .dat (somente ativos)
-    recarregarHashAPartirDoDat();
+    // Código comentado do hash (pode ser reativado se necessário)
+    // FILE *h = fopen("pacientes_hash.dat", "wb+");
+    // if (h) {
+    //     inicializarTabelaHashEncArquivo(h);  // zera as gavetas (-1)
+    //     fclose(h);
+    // }
+    // recarregarHashAPartirDoDat();
 }
-
-void gerarFuncionariosAleatorios(int quantidade) {
-    carregarDepartamentosDoArquivo();
-
-    if (totalDepartamentos == 0) {
-        printf("Erro: Nenhum departamento encontrado. Gere os departamentos primeiro.\n");
-        return;
-    }
-
-    FILE *arquivo = fopen("funcionarios.dat", "wb");
-    if (!arquivo) {
-        printf("Erro ao abrir o arquivo de funcionarios.\n");
-        return;
-    }
-
-    /* abre departamentos.dat para escolher um depto aleatório por registro */
-    FILE *arqDep = fopen("departamentos.dat", "rb");
-    if (!arqDep) {
-        printf("Erro ao abrir departamentos.dat\n");
-        fclose(arquivo);
-        return;
-    }
-
-    totalFuncionarios = 0;
-
-    // Gerar códigos únicos embaralhados
-    int *codigos = malloc(sizeof(int) * quantidade);
-    if (!codigos) {
-        printf("Erro ao alocar memoria para codigos.\n");
-        fclose(arqDep);
-        fclose(arquivo);
-        return;
-    }
-
-    for (int i = 0; i < quantidade; i++) {
-        codigos[i] = i + 1;
-    }
-    for (int i = quantidade - 1; i > 0; i--) {
-        int j = rand() % (i + 1);
-        int temp = codigos[i];
-        codigos[i] = codigos[j];
-        codigos[j] = temp;
-    }
-
-    for (int i = 0; i < quantidade; i++) {
-        Funcionario f;
-        f.codigo = codigos[i];
-        strcpy(f.nome, nomes[rand() % 40]);
-        strcpy(f.cargo, cargos[rand() % 4]);
-
-        if (strcmp(f.cargo, "Medico") == 0) {
-            strcpy(f.especializacao, especializacoes[rand() % 14]);
-            f.salario = 9000 + rand() % 5000;
-        } else if (strcmp(f.cargo, "Administrador") == 0) {
-            strcpy(f.especializacao, "-");
-            f.salario = 5000 + rand() % 3000;
-        } else {
-            strcpy(f.especializacao, "-");
-            f.salario = 3000 + rand() % 2000;
-        }
-
-        // Departamento aleatório (lido direto do arquivo .dat)
-        int indiceDep = rand() % totalDepartamentos;
-        Departamento d;
-
-        if (fseek(arqDep, (long)indiceDep * (long)sizeof(Departamento), SEEK_SET) == 0 &&
-            fread(&d, sizeof(Departamento), 1, arqDep) == 1) {
-            f.codigoDepartamento = d.codigo;
-        } else {
-            // fallback simples: usa o primeiro registro do arquivo, se existir
-            rewind(arqDep);
-            if (fread(&d, sizeof(Departamento), 1, arqDep) == 1)
-                f.codigoDepartamento = d.codigo;
-            else
-                f.codigoDepartamento = 0; // sem depto válido (não deve acontecer pois totalDepartamentos > 0)
-        }
-
-        if (fwrite(&f, sizeof(Funcionario), 1, arquivo) == 1) {
-            totalFuncionarios++;
-        }
-    }
-
-    free(codigos);
-    fclose(arqDep);
-    fclose(arquivo);
-    salvarTotalFuncionarios();
-    printf("%d Funcionarios aleatorios gerados com sucesso.\n", totalFuncionarios);
-}
-

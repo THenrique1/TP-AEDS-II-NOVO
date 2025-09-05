@@ -30,43 +30,49 @@ void registrarLog(const char *mensagem) {
 
 
 // ====== (Pacientes ordenação trabalho 1) ======
+
 void ordenarPacientesPorCodigoBubbleSort() {
+    // Abre o arquivo de pacientes em modo leitura+escrita binário
     FILE *arq = fopen("pacientes.dat", "rb+");
     if (arq == NULL) {
         printf("Erro ao abrir o arquivo de pacientes.\n");
         return;
     }
 
+    // Marca início do tempo de execução
     clock_t inicio = clock();
 
     // Calcula o número total de pacientes no arquivo
-    fseek(arq, 0, SEEK_END);
-    long tamanhoArquivo = ftell(arq);
-    int qtdPacientes = tamanhoArquivo / sizeof(Paciente);
-    rewind(arq);
+    fseek(arq, 0, SEEK_END);                     // vai até o fim
+    long tamanhoArquivo = ftell(arq);            // obtém quantos bytes tem
+    int qtdPacientes = tamanhoArquivo / sizeof(Paciente); // divide pelo tamanho da struct
+    rewind(arq);                                 // volta o ponteiro para o início
 
     printf("Iniciando ordenacao de %d pacientes usando memoria secundaria...\n", qtdPacientes);
 
     int trocas = 0;
     int comparacoes = 0;
 
+    // Loop externo do Bubble Sort
     for (int i = 0; i < qtdPacientes - 1; i++) {
-        int houveTroca = 0;
+        int houveTroca = 0; // controla se houve troca nesta passada
 
+        // Loop interno: compara pares adjacentes
         for (int j = 0; j < qtdPacientes - 1 - i; j++) {
             Paciente p1, p2;
 
-            // Lê paciente j
+            // Posiciona no paciente j e lê
             fseek(arq, j * sizeof(Paciente), SEEK_SET);
             fread(&p1, sizeof(Paciente), 1, arq);
 
-            // Lê paciente j+1
+            // Lê também o paciente j+1 (logo em seguida)
             fread(&p2, sizeof(Paciente), 1, arq);
 
-            comparacoes++;
+            comparacoes++; // contabiliza comparação feita
 
+            // Se fora de ordem - troca
             if (p1.codigo > p2.codigo) {
-                // Reposiciona e escreve os pacientes invertidos
+                // Volta o ponteiro e sobrescreve invertido
                 fseek(arq, j * sizeof(Paciente), SEEK_SET);
                 fwrite(&p2, sizeof(Paciente), 1, arq);
                 fwrite(&p1, sizeof(Paciente), 1, arq);
@@ -76,46 +82,51 @@ void ordenarPacientesPorCodigoBubbleSort() {
             }
         }
 
+        // Se nenhuma troca foi feita - já está ordenado, interrompe
         if (!houveTroca)
             break;
 
+        //  A cada 10 passadas imprime progresso
         if ((i + 1) % 10 == 0)
             printf("Passada %d concluida...\n", i + 1);
     }
 
+    // Marca fim e calcula tempo
     clock_t fim = clock();
-double tempoGasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
+    double tempoGasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
-printf("\nOrdenacao concluida!\n");
-printf("Total de comparacoes: %d\n", comparacoes);
-printf("Total de trocas: %d\n", trocas);
-printf("Tempo de execucao: %.2f ms\n", tempoGasto * 1000);
+    // Exibe estatísticas
+    printf("\nOrdenacao concluida!\n");
+    printf("Total de comparacoes: %d\n", comparacoes);
+    printf("Total de trocas: %d\n", trocas);
+    printf("Tempo de execucao: %.2f ms\n", tempoGasto * 1000);
 
-// Log usando função padronizada
-logTempoExecucaoOrdenacao("Bubble Sort", qtdPacientes, tempoGasto);
+    logTempoExecucaoOrdenacao("Bubble Sort", qtdPacientes, tempoGasto);
 
-printf("\nBase de dados de pacientes ordenada com sucesso!\n");
-fclose(arq);
-
-
+    printf("\nBase de dados de pacientes ordenada com sucesso!\n");
+    fclose(arq);
 }
 
+
 // ====== Funcionários ======
+// Ordena os funcionarios por codigo usando Bubble Sort diretamente no arquivo .dat
 void ordenarFuncionariosPorCodigo() {
+    // Abre funcionarios.dat em modo leitura + escrita binária
     FILE *arq = fopen("funcionarios.dat", "rb+");
     if (arq == NULL) {
         printf("Erro ao abrir o arquivo de funcionarios.\n");
         return;
     }
 
-    clock_t inicio = clock();
+    clock_t inicio = clock(); // Marca inicio da medição de tempo
 
     // Calcula o número total de funcionários no arquivo
-    fseek(arq, 0, SEEK_END);
-    long tamanhoArquivo = ftell(arq);
-    int qtdFuncionarios = tamanhoArquivo / sizeof(Funcionario);
-    rewind(arq);
+    fseek(arq, 0, SEEK_END);                         // vai até o fim do arquivo
+    long tamanhoArquivo = ftell(arq);                // pega o tamanho total em bytes
+    int qtdFuncionarios = tamanhoArquivo / sizeof(Funcionario); // calcula qtde de registros
+    rewind(arq);                                     // volta o ponteiro pro inicio
 
+    // Se só tiver 0 ou 1 registro, não precisa ordenar
     if (qtdFuncionarios <= 1) {
         printf("Nada a ordenar.\n");
         fclose(arq);
@@ -124,75 +135,83 @@ void ordenarFuncionariosPorCodigo() {
 
     printf("Iniciando ordenacao de %d funcionarios usando memoria secundaria...\n", qtdFuncionarios);
 
-    int trocas = 0;
-    int comparacoes = 0;
+    int trocas = 0;       // contador de trocas
+    int comparacoes = 0;  // contador de comparações
 
+    // Loop externo do Bubble Sort
     for (int i = 0; i < qtdFuncionarios - 1; i++) {
-        int houveTroca = 0;
+        int houveTroca = 0; // flag para parar cedo se não houver trocas
 
+        // Loop interno: compara pares consecutivos
         for (int j = 0; j < qtdFuncionarios - 1 - i; j++) {
             Funcionario f1, f2;
 
-            // Lê funcionário j
+            // Posiciona no funcionario j e lê
             fseek(arq, j * sizeof(Funcionario), SEEK_SET);
             fread(&f1, sizeof(Funcionario), 1, arq);
 
-            // Lê funcionário j+1
+            // Lê o funcionario seguinte (j+1)
             fread(&f2, sizeof(Funcionario), 1, arq);
 
-            comparacoes++;
+            comparacoes++; // incrementa o contador de comparações
 
+            // Se fora de ordem - troca
             if (f1.codigo > f2.codigo) {
-                // Reposiciona e escreve os funcionários invertidos
+                // Volta ponteiro e grava invertido
                 fseek(arq, j * sizeof(Funcionario), SEEK_SET);
                 fwrite(&f2, sizeof(Funcionario), 1, arq);
                 fwrite(&f1, sizeof(Funcionario), 1, arq);
 
-                trocas++;
-                houveTroca = 1;
+                trocas++;       // contabiliza troca
+                houveTroca = 1; // marca que houve troca nesta passada
             }
         }
 
+        // Se não houve nenhuma troca nesta passada, já está ordenado
         if (!houveTroca)
             break;
 
+        // Exibe progresso a cada 10 passadas
         if ((i + 1) % 10 == 0)
             printf("Passada %d concluida...\n", i + 1);
     }
 
+    // Marca fim da medição de tempo
     clock_t fim = clock();
     double tempoGasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
+    // Exibe estatísticas de execução
     printf("\nOrdenacao concluida!\n");
     printf("Total de comparacoes: %d\n", comparacoes);
     printf("Total de trocas: %d\n", trocas);
     printf("Tempo de execucao: %.2f ms\n", tempoGasto * 1000);
 
-    // Log usando função padronizada
+    // Registra em log (função de log já existente no projeto)
     logTempoExecucaoOrdenacao("Bubble Sort (Funcionarios)", qtdFuncionarios, tempoGasto);
 
     printf("\nBase de dados de funcionarios ordenada com sucesso!\n");
-    fclose(arq);
+    fclose(arq); // Fecha arquivo
 }
 
 
-
-// ====== Departamentos ======
+// Ordena os departamentos por codigo usando Bubble Sort diretamente no arquivo dat
 void ordenarDepartamentosPorCodigo() {
+    // Abre departamentos.dat em modo leitura + escrita binária
     FILE *arq = fopen("departamentos.dat", "rb+");
     if (arq == NULL) {
         printf("Erro ao abrir o arquivo de departamentos.\n");
         return;
     }
 
-    clock_t inicio = clock();
+    clock_t inicio = clock(); // Marca inicio da medição de tempo
 
     // Calcula o número total de departamentos no arquivo
-    fseek(arq, 0, SEEK_END);
-    long tamanhoArquivo = ftell(arq);
-    int qtdDepartamentos = tamanhoArquivo / sizeof(Departamento);
-    rewind(arq);
+    fseek(arq, 0, SEEK_END);                           // vai até o fim do arquivo
+    long tamanhoArquivo = ftell(arq);                  // pega o tamanho total em bytes
+    int qtdDepartamentos = tamanhoArquivo / sizeof(Departamento); // calcula qtde registros
+    rewind(arq);                                       // volta pro inicio
 
+    // Se só tiver 0 ou 1 registro, não precisa ordenar
     if (qtdDepartamentos <= 1) {
         printf("Nada a ordenar.\n");
         fclose(arq);
@@ -201,12 +220,14 @@ void ordenarDepartamentosPorCodigo() {
 
     printf("Iniciando ordenacao de %d departamentos usando memoria secundaria...\n", qtdDepartamentos);
 
-    int trocas = 0;
-    int comparacoes = 0;
+    int trocas = 0;       // contador de trocas
+    int comparacoes = 0;  // contador de comparações
 
+    // Loop externo do Bubble Sort
     for (int i = 0; i < qtdDepartamentos - 1; i++) {
-        int houveTroca = 0;
+        int houveTroca = 0; // flag para parar cedo
 
+        // Loop interno: compara pares consecutivos
         for (int j = 0; j < qtdDepartamentos - 1 - i; j++) {
             Departamento d1, d2;
 
@@ -217,40 +238,46 @@ void ordenarDepartamentosPorCodigo() {
             // Lê departamento j+1
             fread(&d2, sizeof(Departamento), 1, arq);
 
-            comparacoes++;
+            comparacoes++; // contabiliza a comparação
 
+            // Se fora de ordem - troca
             if (d1.codigo > d2.codigo) {
-                // Reposiciona e escreve os departamentos invertidos
+                // Volta e sobrescreve invertido
                 fseek(arq, j * sizeof(Departamento), SEEK_SET);
                 fwrite(&d2, sizeof(Departamento), 1, arq);
                 fwrite(&d1, sizeof(Departamento), 1, arq);
 
-                trocas++;
-                houveTroca = 1;
+                trocas++;       // incrementa troca
+                houveTroca = 1; // marca troca na passada
             }
         }
 
+        // Se nenhuma troca foi feita, termina
         if (!houveTroca)
             break;
 
+        // Exibe progresso a cada 10 passadas
         if ((i + 1) % 10 == 0)
             printf("Passada %d concluida...\n", i + 1);
     }
 
+    // Marca fim e calcula tempo
     clock_t fim = clock();
     double tempoGasto = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
+    // Exibe estatísticas
     printf("\nOrdenacao concluida!\n");
     printf("Total de comparacoes: %d\n", comparacoes);
     printf("Total de trocas: %d\n", trocas);
     printf("Tempo de execucao: %.2f ms\n", tempoGasto * 1000);
 
-    // Log usando função padronizada
+    // Registra log padronizado
     logTempoExecucaoOrdenacao("Bubble Sort (Departamentos)", qtdDepartamentos, tempoGasto);
 
     printf("\nBase de dados de departamentos ordenada com sucesso!\n");
-    fclose(arq);
+    fclose(arq); // Fecha o arquivo
 }
+
 
 // ====== Contagem de blocos para seleção natural ======
 int contarBlocosArquivo(const char *nomeArquivo, size_t tamanhoRegistro) {

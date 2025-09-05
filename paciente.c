@@ -7,35 +7,36 @@
 #include <string.h>
 #include <time.h>
 
-// Função para buscar paciente por código (sequencial)
+// Busca sequencial em pacientes.dat (lê todos os registros até encontrar ou acabar)
 int buscaSequencialPaciente(int codigo) {
-    FILE *arquivo = fopen("pacientes.dat", "rb");
+    FILE *arquivo = fopen("pacientes.dat", "rb"); // abre o arquivo em modo leitura binária
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo de pacientes.\n");
-        return -1;
+        return -1; // erro ao abrir
     }
 
-    Paciente p;
-    int encontrado = 0;
-    clock_t inicio, fim;
-    double tempoExecucao;
+    Paciente p;               // buffer para leitura de um registro
+    int encontrado = 0;       // flag de sucesso
+    clock_t inicio, fim;      // marcação de tempo
+    double tempoExecucao;     // tempo da busca
 
-    inicio = clock();
+    inicio = clock();         // início da medição
 
-    // Busca sequencial no arquivo
+    // Busca sequencial: varre registro a registro até achar
     while (fread(&p, sizeof(Paciente), 1, arquivo) == 1) {
-        if (p.codigo == codigo) {
-            encontrado = 1;
-            break;
+        if (p.codigo == codigo) { // se o código for igual ao buscado
+            encontrado = 1;       // marca que encontrou
+            break;                // interrompe a leitura
         }
     }
 
-    fim = clock();
-    tempoExecucao = ((double)(fim - inicio)) / CLOCKS_PER_SEC;
+    fim = clock(); // fim da medição
+    tempoExecucao = ((double)(fim - inicio)) / CLOCKS_PER_SEC; // calcula tempo em segundos
 
-    fclose(arquivo);
+    fclose(arquivo); // fecha o arquivo
 
     if (encontrado) {
+        // exibe os dados do paciente encontrado
         printf("Paciente encontrado:\n");
         printf("Codigo: %d\n", p.codigo);
         printf("Nome: %s\n", p.nome);
@@ -45,56 +46,59 @@ int buscaSequencialPaciente(int codigo) {
         printf("Paciente não encontrado.\n");
     }
 
+    // registra no log: tipo de pesquisa, chave, sucesso e tempo
     gravarLogPesquisa("Pesquisa Sequencial (Paciente)", codigo, encontrado, tempoExecucao);
 
+    // retorna 1 se achou, -1 se não
     return encontrado ? 1 : -1;
 }
-
-// Função para busca binária de paciente por código
+// Busca binária em pacientes.dat (requer arquivo ORDENADO por p.codigo)
 int buscaBinariaPaciente(int codigo) {
-    FILE *arquivo = fopen("pacientes.dat", "rb");
+    FILE *arquivo = fopen("pacientes.dat", "rb"); // abre arquivo em leitura binária
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo de pacientes.\n");
-        return -1;
+        return -1; // erro ao abrir
     }
 
-    // total de pacientes
-    fseek(arquivo, 0, SEEK_END);
-    long tamanhoArquivo = ftell(arquivo);
-    int totalPacientes = tamanhoArquivo / sizeof(Paciente);
+    // Descobre o total de registros no arquivo
+    fseek(arquivo, 0, SEEK_END);                // vai para o fim
+    long tamanhoArquivo = ftell(arquivo);       // pega tamanho em bytes
+    int totalPacientes = tamanhoArquivo / sizeof(Paciente); // converte em nº de registros
+    fseek(arquivo, 0, SEEK_SET);                // volta para o início
 
-    fseek(arquivo, 0, SEEK_SET);
-
-    Paciente p;
-    int inicio = 0, fim = totalPacientes - 1, meio;
-    int encontrado = 0;
+    Paciente p;                 // buffer para leitura
+    int inicio = 0;             // limite inferior
+    int fim = totalPacientes - 1; // limite superior
+    int meio;                   // índice do meio
+    int encontrado = 0;         // flag de sucesso
     clock_t inicioBusca, fimBusca;
     double tempoExecucao;
 
-    inicioBusca = clock();
+    inicioBusca = clock();      // início da medição
 
-    // Busca binária
+    // Algoritmo da busca binária
     while (inicio <= fim) {
-        meio = (inicio + fim) / 2;
-        fseek(arquivo, meio * sizeof(Paciente), SEEK_SET);
-        fread(&p, sizeof(Paciente), 1, arquivo);
+        meio = (inicio + fim) / 2; // calcula posição do meio
+        fseek(arquivo, meio * sizeof(Paciente), SEEK_SET); // posiciona no registro "meio"
+        fread(&p, sizeof(Paciente), 1, arquivo);           // lê esse registro
 
-        if (p.codigo == codigo) {
+        if (p.codigo == codigo) {   // se encontrou
             encontrado = 1;
             break;
         } else if (p.codigo < codigo) {
-            inicio = meio + 1;
+            inicio = meio + 1;      // descarta metade inferior
         } else {
-            fim = meio - 1;
+            fim = meio - 1;         // descarta metade superior
         }
     }
 
-    fimBusca = clock();
+    fimBusca = clock(); // fim da medição
     tempoExecucao = ((double)(fimBusca - inicioBusca)) / CLOCKS_PER_SEC;
 
-    fclose(arquivo);
+    fclose(arquivo); // fecha o arquivo
 
     if (encontrado) {
+        // exibe os dados do paciente encontrado
         printf("Paciente encontrado:\n");
         printf("Codigo: %d\n", p.codigo);
         printf("Nome: %s\n", p.nome);
@@ -104,14 +108,16 @@ int buscaBinariaPaciente(int codigo) {
         printf("Paciente não encontrado.\n");
     }
 
-
+    // registra no log: tipo de pesquisa, chave, sucesso e tempo
     gravarLogPesquisa("Pesquisa Binária (Paciente)", codigo, encontrado, tempoExecucao);
 
+    // retorna 1 se achou, -1 se não
     return encontrado ? 1 : -1;
 }
 
+
 void listarPacientes(void) {
-    /* Garante os departamentos carregados para resolver nomes */
+    // Garante os departamentos carregados para resolver nomes
     carregarDepartamentosDoArquivo();
 
     FILE *arquivo = fopen(ARQUIVO_PACIENTES, "rb");
@@ -126,14 +132,14 @@ void listarPacientes(void) {
     printf("\n--- Lista de Pacientes ---\n");
 
     while (fread(&p, sizeof(Paciente), 1, arquivo) == 1) {
-        /* FILTRO: só mostra registros ativos */
+        // FILTRO: só mostra registros ativos
         if (p.ativo != 1) continue;
 
-        /* Nome do departamento */
+        // Nome do departamento
         char nomeDep[100] = "Desconhecido";
         buscarNomeDepartamentoPorCodigo(p.codigoDepartamento, nomeDep, sizeof(nomeDep));
 
-        /* Nome do responsável (funcionário) */
+        // Nome do responsável (funcionário)
         char nomeResp[100] = "Desconhecido";
         buscarNomeFuncionarioPorCodigo(p.codigoFuncionarioResponsavel, nomeResp, sizeof(nomeResp));
 

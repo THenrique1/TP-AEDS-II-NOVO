@@ -539,30 +539,46 @@ case 18: {
     }
 }
 
-void transferirPaciente() {
-    carregarDepartamentosDoArquivo();
 
+void transferirPaciente() {
     int codPaciente, codDepartamento;
+
+    // --- Entrada dos parâmetros pelo usuário ---
     printf("\nCodigo do Paciente: ");
-    if (scanf("%d", &codPaciente) != 1) { puts("Entrada invalida."); return; }
+    if (scanf("%d", &codPaciente) != 1) {
+        // Falha na leitura (ex.: caractere em vez de número)
+        printf("Entrada invalida.");
+        return;
+    }
 
     printf("Novo codigo do Departamento: ");
-    if (scanf("%d", &codDepartamento) != 1) { puts("Entrada invalida."); return; }
+    if (scanf("%d", &codDepartamento) != 1) {
+        printf("Entrada invalida.");
+        return;
+    }
 
+    // Validação do depatamento
     Departamento dep;
-    if (buscarIndiceDepartamento(codDepartamento, &dep) != 1) {
+    if (buscarIndiceDepartamento(codDepartamento, &dep) != 1) { // buscarIndiceDepartamento: retorna 1 se encontrou; -1 não achou; -2 erro de arquivo
         printf("Departamento nao encontrado.\n");
         return;
     }
 
-    // Buscar novo responsavel no departamento
+    // eleção do novo responsável no departamento de destino (primeiro)
     FILE *arquivoFunc = fopen("funcionarios.dat", "rb");
-    if (!arquivoFunc) { printf("Erro ao abrir funcionarios.dat\n"); return; }
+    if (!arquivoFunc) {
+        printf("Erro ao abrir funcionarios.dat\n");
+        return;
+    }
 
     Funcionario f;
-    int novoResponsavel = -1;
+    int novoResponsavel = -1; // -1 indica "não definido"
+    // Varre todos os funcionarios e pega algum do departamento alvo
     while (fread(&f, sizeof(Funcionario), 1, arquivoFunc) == 1) {
-        if (f.codigoDepartamento == codDepartamento) { novoResponsavel = f.codigo; break; }
+        if (f.codigoDepartamento == codDepartamento) {
+            novoResponsavel = f.codigo;
+            break;
+        }
     }
     fclose(arquivoFunc);
 
@@ -571,44 +587,99 @@ void transferirPaciente() {
         return;
     }
 
-    // Atualiza paciente via arquivo temporario
-    FILE *in = fopen("pacientes.dat", "rb");
+    // Abre o original para leitura e cria um temporário para escrita
+    FILE *in  = fopen("pacientes.dat", "rb");
     FILE *tmp = fopen("temp.dat", "wb");
     if (!in || !tmp) {
         printf("Erro ao abrir arquivos de pacientes.\n");
-        if (in) fclose(in);
+        if (in)  fclose(in);
         if (tmp) fclose(tmp);
         return;
     }
 
+    // Percorre todos os pacientes; quando for o alvo, altera os campos
     Paciente p;
-    int transferido = 0;
+    int transferido = 0; // saber se achou e atualizou o paciente
+
     while (fread(&p, sizeof(Paciente), 1, in) == 1) {
         if (p.codigo == codPaciente) {
+            // Atualiza departamento e responsável do paciente
             p.codigoDepartamento = codDepartamento;
             p.codigoFuncionarioResponsavel = novoResponsavel;
             transferido = 1;
         }
-        if (fwrite(&p, sizeof(Paciente), 1, tmp) != 1) { puts("Erro de escrita."); /* tratar */ }
+        // Escreve o registro (alterado ou não) no arquivo temporário
+        fwrite(&p, sizeof(Paciente), 1, tmp);
     }
-    fclose(in); fclose(tmp);
+    fclose(in);
+    fclose(tmp);
 
+    //  substitui o arquivo original pelo temporário
     if (transferido) {
+        //  apaga o arquivo original e promove o temp a definitivo
         if (remove("pacientes.dat") != 0 || rename("temp.dat", "pacientes.dat") != 0) {
-            puts("Falha ao substituir pacientes.dat"); return;
+            printf("Falha ao substituir");
+            return;
         }
-        carregarPacientesDoArquivo();  // atualiza totalPacientes
         printf("Paciente transferido para o departamento %s (Resp. codigo %d).\n",
                dep.nome, novoResponsavel);
     } else {
+        // Se o paciente não foi encontrado, descarta o arquivo temporário
         remove("temp.dat");
         printf("Paciente nao encontrado.\n");
     }
 }
 
-void listarPacientesPorDepartamento() {
-    carregarDepartamentosDoArquivo();
 
+// Relatorio de ocupacao
+void relatorioOcupacaoDepartamentos() {
+    printf("\n=== Relatorio de Ocupacao por Departamento ===\n");
+
+    FILE *arqDep = fopen("departamentos.dat", "rb");
+    if (!arqDep) {
+        printf("Erro ao abrir departamentos.dat\n");
+        return;
+    }
+
+    Departamento d;
+    // Percorre todos os registros de departamentos no arquivo
+    while (fread(&d, sizeof(Departamento), 1, arqDep) == 1) {
+        // Contadores de pacientes e funcionários por departamento
+        int qtdPac = 0, qtdFunc = 0;
+
+        // ontagem de pacientes no departamento atual
+        FILE *ap = fopen("pacientes.dat", "rb");
+        if (ap) {
+            Paciente p;
+            while (fread(&p, sizeof(Paciente), 1, ap) == 1)
+                if (p.codigoDepartamento == d.codigo) qtdPac++; //incrementa
+            fclose(ap);
+        } else {
+            printf("Erro ao abrir pacientes.dat\n");
+        }
+
+        // --- Contagem de funcionários no departamento atual ---
+        FILE *af = fopen("funcionarios.dat", "rb");
+        if (af) {
+            Funcionario f;
+            while (fread(&f, sizeof(Funcionario), 1, af) == 1)
+                if (f.codigoDepartamento == d.codigo) qtdFunc++; //incrementa
+            fclose(af);
+        } else {
+            printf("Erro ao abrir funcionarios.dat\n");
+        }
+
+        printf("Departamento: %s (Codigo: %d)\n", d.nome, d.codigo);
+        printf("  Pacientes: %d\n", qtdPac);
+        printf("  Funcionarios: %d\n\n", qtdFunc);
+    }
+
+    fclose(arqDep);
+}
+
+
+// Lista pacientes de um departamento
+void listarPacientesPorDepartamento() {
     int codDepartamento;
     printf("\nDigite o codigo do Departamento: ");
     if (scanf("%d", &codDepartamento) != 1) { puts("Entrada invalida."); return; }
@@ -632,15 +703,19 @@ void listarPacientesPorDepartamento() {
         }
     }
     fclose(arquivo);
+
     if (!encontrou) printf("Nenhum paciente alocado neste departamento.\n");
 }
 
-void listarFuncionariosPorDepartamento() {
-    carregarDepartamentosDoArquivo();
 
+void listarFuncionariosPorDepartamento() {
     int codDepartamento;
+
     printf("\nDigite o codigo do Departamento: ");
-    if (scanf("%d", &codDepartamento) != 1) { puts("Entrada invalida."); return; }
+    if (scanf("%d", &codDepartamento) != 1) {
+        printf("Entrada invalida.\n");
+        return;
+    }
 
     Departamento dep;
     if (buscarIndiceDepartamento(codDepartamento, &dep) != 1) {
@@ -651,52 +726,26 @@ void listarFuncionariosPorDepartamento() {
     printf("\nFuncionarios no Departamento %s:\n", dep.nome);
 
     FILE *arq = fopen("funcionarios.dat", "rb");
-    if (!arq) { printf("Erro ao abrir funcionarios.dat\n"); return; }
+    if (!arq) {
+        printf("Erro ao abrir funcionarios.dat\n");
+        return;
+    }
 
-    Funcionario f; int encontrou = 0;
+    Funcionario f;
+    int encontrou = 0;
+
     while (fread(&f, sizeof(Funcionario), 1, arq) == 1) {
         if (f.codigoDepartamento == codDepartamento) {
-            printf("Codigo: %d | Nome: %s | Cargo: %s\n", f.codigo, f.nome, f.cargo);
+            printf("Codigo: %d | Nome: %s | Cargo: %s\n",
+                   f.codigo, f.nome, f.cargo);
             encontrou = 1;
         }
     }
+
     fclose(arq);
-    if (!encontrou) printf("Nenhum funcionario alocado neste departamento.\n");
-}
 
-void relatorioOcupacaoDepartamentos() {
-    printf("\n=== Relatorio de Ocupacao por Departamento ===\n");
-
-    FILE *arqDep = fopen("departamentos.dat", "rb");
-    if (!arqDep) { printf("Erro ao abrir departamentos.dat\n"); return; }
-
-    Departamento d;
-    while (fread(&d, sizeof(Departamento), 1, arqDep) == 1) {
-        int qtdPac = 0, qtdFunc = 0;
-
-        FILE *ap = fopen("pacientes.dat", "rb");
-        if (ap) {
-            Paciente p;
-            while (fread(&p, sizeof(Paciente), 1, ap) == 1)
-                if (p.codigoDepartamento == d.codigo) qtdPac++;
-            fclose(ap);
-        } else {
-            printf("Erro ao abrir pacientes.dat\n");
-        }
-
-        FILE *af = fopen("funcionarios.dat", "rb");
-        if (af) {
-            Funcionario f;
-            while (fread(&f, sizeof(Funcionario), 1, af) == 1)
-                if (f.codigoDepartamento == d.codigo) qtdFunc++;
-            fclose(af);
-        } else {
-            printf("Erro ao abrir funcionarios.dat\n");
-        }
-
-        printf("Departamento: %s (Codigo: %d)\n", d.nome, d.codigo);
-        printf("  Pacientes: %d\n", qtdPac);
-        printf("  Funcionarios: %d\n\n", qtdFunc);
+    if (!encontrou) {
+        printf("Nenhum funcionario alocado neste departamento.\n");
     }
-    fclose(arqDep);
 }
+

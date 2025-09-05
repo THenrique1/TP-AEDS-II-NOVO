@@ -53,49 +53,51 @@ void listarFuncionarios() {
     printf("Total listado: %d funcionario(s).\n", totalFuncionarios);
 }
 
-// Função de busca binária
+// Busca binária em funcionarios.dat (requer arquivo ORDENADO por f.codigo)
 int buscaBinariaFuncionario(int codigo) {
-    FILE *arquivo = fopen("funcionarios.dat", "rb");
+    FILE *arquivo = fopen("funcionarios.dat", "rb"); // abre o arquivo em leitura binária
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo de funcionarios.\n");
-        return -1;
+        return -1; // erro ao abrir
     }
 
-    clock_t inicio, fim;
-    double tempoExecucao;
+    clock_t inicio, fim;           // marcação de tempo
+    double tempoExecucao;          // tempo total da busca
 
-    inicio = clock();
+    inicio = clock();              // início da medição
 
-    Funcionario f;
-    int inicioBusca = 0, fimBusca = totalFuncionarios - 1, meio;
-    int encontrado = 0;
+    Funcionario f;                 // buffer para ler um registro do arquivo
+    int inicioBusca = 0;           // limite inferior da busca (índice lógico)
+    int fimBusca = totalFuncionarios - 1; // limite superior
+    int meio;                      // índice do meio
+    int encontrado = 0;            // flag de sucesso
 
-    // A busca binária no arquivo
+    // Loop da busca binária no arquivo
     while (inicioBusca <= fimBusca) {
-        meio = (inicioBusca + fimBusca) / 2;
+        meio = (inicioBusca + fimBusca) / 2;                    // calcula posição do meio
+        fseek(arquivo, meio * sizeof(Funcionario), SEEK_SET);   // posiciona no registro "meio"
+        fread(&f, sizeof(Funcionario), 1, arquivo);             // lê o registro do meio
 
-        fseek(arquivo, meio * sizeof(Funcionario), SEEK_SET);
-
-        fread(&f, sizeof(Funcionario), 1, arquivo);
-
-        if (f.codigo == codigo) {
-            encontrado = 1;
-            break;
-        } else if (f.codigo < codigo) {
-            inicioBusca = meio + 1;
-        } else {
-            fimBusca = meio - 1;
+        if (f.codigo == codigo) {        // compara o campo-chave
+            encontrado = 1;              // achou
+            break;                       // sai do loop
+        } else if (f.codigo < codigo) {  // se o código no arquivo é menor
+            inicioBusca = meio + 1;      // busca continua na metade superior
+        } else {                          // se o código no arquivo é maior
+            fimBusca = meio - 1;         // busca continua na metade inferior
         }
     }
 
-    fim = clock();
-    tempoExecucao = ((double)(fim - inicio)) / CLOCKS_PER_SEC;
+    fim = clock(); // fim da medição
+    tempoExecucao = ((double)(fim - inicio)) / CLOCKS_PER_SEC; // calcula tempo em segundos
 
+    // registra no log a operação (tipo, chave, sucesso, tempo)
     gravarLogPesquisa("Pesquisa Binaria (Funcionario)", codigo, encontrado, tempoExecucao);
 
-    fclose(arquivo);
+    fclose(arquivo); // fecha o arquivo
 
     if (encontrado) {
+        // imprime dados do funcionário encontrado
         printf("Funcionario encontrado:\n");
         printf("Codigo: %d\n", f.codigo);
         printf("Nome: %s\n", f.nome);
@@ -105,42 +107,43 @@ int buscaBinariaFuncionario(int codigo) {
         printf("Funcionario não encontrado.\n");
     }
 
+    // retorna o índice (meio) se encontrou, senão -1
     return encontrado ? meio : -1;
 }
 
-
-// Função de busca sequencial funcionários
+// Busca sequencial em funcionarios.dat (varre registro a registro até encontrar)
 int buscaSequencialFuncionario(int codigo) {
-    FILE *arquivo = fopen("funcionarios.dat", "rb");
+    FILE *arquivo = fopen("funcionarios.dat", "rb"); // abre o arquivo em leitura binária
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo de funcionarios.\n");
-        return -1;
+        return -1; // erro ao abrir
     }
 
-    Funcionario f;
-    int encontrado = 0;
-    clock_t inicio, fim;
-    double tempoExecucao;
+    Funcionario f;           // buffer para leitura de um registro
+    int encontrado = 0;      // flag de sucesso
+    clock_t inicio, fim;     // para medir o tempo
+    double tempoExecucao;    // tempo total da busca
 
-    inicio = clock();
+    inicio = clock();        // início da medição
 
-    // Busca sequencial no arquivo
-    while (fread(&f, sizeof(Funcionario), 1, arquivo) == 1) {
-        if (f.codigo == codigo) {
-            encontrado = 1;
-            break;
+    // Varredura sequencial do arquivo
+    while (fread(&f, sizeof(Funcionario), 1, arquivo) == 1) { // lê 1 registro por vez
+        if (f.codigo == codigo) {   // compara o campo-chave
+            encontrado = 1;         // achou
+            break;                   // interrompe a varredura
         }
     }
 
-    fim = clock();
+    fim = clock(); // fim da medição
+    tempoExecucao = ((double)(fim - inicio)) / CLOCKS_PER_SEC; // calcula tempo
 
-    tempoExecucao = ((double)(fim - inicio)) / CLOCKS_PER_SEC;
-
+    // registra no log a operação (tipo, chave, sucesso, tempo)
     gravarLogPesquisa("Pesquisa Sequencial (Funcionario)", codigo, encontrado, tempoExecucao);
 
-    fclose(arquivo);
+    fclose(arquivo); // fecha o arquivo
 
     if (encontrado) {
+        // imprime dados do funcionário encontrado
         printf("Funcionario encontrado:\n");
         printf("Codigo: %d\n", f.codigo);
         printf("Nome: %s\n", f.nome);
@@ -150,5 +153,6 @@ int buscaSequencialFuncionario(int codigo) {
         printf("Funcionario não encontrado.\n");
     }
 
+    // retorna 1 se encontrou, -1 se não
     return encontrado ? 1 : -1;
 }

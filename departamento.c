@@ -7,6 +7,7 @@
 #include "tempo.h"
 
 // Lista departamentos lendo/contando direto dos arquivos .dat (memória secundária)
+// Lista apenas os departamentos, sem contar funcionários e pacientes
 void listarDepartamentos() {
     FILE *arqDeptos = fopen("departamentos.dat", "rb");
     if (!arqDeptos) {
@@ -19,47 +20,13 @@ void listarDepartamentos() {
 
     printf("\n======= Lista de Departamentos =======\n");
 
+    // Lê cada departamento diretamente do arquivo
     while (fread(&d, sizeof(Departamento), 1, arqDeptos) == 1) {
-        int qtdFuncionarios = 0;
-        int qtdPacientes   = 0;
-
-        // Contar funcionários do departamento (streaming)
-        FILE *arqFuncs = fopen("funcionarios.dat", "rb");
-        if (arqFuncs) {
-            Funcionario f;
-            while (fread(&f, sizeof(Funcionario), 1, arqFuncs) == 1) {
-                if (f.codigoDepartamento == d.codigo) {
-                    qtdFuncionarios++;
-                }
-            }
-            fclose(arqFuncs);
-        } else {
-            printf("Aviso: funcionarios.dat não encontrado.\n");
-        }
-
-        // Contar pacientes do departamento (streaming)
-        FILE *arqPacs = fopen("pacientes.dat", "rb");
-        if (arqPacs) {
-            Paciente p;
-            while (fread(&p, sizeof(Paciente), 1, arqPacs) == 1) {
-                if (p.codigoDepartamento == d.codigo) {
-                    qtdPacientes++;
-                }
-            }
-            fclose(arqPacs);
-        } else {
-            printf("Aviso: pacientes.dat não encontrado.\n");
-        }
-
-        // Impressão (mantém o formato)
         printf("Codigo: %d\n", d.codigo);
         printf("Nome: %s\n", d.nome);
         printf("Responsavel: %s\n", d.responsavel);
         printf("Andar: %d\n", d.andar);
-        printf("Quantidade de Funcionarios: %d\n", qtdFuncionarios);
-        printf("Quantidade de Pacientes: %d\n", qtdPacientes);
         printf("-------------------------------------\n");
-
         registrosLidos++;
     }
 
@@ -73,33 +40,33 @@ void listarDepartamentos() {
 }
 
 
-// Função de busca sequencial para departamentos (lê diretamente do arquivo)
+// Busca sequencial em departamentos.dat (passa registro a registro até encontrar ou acabar)
 int buscaSequencialDepartamento(int codigo) {
-    FILE *arquivo = fopen("departamentos.dat", "rb");
+    FILE *arquivo = fopen("departamentos.dat", "rb"); // abre arquivo em leitura binária
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo de departamentos.\n");
-        return -1;
+        return -1; // erro ao abrir
     }
 
     Departamento d;
     int encontrado = 0;
-    clock_t inicioBusca = clock();
+    clock_t inicioBusca = clock(); // marca inicio do tempo de execução
 
-    // Leitura sequencial
+    // Leitura sequencial: percorre todo o arquivo
     while (fread(&d, sizeof(Departamento), 1, arquivo) == 1) {
-        if (d.codigo == codigo) {
+        if (d.codigo == codigo) { // se encontrou o código buscado
             encontrado = 1;
             break;
         }
     }
 
-    clock_t fimBusca = clock();
+    clock_t fimBusca = clock(); // marca fim do tempo
     double tempoExecucao = ((double)(fimBusca - inicioBusca)) / CLOCKS_PER_SEC;
 
     fclose(arquivo);
 
     if (encontrado) {
-        // Contar funcionários associados a este departamento
+        // Conta funcionários associados ao departamento encontrado
         int count = 0;
         FILE *arqFunc = fopen("funcionarios.dat", "rb");
         if (arqFunc != NULL) {
@@ -112,6 +79,7 @@ int buscaSequencialDepartamento(int codigo) {
             fclose(arqFunc);
         }
 
+        // Exibe informações do departamento
         printf("Departamento encontrado:\n");
         printf("Codigo: %d\n", d.codigo);
         printf("Nome: %s\n", d.nome);
@@ -122,25 +90,26 @@ int buscaSequencialDepartamento(int codigo) {
         printf("Departamento não encontrado.\n");
     }
 
+    // Registra no log os dados da busca
     gravarLogPesquisa("Pesquisa Sequencial (Departamento)", codigo, encontrado, tempoExecucao);
-    return encontrado ? 1 : -1;
+
+    return encontrado ? 1 : -1; // retorna 1 se achou, -1 se não achou
 }
 
-// Função de busca binária para departamentos (lê diretamente do arquivo)
+
+// Busca binária em departamentos.dat (requer que o arquivo esteja ordenado por código)
 int buscaBinariaDepartamento(int codigo) {
-    FILE *arquivo = fopen("departamentos.dat", "rb");
+    FILE *arquivo = fopen("departamentos.dat", "rb"); // abre o arquivo
     if (arquivo == NULL) {
         printf("Erro ao abrir o arquivo de departamentos.\n");
         return -1;
     }
 
-    // Determinar o número total de departamentos
+    // Calcula o número total de departamentos no arquivo
     fseek(arquivo, 0, SEEK_END);
-    long tamanhoArquivo = ftell(arquivo);
-    int totalDepartamentos = tamanhoArquivo / sizeof(Departamento);
-
-    // Retornar à posição inicial do arquivo
-    fseek(arquivo, 0, SEEK_SET);
+    long tamanhoArquivo = ftell(arquivo);                   // tamanho em bytes
+    int totalDepartamentos = tamanhoArquivo / sizeof(Departamento); // total de registros
+    fseek(arquivo, 0, SEEK_SET);                            // volta para o início
 
     Departamento d;
     int inicio = 0, fim = totalDepartamentos - 1, meio;
@@ -148,34 +117,31 @@ int buscaBinariaDepartamento(int codigo) {
     clock_t inicioBusca, fimBusca;
     double tempoExecucao;
 
-    // Começa a medir o tempo de execução
-    inicioBusca = clock();
+    inicioBusca = clock(); // começa medição de tempo
 
-    // Busca binária
+    // Loop da busca binária
     while (inicio <= fim) {
-        meio = (inicio + fim) / 2;
-        fseek(arquivo, meio * sizeof(Departamento), SEEK_SET);
-        fread(&d, sizeof(Departamento), 1, arquivo);
+        meio = (inicio + fim) / 2; // calcula posição do meio
+        fseek(arquivo, meio * sizeof(Departamento), SEEK_SET); // posiciona no registro "meio"
+        fread(&d, sizeof(Departamento), 1, arquivo);           // lê esse registro
 
-        if (d.codigo == codigo) {
+        if (d.codigo == codigo) { // se encontrou
             encontrado = 1;
             break;
         } else if (d.codigo < codigo) {
-            inicio = meio + 1;
+            inicio = meio + 1; // descarta a metade inferior
         } else {
-            fim = meio - 1;
+            fim = meio - 1;    // descarta a metade superior
         }
     }
 
-    // Calcula o tempo de execução
-    fimBusca = clock();
+    fimBusca = clock(); // fim do tempo
     tempoExecucao = ((double)(fimBusca - inicioBusca)) / CLOCKS_PER_SEC;
 
     fclose(arquivo);
 
-    // Exibe os dados do departamento encontrado
     if (encontrado) {
-        // Conta real de funcionários associados
+        // Conta funcionários associados a este departamento para interação
         int count = 0;
         FILE *arqFunc = fopen("funcionarios.dat", "rb");
         if (arqFunc != NULL) {
@@ -188,6 +154,7 @@ int buscaBinariaDepartamento(int codigo) {
             fclose(arqFunc);
         }
 
+        // Exibe os dados do departamento encontrado
         printf("Departamento encontrado:\n");
         printf("Codigo: %d\n", d.codigo);
         printf("Nome: %s\n", d.nome);
@@ -198,9 +165,9 @@ int buscaBinariaDepartamento(int codigo) {
         printf("Departamento não encontrado.\n");
     }
 
-    // Chama a função para gravar no log
+    // Grava no log a execução da busca
     gravarLogPesquisa("Pesquisa Binaria (Departamento)", codigo, encontrado, tempoExecucao);
 
-    return encontrado ? 1 : -1;  // Retorna 1 se encontrado, -1 se não encontrado
+    return encontrado ? 1 : -1; // retorna 1 se achou, -1 se não achou
 }
 
